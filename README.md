@@ -16,3 +16,7 @@ A simple React app, help Mr.Bin manage booking & turn over.
 -  Sass
 - React Router
 - Eslint
+- Redux Toolkit
+- SCSS
+- styled components
+- axios
