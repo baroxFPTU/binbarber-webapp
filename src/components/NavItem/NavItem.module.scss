@@ -1,0 +1,39 @@
+@import 'settings';
+
+.navItem {
+  flex-basis: calc(100% / 5);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 5px;
+  
+  &:hover {
+    .navItemIcon, .navItemLabel {
+      transition: $simple-transition;
+      color: $yellow-500;
+    }
+  }
+
+  &.active {
+    .navItemIcon, .navItemLabel {
+      transition: $simple-transition;
+      color: $yellow-500;
+    }
+  }
+
+  .navItemIcon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .navItemLabel {
+    font-size: 13px;
+    flex-shrink: 0;
+    white-space: nowrap;
+    color: $black-500;
+    user-select: none;
+  }
+}
