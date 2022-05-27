@@ -1,9 +1,10 @@
+import MainCarousel from 'components/MainCarousel/MainCarousel'
 import React from 'react'
 
 function Home(props) {
   return (
     <div>
-      <h1>Home page</h1>
+      <MainCarousel/>
     </div>
   )
 }

@@ -2,8 +2,9 @@
 
 .navItem {
   flex-basis: calc(100% / 5);
-
+  line-height: 1;
   display: flex;
+  row-gap: 5px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -17,7 +18,7 @@
     }
   }
 
-  &.active {
+  &[aria-current="page"] {
     .navItemIcon, .navItemLabel {
       transition: $simple-transition;
       color: $yellow-500;
