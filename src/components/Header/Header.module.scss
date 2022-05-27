@@ -1,0 +1,21 @@
+@import 'settings';
+
+.header {
+ display: flex;
+ justify-content: space-between;
+ align-items: center; 
+ padding: 1.5rem $app-gap;
+ line-height: 1;
+ & h2 {
+   margin: 0;
+ }
+
+ & .navBookingBtn {
+   font-weight: 600;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   column-gap: 8px;
+   line-height: 1;
+ }
+}

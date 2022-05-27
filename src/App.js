@@ -1,3 +1,4 @@
+import Header from 'components/Header/Header'
 import MainNavigation from 'components/MainNavigation/MainNavigation'
 import Home from 'pages/Home'
 import ManageBooking from 'pages/ManageBooking'
@@ -9,6 +10,7 @@ import { Route, Routes } from 'react-router-dom'
 function App() {
   return (
     <div className="app-master">
+      <Header/>
       <main className="app-container">
         <Routes>
           <Route path="/" element={<Home/>}/>
