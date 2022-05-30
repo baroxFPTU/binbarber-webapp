@@ -10,7 +10,6 @@
   align-items: center;
   cursor: pointer;
   padding: 5px;
-  
   &:hover {
     .navItemIcon, .navItemLabel {
       transition: $simple-transition;
@@ -26,12 +25,12 @@
   }
 
   .navItemIcon {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     flex-shrink: 0;
   }
 
   .navItemLabel {
-    font-size: 13px;
+    font-size: 10px;
     flex-shrink: 0;
     white-space: nowrap;
     color: $black-500;

@@ -1,0 +1,12 @@
+.GridWrapper {
+  display: grid;
+  width: 100%;
+  @media screen and (max-width: 330px) {
+    grid-template-columns: repeat(3, 1fr)!important;
+  }
+
+  @media screen and (max-width: 280px) {
+    grid-template-columns: repeat(2, 1fr)!important;
+  }
+}
+
