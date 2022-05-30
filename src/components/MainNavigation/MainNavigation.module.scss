@@ -6,6 +6,7 @@
   left: 0;
   width: 100%;
   background: #fff;
+  height: $nav-height;
 }
 
 .navWrapper {
@@ -13,7 +14,10 @@
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  padding: 8px 15px;
+  padding: 8px 5px;
+  max-width: 500px;
+  margin: 0 auto;
+
 }
 
 .navItem {

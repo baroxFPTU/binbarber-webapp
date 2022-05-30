@@ -1,0 +1,31 @@
+@import 'settings';
+
+.ServiceItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.ServiceIcon {
+  width: 9vh;
+  height: 9vh;
+  border-radius: 10px;
+  border: 1px solid $yellow-500;
+  color: $yellow-500;
+  font-size: 2.7rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &:hover {
+    color: #fff;
+    background-color: $yellow-500;
+  }
+}
+
+.Label {
+  text-align: center;
+  font-size: 15px;
+  font-weight: $font-semiBold;
+  
+}

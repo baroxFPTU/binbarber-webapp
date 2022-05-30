@@ -1,7 +1,16 @@
-$app-gap: 20px;
+$app-gap: 15px;
 $app-radius: 10px;
+$nav-height: 65px;
 
 $yellow-500: #FAC172;
 $black-500: #323232;
 
+$h1-font-size: clamp(24px, 36px, 36px);
+$h2-font-size: 23px;
+$h3-font-size: 20px;
+
+$font-bold: 700;
+$font-semiBold: 600;
+
 $simple-transition: all 0.2s ease-in-out;
+
