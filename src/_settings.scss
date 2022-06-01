@@ -5,12 +5,18 @@ $nav-height: 65px;
 $yellow-500: #FAC172;
 $black-500: #323232;
 
+$font-family: -apple-system, 'Mulish', 'Helvetica Neue', sans-serif;
 $h1-font-size: clamp(24px, 36px, 36px);
-$h2-font-size: 23px;
+$h2-font-size: 24px;
 $h3-font-size: 20px;
 
 $font-bold: 700;
 $font-semiBold: 600;
+$font-regular: 400;
 
 $simple-transition: all 0.2s ease-in-out;
+
+$scrollbar-width: 8px;
+$scrollbar-radius: 4px;
+$scrollbar-thumb-color: rgb(225, 225, 225);
 

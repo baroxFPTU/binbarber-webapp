@@ -1,22 +1,30 @@
 @import 'settings';
 
+$icon-width: 7.5vh;
+$icon-height: 7.5vh;
+$icon-border-radius: 10px;
+
 .ServiceItem {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  cursor: pointer;
+  user-select: none;
 }
 
 .ServiceIcon {
-  width: 9vh;
-  height: 9vh;
-  border-radius: 10px;
+  width: $icon-width;
+  height: $icon-height;
+  border-radius: $icon-border-radius;
   border: 1px solid $yellow-500;
   color: $yellow-500;
   font-size: 2.7rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 5px;
+
   &:hover {
     color: #fff;
     background-color: $yellow-500;

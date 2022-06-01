@@ -3,14 +3,14 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, 'Montserrat', 'Helvetica Neue',
-    sans-serif;
+  font-family: $font-family;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: $black-500;
   font-size: 17px;
   line-height: 1.7;
   background: white;
+  overflow: overlay;
 }
 
 h1, h2, h3 {
@@ -65,4 +65,19 @@ a {
 .app-container {
   padding: 0 $app-gap;
   margin-bottom: calc($nav-height + $app-gap * 1.5);
+}
+
+::-webkit-scrollbar {
+  -webkit-appearance: none; 
+  width: $scrollbar-width;
+}
+::-webkit-scrollbar-thumb {
+  background: $scrollbar-thumb-color;
+  border-radius: $scrollbar-radius;
+}
+
+::-webkit-scrollbar-track {
+  margin-top: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
 }
