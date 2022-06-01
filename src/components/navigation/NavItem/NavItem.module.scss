@@ -1,15 +1,19 @@
 @import 'settings';
 
+$label-font-size: 11px;
+$item-gap: 5px;
+$icon-font-size: 1.5rem;
+
 .navItem {
   flex-basis: calc(100% / 5);
   line-height: 1;
   display: flex;
-  row-gap: 5px;
+  row-gap: $item-gap;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  padding: 5px;
+  padding: $item-gap;
   &:hover {
     .navItemIcon, .navItemLabel {
       transition: $simple-transition;
@@ -25,12 +29,12 @@
   }
 
   .navItemIcon {
-    font-size: 1.2rem;
+    font-size: $icon-font-size;
     flex-shrink: 0;
   }
 
   .navItemLabel {
-    font-size: 10px;
+    font-size: $label-font-size;
     flex-shrink: 0;
     white-space: nowrap;
     color: $black-500;

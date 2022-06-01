@@ -1,51 +1,48 @@
-import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide'
+import { Splide, SplideTrack, SplideSlide } from '@splidejs/react-splide'
 import React from 'react'
-import CSSModule from './SaleCarousel.module.scss'
+import CSSModule from './MainCarousel.module.scss'
 
-function SaleCarousel(props) {
+function MainCarousel(props) {
   const initialData = [
     { id: 1, imageUrl: 'https://source.unsplash.com/random', description: 'Uu dai thang nay' },
     { id: 2, imageUrl: 'https://source.unsplash.com/random', description: 'Uu dai thang nay' },
     { id: 3, imageUrl: 'https://source.unsplash.com/random', description: 'Uu dai thang nay' },
     { id: 4, imageUrl: 'https://source.unsplash.com/random', description: 'Uu dai thang nay' },
     { id: 5, imageUrl: 'https://source.unsplash.com/random', description: 'Uu dai thang nay' },
-    { id: 6, imageUrl: 'https://source.unsplash.com/random', description: 'Uu dai thang nay' }
+    { id: 6, imageUrl: 'https://source.unsplash.com/random', description: 'Uu dai thang nay' },
   ]
 
-  const carouselOptions = { arrows: false,
+  const MAIN_CAROUSEL_OPTIONS = {
+    arrows: false,
     rewind: true,
+    autoplay: true,
     interval: 4000,
     lazyload: true,
     speed: 1000,
     rewindSpeed: 500,
-    pagination: false, 
-    cloneStatus: 'is-active',
-    gap: '30px',
-    slidesToShow: 1.5,
-    perMove: 1,
-    infinite: true,
-    fixedWidth: '270px',
-    fixedHeight: '350px'
+    gap: '1em'
   }
 
   return (
     <Splide
       hasTrack={ false }
       aria-label="Main Carousel"
-      options={carouselOptions}
+      options={MAIN_CAROUSEL_OPTIONS}
       tag="section"
     >
       <SplideTrack>
-        {initialData.map((item, index) => (
-          <SplideSlide key={index}>
-            <div className={CSSModule.carouselItem}>
-              <img src={item.imageUrl} alt={item.description} />
-            </div>
-          </SplideSlide>
-        ))}
+        {
+          initialData.map((item, key) => (
+            <SplideSlide key={key}>
+              <div className={CSSModule.slideItem}>
+                <img className={CSSModule.slideImg} src={item.imageUrl} alt={item.description} />
+              </div>
+            </SplideSlide>
+          ))
+        }
       </SplideTrack>
     </Splide>
   )
 }
 
-export default SaleCarousel
+export default MainCarousel

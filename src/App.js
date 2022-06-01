@@ -1,5 +1,5 @@
-import Header from 'components/Header/Header'
-import MainNavigation from 'components/MainNavigation/MainNavigation'
+import Header from 'components/common/Header/Header'
+import MainNavigation from 'components/navigation/MainNavigation/MainNavigation'
 import Home from 'pages/Home'
 import ManageBooking from 'pages/ManageBooking'
 import Me from 'pages/Me'
