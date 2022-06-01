@@ -1,0 +1,30 @@
+@import 'settings';
+
+.ModalBody {
+  background-color: #fff;
+  width: 100%;
+  height: calc(100% - $modal-header-height - $app-gap);
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ModalBodyContainer {
+  max-width: $app-max-width;
+  width: 100%;
+  margin: 0 auto;
+  padding: $app-gap;
+}
+
+.Row {
+  margin: $app-gap 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  h3 {
+    font-weight: $font-bold;
+    margin-bottom: 0;
+  }
+}

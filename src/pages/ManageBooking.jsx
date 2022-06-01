@@ -1,9 +1,10 @@
+import BookingList from 'components/booking/BookingList/BookingList'
 import React from 'react'
 
 function ManageBooking(props) {
   return (
     <div>
-      <h1>ManageBooking page</h1>
+     <BookingList/>
     </div>
   )
 }
