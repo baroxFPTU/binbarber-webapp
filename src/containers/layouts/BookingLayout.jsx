@@ -8,7 +8,7 @@ function BookingLayout(props) {
     <>
       <Header title="Thông tin dịch vụ"/>
       <Wrapper>
-        <Outlet/>
+        {props.children || <Outlet/>}
       </Wrapper>
     </>
   )

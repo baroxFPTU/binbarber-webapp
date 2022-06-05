@@ -1,5 +1,4 @@
 /**
- * 
  * @param  {...String} classes
  * @returns String
  */
