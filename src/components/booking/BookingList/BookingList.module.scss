@@ -1,0 +1,48 @@
+@import 'settings';
+
+$col-gap: 20px;
+
+.BookingItem {
+  display: flex;
+  row-gap: 15px;
+  padding: 15px;
+  border-radius: $app-radius;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $gray-200;
+  }
+}
+
+.BookingTimestamp {
+  padding-right: $col-gap;
+  border-right: 1px solid $gray-300;
+  margin-right: $col-gap;
+
+  span {
+   text-align: center;
+   display: block;
+  }
+
+  .time {
+    font-weight: $font-bold;
+    text-transform: uppercase;
+    font-size: 1.4rem;
+  }
+
+  .date {
+    font-size: 0.9rem;
+  }
+}
+
+.BookingInfo {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  h3 {
+    text-transform: 1;
+    margin-bottom: 0;
+    font-size: 18px;
+  }
+}

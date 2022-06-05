@@ -1,6 +1,6 @@
 @import 'settings';
 
-.header {
+.MainHeader {
  display: flex;
  justify-content: space-between;
  align-items: center; 
@@ -19,3 +19,28 @@
    line-height: 1;
  }
 }
+
+@import 'settings';
+
+.NavHeader {
+ width: 100%;
+ box-shadow: 0px 2px 10px rgba(215, 215, 215, 0.25);
+
+  .NavHeaderContainer {
+    margin: 0 auto;
+    height: calc($modal-header-height - $app-gap * 2);
+    max-width: $app-max-width;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: $app-gap;
+    h3 {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}
+

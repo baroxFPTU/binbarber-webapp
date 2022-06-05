@@ -1,6 +1,10 @@
 @import 'settings';
 @import 'normalize';
 
+html, body, #root, .app-master {
+  height: 100%;
+}
+
 body {
   margin: 0;
   font-family: $font-family;
@@ -9,8 +13,13 @@ body {
   color: $black-500;
   font-size: 17px;
   line-height: 1.7;
+
   background: white;
   overflow: overlay;
+  scrollbar-gutter: stable both-edges;
+  margin: 0 auto;
+  max-width: $app-max-width;
+  position: relative;
 }
 
 h1, h2, h3 {
@@ -57,6 +66,28 @@ img {
   cursor: pointer;
 }
 
+.btn {
+  width: calc(100% - $app-gap * 2);
+  display: block;
+  padding: 13px;
+  border-radius: $app-radius;
+}
+
+.btn-primary {
+  background: $yellow-500;
+  color: #fff;
+}
+
+.btn-group-vertical {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  column-gap: 15px;
+  width: 100%;
+  max-width: $app-max-width;
+}
+
 a {
   color: $black-500;
   text-decoration: none;
@@ -65,6 +96,10 @@ a {
 .app-container {
   padding: 0 $app-gap;
   margin-bottom: calc($nav-height + $app-gap * 1.5);
+}
+
+.app-wrapper {
+  padding: 0 $app-gap;
 }
 
 ::-webkit-scrollbar {
@@ -81,3 +116,23 @@ a {
   margin-right: 10px;
   margin-bottom: 10px;
 }
+
+.divider {
+  border: 1px dashed $gray-300;
+  margin: 20px 15px;
+}
+
+/* Modal */
+
+.modal {
+  background: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9;
+  width: 100%;
+  height: 100%;
+}
+

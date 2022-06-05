@@ -1,0 +1,28 @@
+@import 'settings';
+
+.BookingDetail {
+  height: calc(100vh - $modal-header-height - $app-gap);
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.BookingDetailContainer {
+  padding: 0 $app-gap;
+}
+
+.Row {
+  margin: $app-gap 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  h3 {
+    font-weight: $font-bold;
+    margin-bottom: 0;
+  }
+}
+
+div[class="btn-group-vertical"] {
+  margin-top: auto;
+}
