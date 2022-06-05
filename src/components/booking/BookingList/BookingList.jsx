@@ -1,7 +1,7 @@
-import ModalBody from 'components/modals/ModalBody/ModalBody'
-import ModalHeader from 'components/modals/ModalHeader/ModalHeader'
 import moment from 'moment'
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
+import { PAGE_DESTINATIONS } from 'utils/constants'
 import CSSModule from './BookingList.module.scss'
 
 function BookingList(props) {
@@ -29,23 +29,20 @@ function BookingList(props) {
   }
 
   return (
-    <div className={CSSModule.BookingListWrapper}>
-      {/* {temp.map((item, index) => (<BookingItem key={index} data={item}/>))} */}
-      <div className="modal">
-        <ModalHeader title="Thông tin dịch vụ"/>
-        <ModalBody/>
-      </div>
-    </div>
+    <>
+      {temp.map((item, index) => (<BookingItem key={index} data={item}/>))}
+    </>
   )
 }
 
 const BookingItem = ({ data }) => {
-  let paymentStatusColor
-  let paymentStatusMessage
+  const navigate = useNavigate()
   const { bookedAt, selectedServices, isPaid } = data
   const transformedServices = selectedServices.map((service) => service.label).join(', ')
   const convertedTime = moment(bookedAt).format('LT')
   const convertedDate = moment(bookedAt).subtract(10, 'days').calendar()
+  let paymentStatusColor
+  let paymentStatusMessage
 
   if (isPaid == undefined || isPaid === null) {
     paymentStatusColor = '#EE6363'
@@ -62,7 +59,7 @@ const BookingItem = ({ data }) => {
   }
 
   return (
-    <div className={CSSModule.BookingItem}>
+    <div className={CSSModule.BookingItem} onClick={() => navigate(`${PAGE_DESTINATIONS.MANAGE_BOOKING}/3`)}>
       <div className={CSSModule.BookingTimestamp}>
         <span className={CSSModule.time}>{convertedTime}</span>
         <span className={CSSModule.date}>{convertedDate}</span>

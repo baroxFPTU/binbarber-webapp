@@ -1,6 +1,10 @@
 @import 'settings';
 @import 'normalize';
 
+html, body, #root, .app-master {
+  height: 100%;
+}
+
 body {
   margin: 0;
   font-family: $font-family;
@@ -92,6 +96,10 @@ a {
 .app-container {
   padding: 0 $app-gap;
   margin-bottom: calc($nav-height + $app-gap * 1.5);
+}
+
+.app-wrapper {
+  padding: 0 $app-gap;
 }
 
 ::-webkit-scrollbar {

@@ -1,10 +1,17 @@
 import React from 'react'
-import CSSModule from './ModalBody.module.scss'
+import { useNavigate } from 'react-router-dom'
+import CSSModule from './BookingDetail.module.scss'
 
-function ModalBody(props) {
+function BookingDetail(props) {
+  const navigate = useNavigate()
+
+  const goBackward = () => {
+    navigate(-1)
+  }
+
   return (
-    <div className={CSSModule.ModalBody}>
-      <div className={CSSModule.ModalBodyContainer}>
+    <div className={CSSModule.BookingDetail}>
+      <div className={CSSModule.BookingDetailContainer}>
         <div className={CSSModule.Row}>
           <h3>Nghĩa đẹp trai</h3>
           <span>8:00 - 31/12/2022</span>
@@ -43,10 +50,10 @@ function ModalBody(props) {
       </div>
       <div className="btn-group-vertical">
         <button className="btn btn-primary">Đặt phát nữa</button>
-        <button className="btn">Trở lại</button>
+        <button className="btn" onClick={goBackward}>Trở lại</button>
       </div>
     </div>
   )
 }
 
-export default ModalBody
+export default BookingDetail

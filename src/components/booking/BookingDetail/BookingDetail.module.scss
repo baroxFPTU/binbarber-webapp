@@ -1,20 +1,14 @@
 @import 'settings';
 
-.ModalBody {
-  background-color: #fff;
-  width: 100%;
-  height: calc(100% - $modal-header-height - $app-gap);
+.BookingDetail {
+  height: calc(100vh - $modal-header-height - $app-gap);
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  align-items: center;
 }
 
-.ModalBodyContainer {
-  max-width: $app-max-width;
-  width: 100%;
-  margin: 0 auto;
-  padding: $app-gap;
+.BookingDetailContainer {
+  padding: 0 $app-gap;
 }
 
 .Row {
@@ -27,4 +21,8 @@
     font-weight: $font-bold;
     margin-bottom: 0;
   }
+}
+
+div[class="btn-group-vertical"] {
+  margin-top: auto;
 }
