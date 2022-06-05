@@ -3,20 +3,20 @@ import React from 'react'
 import { AiOutlineCalendar, AiOutlineHome, AiOutlinePlus, AiOutlineUser } from 'react-icons/ai'
 import { RiCoupon2Line } from 'react-icons/ri'
 import { classNames } from 'utils/classNames'
-import { PAGE_DESTINATIONS } from 'utils/constants'
 import CSSModule from './MainNavigation.module.scss'
+import config from 'config'
 
-function MainNavigation(props) {
+function MainNavigation() {
   return (
     <nav className={CSSModule.navContainer}>
       <div className={classNames(CSSModule.navWrapper)}>
-        <NavItem Icon={AiOutlineHome} label="Trang chủ" to={PAGE_DESTINATIONS.HOME}/>
-        <NavItem Icon={AiOutlineCalendar} label="Lịch của tôi" to={PAGE_DESTINATIONS.MANAGE_BOOKING}/>
+        <NavItem Icon={AiOutlineHome} label="Trang chủ" to={config.routes.home}/>
+        <NavItem Icon={AiOutlineCalendar} label="Lịch của tôi" to={config.routes.booking}/>
         <div className={CSSModule.navPrimaryItem}>
           <button className={classNames('btn', CSSModule.navBtnAdd)}><AiOutlinePlus/></button>
         </div>
-        <NavItem Icon={RiCoupon2Line} label="Vouchers" to={PAGE_DESTINATIONS.VOUCHERS}/>
-        <NavItem Icon={AiOutlineUser} label="Tôi" to={PAGE_DESTINATIONS.ME}/>
+        <NavItem Icon={RiCoupon2Line} label="Vouchers" to={config.routes.voucher}/>
+        <NavItem Icon={AiOutlineUser} label="Tôi" to={config.routes.profile}/>
       </div>
     </nav>
   )

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { PAGE_DESTINATIONS } from 'utils/constants'
 import CSSModule from './BookingList.module.scss'
 
-function BookingList(props) {
+function BookingList() {
 
   const temp = [
     {
@@ -65,8 +65,8 @@ const BookingItem = ({ data }) => {
         <span className={CSSModule.date}>{convertedDate}</span>
       </div>
       <div className={CSSModule.BookingInfo}>
-        <h3 style={{textDecoration: (isPaid == null || isPaid == undefined) && 'line-through'}}>{transformedServices}</h3>
-        <p style={{color: paymentStatusColor}}>{paymentStatusMessage}</p>
+        <h3 style={{ textDecoration: (isPaid == null || isPaid == undefined) && 'line-through' }}>{transformedServices}</h3>
+        <p style={{ color: paymentStatusColor }}>{paymentStatusMessage}</p>
       </div>
     </div>
   )
