@@ -1,75 +1,74 @@
 import moment from 'moment'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import PropTypes from 'prop-types'
 import { useNavigate } from 'react-router-dom'
-import { PAGE_DESTINATIONS } from 'utils/constants'
+import { INITIAL_BOOKINGS, INITIAL_SERVICES, PAGE_DESTINATIONS } from 'utils/constants'
 import CSSModule from './BookingList.module.scss'
+import { cloneDeep } from 'lodash'
+import useBookingStatus from 'hooks/useStatus'
 
 function BookingList() {
+  const [bookings, setBookings] = useState([])
 
-  const temp = [
-    {
-      bookedAt: Date.now(),
-      selectedServices: [{ id: 1, label: 'Cắt tóc' }, { id: 2, label: 'Nhuộm' }],
-      isPaid: true
-    },
-    {
-      bookedAt: Date.now(),
-      selectedServices: [{ id: 12, label: 'Cắt tóc' }, { id: 12, label: 'Gội' }, { id: 1, label: 'Uốn' }, { id: 2, label: 'Nhuộm' }],
-      isPaid: false
-    },
-    {
-      bookedAt: Date.now(),
-      selectedServices: [{ id: 12, label: 'Cắt tóc' }],
-      isPaid: null
-    }
-  ]
+  useEffect(() => {
+    // Stimulate fetch data from DB
+    /**
+     * this will do from backend
+     */
+    const newBookings = cloneDeep(INITIAL_BOOKINGS)
+    const mapBookings = newBookings.map(booking => {
+      booking.selectedServices = booking.selectedServices.map(service =>
+        INITIAL_SERVICES.find(item => item.id == service)) || booking.selectedServices
+      return booking
+    })
 
-  if (temp.length === 0) {
+    setBookings(mapBookings)
+  }, [])
+
+  if (!bookings || bookings.length === 0) {
     return (<span>Hiện chưa có cuộc hẹn nào. Lên lịch ngay thôi.</span>)
   }
 
   return (
     <>
-      {temp.map((item, index) => (<BookingItem key={index} data={item}/>))}
+      {bookings && bookings.map((item, index) => (<BookingItem key={index} data={item}/>))}
     </>
   )
 }
 
-const BookingItem = ({ data }) => {
+function BookingItem ({ data }) {
+  const { id: bookingId, bookedAt, selectedServices, isPaid } = data
+  const [ color, message, onChangeStatus ] = useBookingStatus(isPaid)
   const navigate = useNavigate()
-  const { bookedAt, selectedServices, isPaid } = data
   const transformedServices = selectedServices.map((service) => service.label).join(', ')
-  const convertedTime = moment(bookedAt).format('LT')
-  const convertedDate = moment(bookedAt).subtract(10, 'days').calendar()
-  let paymentStatusColor
-  let paymentStatusMessage
-
-  if (isPaid == undefined || isPaid === null) {
-    paymentStatusColor = '#EE6363'
-    paymentStatusMessage = 'Đã hủy'
-  }
-
-  if (isPaid === false) {
-    paymentStatusColor = '#767676'
-    paymentStatusMessage = 'Chưa thanh toán'
-  }
-  if (isPaid === true) {
-    paymentStatusColor = '#63B5A0'
-    paymentStatusMessage = 'Đã thanh toán'
-  }
+  const convertedTime = moment(bookedAt).format('HH:mm')
+  const convertedDate = moment(bookedAt).format('DD/MM/YYYY')
+  useEffect(() => {
+    onChangeStatus(isPaid)
+  }, [isPaid, onChangeStatus])
 
   return (
-    <div className={CSSModule.BookingItem} onClick={() => navigate(`${PAGE_DESTINATIONS.MANAGE_BOOKING}/3`)}>
+    <div className={CSSModule.BookingItem} onClick={() => navigate(`${PAGE_DESTINATIONS.MANAGE_BOOKING}/${bookingId}`)}>
       <div className={CSSModule.BookingTimestamp}>
         <span className={CSSModule.time}>{convertedTime}</span>
         <span className={CSSModule.date}>{convertedDate}</span>
       </div>
       <div className={CSSModule.BookingInfo}>
-        <h3 style={{ textDecoration: (isPaid == null || isPaid == undefined) && 'line-through' }}>{transformedServices}</h3>
-        <p style={{ color: paymentStatusColor }}>{paymentStatusMessage}</p>
+        <h3 className="truncate-250" style={{ textDecoration: (isPaid == -1 ) && 'line-through' }}>{transformedServices}</h3>
+        <p style={{ color: color }}>{message}</p>
       </div>
     </div>
   )
 }
 
+BookingList.propTypes = {
+  data: PropTypes.array
+}
+
+BookingList.defaultProps = {
+  data: []
+}
+
 export default BookingList
+
+

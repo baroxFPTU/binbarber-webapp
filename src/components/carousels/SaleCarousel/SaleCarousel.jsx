@@ -1,8 +1,11 @@
 import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide'
-import React from 'react'
+import FluidSkeleton from 'components/skeletons/FluidSkeleton/FluidSkeleton'
+import React, { useState } from 'react'
 import CSSModule from './SaleCarousel.module.scss'
 
 function SaleCarousel(props) {
+  const [isPending, setIsPending] = useState(true)
+
   const initialData = [
     { id: 1, imageUrl: 'https://source.unsplash.com/random', description: 'Uu dai thang nay' },
     { id: 2, imageUrl: 'https://source.unsplash.com/random', description: 'Uu dai thang nay' },
@@ -39,7 +42,8 @@ function SaleCarousel(props) {
         {initialData.map((item, index) => (
           <SplideSlide key={index}>
             <div className={CSSModule.carouselItem}>
-              <img src={item.imageUrl} alt={item.description} />
+              {isPending && <FluidSkeleton/>}
+              <img src={item.imageUrl} alt={item.description} onLoad={() => setIsPending(false)}/>
             </div>
           </SplideSlide>
         ))}

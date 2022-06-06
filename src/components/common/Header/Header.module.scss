@@ -4,7 +4,8 @@
  display: flex;
  justify-content: space-between;
  align-items: center; 
- padding: 1.5rem $app-gap;
+ height: $header-height;
+ padding: 0 $app-gap;
  line-height: 1;
  & h2 {
    margin: 0;
@@ -28,13 +29,13 @@
 
   .NavHeaderContainer {
     margin: 0 auto;
-    height: calc($modal-header-height - $app-gap * 2);
+    height: $modal-header-height;
     max-width: $app-max-width;
     background-color: #fff;
     display: flex;
     align-items: center;
     position: relative;
-    padding: $app-gap;
+    padding: 0 $app-gap;
     h3 {
       position: absolute;
       top: 50%;
