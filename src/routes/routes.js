@@ -12,7 +12,7 @@ const PUBLIC_ROUTES = [
     path: config.routes.booking,
     element: BookingList
   },
-  { path: `${config.routes.booking}/:id`, element: BookingDetail, layout: BookingLayout },
+  { path: `${config.routes.booking}/:bookingId`, element: BookingDetail, layout: BookingLayout },
   { path: config.routes.voucher, element: Voucher },
   { path: config.routes.profile, element: Profile }
 ]

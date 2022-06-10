@@ -1,8 +1,8 @@
 @import 'settings';
 @import 'normalize';
 
-html, body, #root, .app-master {
-  height: 100%;
+*, ::after, ::before {
+  box-sizing: border-box;
 }
 
 body {
@@ -15,12 +15,40 @@ body {
   line-height: 1.7;
 
   background: white;
-  overflow: overlay;
   scrollbar-gutter: stable both-edges;
   margin: 0 auto;
   max-width: $app-max-width;
   position: relative;
+  
+  overflow-y: overlay;
+  overscroll-behavior: none;
+  touch-action: manipulation;
+  -webkit-font-smoothing: antialiased; //khử răng cưa của chữ
 }
+
+html ::-webkit-scrollbar {
+  -webkit-appearance: none; 
+  width: $scrollbar-width;
+}
+html ::-webkit-scrollbar-thumb {
+  background: $scrollbar-thumb-color;
+  border-radius: $scrollbar-radius;
+}
+
+html ::-webkit-scrollbar-track {
+  margin-top: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.default-layout-wrapper {
+  margin-bottom: calc($nav-height + $app-gap * 1.5);
+}
+
+.app-wrapper {
+  padding: 0 $app-gap;
+}
+
 
 h1, h2, h3 {
   margin-bottom: 1.45rem;
@@ -93,33 +121,16 @@ a {
   text-decoration: none;
 }
 
-.app-container {
-  padding: 0 $app-gap;
-  margin-bottom: calc($nav-height + $app-gap * 1.5);
-}
-
-.app-wrapper {
-  padding: 0 $app-gap;
-}
-
-::-webkit-scrollbar {
-  -webkit-appearance: none; 
-  width: $scrollbar-width;
-}
-::-webkit-scrollbar-thumb {
-  background: $scrollbar-thumb-color;
-  border-radius: $scrollbar-radius;
-}
-
-::-webkit-scrollbar-track {
-  margin-top: 10px;
-  margin-right: 10px;
-  margin-bottom: 10px;
-}
-
 .divider {
   border: 1px dashed $gray-300;
   margin: 20px 15px;
+}
+
+.truncate-250 {
+  width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Modal */

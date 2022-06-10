@@ -1,6 +1,6 @@
 const routes = {
   home: '/',
-  booking: '/bookings',
+  booking: '/lich-cua-toi',
   profile: '/me',
   voucher: '/vouchers'
 }
