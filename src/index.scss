@@ -1,3 +1,4 @@
+@import 'fonts';
 @import 'settings';
 @import 'normalize';
 
@@ -7,11 +8,12 @@
 
 body {
   margin: 0;
-  font-family: $font-family;
+  font-family: $font-family-default;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  letter-spacing: 0.05em;
   color: $black-500;
-  font-size: 17px;
+  font-size: $default-font-size;
   line-height: 1.7;
 
   background: white;
@@ -51,12 +53,18 @@ html ::-webkit-scrollbar-track {
 
 
 h1, h2, h3 {
-  margin-bottom: 1.45rem;
+  padding-top: 64px;
+  padding-bottom: 32px;
 }
 
 h1 {
+  font-family: $font-family-bold;
   font-weight: $font-bold;
   font-size: $h1-font-size;
+}
+
+h2, h3 {
+  font-family: $font-family-medium;
 }
 
 h2 {
@@ -87,23 +95,37 @@ img {
 .btn, button {
   -webkit-appearance: none;
   border: none;
+  letter-spacing: inherit;
   outline: none;
   background: transparent;
   font-family: inherit;
-  font-size: 17px;
+  font-size: $button-font-size;
   cursor: pointer;
 }
 
 .btn {
-  width: calc(100% - $app-gap * 2);
+  width: calc(100% - $app-gap );
   display: block;
-  padding: 13px;
+  padding: 12px 24px;
   border-radius: $app-radius;
+  margin: 0 auto;
+  min-width: 28px;
+  white-space: nowrap;
+  line-height: 1.17648;
+}
+
+.btn:hover:not(.btn-primary) {
+  text-decoration:  underline;
 }
 
 .btn-primary {
   background: $yellow-500;
   color: #fff;
+  transition: $simple-transition;
+}
+
+.btn-primary:hover {
+  background: $yellow-600;
 }
 
 .btn-group-vertical {
@@ -126,11 +148,30 @@ a {
   margin: 20px 15px;
 }
 
+.bold {
+  font-family: $font-family-medium;
+}
+
 .truncate-250 {
   width: 250px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+input[type="text"] {
+  display: inline-block;
+  border: 1px solid $gray-300;
+  border-radius: 6px;
+  font-size: 17px;
+  padding: 13px 15px;
+  font-family: $font-family-regular;
+  outline: none;
+}
+
+input[type="text"]:focus {
+  border: 1px solid $yellow-500;
+  box-shadow: 0 0 0 1px $yellow-500;
 }
 
 /* Modal */
@@ -147,3 +188,4 @@ a {
   height: 100%;
 }
 
+@import 'responsive';

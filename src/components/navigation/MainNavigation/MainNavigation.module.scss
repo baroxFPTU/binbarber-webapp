@@ -6,11 +6,9 @@
   left: 0;
   width: 100%;
   background: #fff;
-  height: $nav-height;
 }
 
 .navWrapper {
-  // grid-template-columns: repeat(5, 80px);
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -32,6 +30,7 @@
 .navBtnAdd {
   width: 40px;
   height: 40px;
+  padding: 0;
   background: #323232;
   color: #fff;
   font-size: 1.5rem;

@@ -55,7 +55,7 @@ function BookingDetail() {
           <span>{convertedTime} - {convertedDate}</span>
         </div>
         <div className={CSSModule.Row}>
-          <h3>Trạng thái</h3>
+          <h3>Trạng thái</h3> 
           <span style={{ color: color }}>{message}</span>
         </div>
         <div className="divider"></div>

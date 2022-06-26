@@ -1,8 +1,9 @@
 const routes = {
   home: '/',
-  booking: '/lich-cua-toi',
+  myBooking: '/lich-cua-toi',
+  booking: '/len-lich',
   profile: '/me',
-  voucher: '/vouchers'
+  voucher: '/giam-gia'
 }
 
 export default routes

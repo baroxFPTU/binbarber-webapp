@@ -8,7 +8,9 @@
  padding: 0 $app-gap;
  line-height: 1;
  & h2 {
+  font-family: $font-family-bold;
    margin: 0;
+   padding: 0;
  }
 
  & .navBookingBtn {
@@ -38,9 +40,14 @@
     padding: 0 $app-gap;
     h3 {
       position: absolute;
+      padding: 0;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+      white-space: nowrap;
+      @media screen and (max-width: 350px) {
+        font-size: 17px;
+      }
     }
   }
 }

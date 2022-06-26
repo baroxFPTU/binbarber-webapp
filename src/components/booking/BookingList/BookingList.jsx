@@ -6,6 +6,7 @@ import { INITIAL_BOOKINGS, INITIAL_SERVICES, PAGE_DESTINATIONS } from 'utils/con
 import CSSModule from './BookingList.module.scss'
 import { cloneDeep } from 'lodash'
 import useBookingStatus from 'hooks/useStatus'
+import routes from 'config/routes'
 
 function BookingList() {
   const [bookings, setBookings] = useState([])
@@ -48,7 +49,7 @@ function BookingItem ({ data }) {
   }, [isPaid, onChangeStatus])
 
   return (
-    <div className={CSSModule.BookingItem} onClick={() => navigate(`${PAGE_DESTINATIONS.MANAGE_BOOKING}/${bookingId}`)}>
+    <div className={CSSModule.BookingItem} onClick={() => navigate(`${routes.myBooking}/${bookingId}`)}>
       <div className={CSSModule.BookingTimestamp}>
         <span className={CSSModule.time}>{convertedTime}</span>
         <span className={CSSModule.date}>{convertedDate}</span>

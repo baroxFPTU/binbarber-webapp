@@ -1,9 +1,11 @@
+import { HairDryer, PoirotMustache, Scissor } from 'components/Icon/Icon'
+
 export const INITIAL_SERVICE_ITEMS = [
-  { id: 1, label: 'Cắt tóc' },
-  { id: 2, label: 'Tạo kiểu' },
-  { id: 3, label: 'Cạo mặt' },
+  { id: 1, label: 'Cắt tóc', icon: Scissor },
+  { id: 2, label: 'Tạo kiểu'},
+  { id: 3, label: 'Cạo mặt', icon: PoirotMustache },
   { id: 4, label: 'Uốn' },
-  { id: 5, label: 'Gội & Sấy' }
+  { id: 5, label: 'Gội & Sấy', icon: HairDryer}
 ]
 
 export const PAGE_DESTINATIONS = {
