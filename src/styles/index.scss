@@ -1,8 +1,10 @@
 @import 'fonts';
-@import 'settings';
+@import 'styles/settings';
 @import 'normalize';
 
-*, ::after, ::before {
+*,
+::after,
+::before {
   box-sizing: border-box;
 }
 
@@ -21,7 +23,7 @@ body {
   margin: 0 auto;
   max-width: $app-max-width;
   position: relative;
-  
+
   overflow-y: overlay;
   overscroll-behavior: none;
   touch-action: manipulation;
@@ -29,7 +31,7 @@ body {
 }
 
 html ::-webkit-scrollbar {
-  -webkit-appearance: none; 
+  -webkit-appearance: none;
   width: $scrollbar-width;
 }
 html ::-webkit-scrollbar-thumb {
@@ -51,8 +53,9 @@ html ::-webkit-scrollbar-track {
   padding: 0 $app-gap;
 }
 
-
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   padding-top: 64px;
   padding-bottom: 32px;
 }
@@ -63,7 +66,8 @@ h1 {
   font-size: $h1-font-size;
 }
 
-h2, h3 {
+h2,
+h3 {
   font-family: $font-family-medium;
 }
 
@@ -92,7 +96,8 @@ img {
   object-position: center;
 }
 
-.btn, button {
+.btn,
+button {
   -webkit-appearance: none;
   border: none;
   letter-spacing: inherit;
@@ -104,7 +109,7 @@ img {
 }
 
 .btn {
-  width: calc(100% - $app-gap );
+  width: calc(100% - $app-gap);
   display: block;
   padding: 12px 24px;
   border-radius: $app-radius;
@@ -112,10 +117,11 @@ img {
   min-width: 28px;
   white-space: nowrap;
   line-height: 1.17648;
+  max-width: 470px;
 }
 
 .btn:hover:not(.btn-primary) {
-  text-decoration:  underline;
+  text-decoration: underline;
 }
 
 .btn-primary {
@@ -126,6 +132,12 @@ img {
 
 .btn-primary:hover {
   background: $yellow-600;
+}
+
+.btn-fixed {
+  position: fixed;
+  bottom: 24px;
+  width: calc(100% - ($app-gap * 2));
 }
 
 .btn-group-vertical {
@@ -159,7 +171,7 @@ a {
   text-overflow: ellipsis;
 }
 
-input[type="text"] {
+input[type='text'] {
   display: inline-block;
   border: 1px solid $gray-300;
   border-radius: 6px;
@@ -169,7 +181,7 @@ input[type="text"] {
   outline: none;
 }
 
-input[type="text"]:focus {
+input[type='text']:focus {
   border: 1px solid $yellow-500;
   box-shadow: 0 0 0 1px $yellow-500;
 }

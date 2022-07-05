@@ -1,11 +1,11 @@
+import useBookingStatus from 'hooks/useStatus'
+import { cloneDeep } from 'lodash'
+import moment from 'moment'
 import React, { useEffect, useMemo, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
+import { formatCurrency } from 'utils'
 import { INITIAL_BOOKINGS, INITIAL_SERVICES, INITIAL_USERS } from 'utils/constants'
 import CSSModule from './BookingDetail.module.scss'
-import moment from 'moment'
-import { cloneDeep } from 'lodash'
-import useBookingStatus from 'hooks/useStatus'
-import { formatCurrency } from 'utils'
 
 function BookingDetail() {
   const [booking, setBookings] = useState(null)
@@ -55,7 +55,7 @@ function BookingDetail() {
           <span>{convertedTime} - {convertedDate}</span>
         </div>
         <div className={CSSModule.Row}>
-          <h3>Trạng thái</h3> 
+          <h3>Trạng thái</h3>
           <span style={{ color: color }}>{message}</span>
         </div>
         <div className="divider"></div>
