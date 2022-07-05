@@ -83,3 +83,12 @@ export const StraighRazor = () => {
     </svg>
   )
 }
+
+export const TickIcon = () => {
+  return (
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1000 1000" xmlSpace="preserve">
+      <metadata> Svg Vector Icons : http://www.onlinewebfonts.com/icon </metadata>
+      <g><path d="M358.4,849.8c-11.3,11.3-27.4,20.8-41.6,20.8c-14.2,0-30.3-9.9-42.1-21.3L10,584.6l84.1-84.1l223.1,223.1l590-594.2l82.7,85.6L358.4,849.8z"/></g>
+    </svg>
+  )
+}

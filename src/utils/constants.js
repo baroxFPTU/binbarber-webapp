@@ -2,10 +2,10 @@ import { HairDryer, PoirotMustache, Scissor } from 'components/Icon/Icon'
 
 export const INITIAL_SERVICE_ITEMS = [
   { id: 1, label: 'Cắt tóc', icon: Scissor },
-  { id: 2, label: 'Tạo kiểu'},
+  { id: 2, label: 'Tạo kiểu' },
   { id: 3, label: 'Cạo mặt', icon: PoirotMustache },
   { id: 4, label: 'Uốn' },
-  { id: 5, label: 'Gội & Sấy', icon: HairDryer}
+  { id: 5, label: 'Gội & Sấy', icon: HairDryer }
 ]
 
 export const PAGE_DESTINATIONS = {
@@ -14,7 +14,6 @@ export const PAGE_DESTINATIONS = {
   ME: '/me',
   VOUCHERS: '/vouchers'
 }
-
 
 export const INITIAL_BOOKINGS = [
   {
@@ -75,10 +74,62 @@ export const INITIAL_SERVICES = [
     createdAt: Date.now()
   },
   {
-    id: 4, label: 'Cạo râu',
+    id: 4,
+    label: 'Cạo râu',
     description: 'Cạo sạch từng cen-ti-met',
     price: 15000,
     createdAt: Date.now()
+  }
+]
+
+export const INITIAL_SERVICES_DETAILS = [
+  {
+    id: 1,
+    title: 'Cắt tóc',
+    description: 'Tỏa sáng như Mr.Bin',
+    imageURL: 'https://source.unsplash.com/random',
+    price: 30000,
+    label: 'basic'
+  },
+  {
+    id: 2,
+    title: 'Gội & massage',
+    description: 'Ân ái, mê man, get high',
+    imageURL: 'https://source.unsplash.com/random',
+    price: 22000,
+    label: 'basic'
+  },
+  {
+    id: 3,
+    title: 'Uốn xịn xò',
+    description: 'Rep 1:1 trai Hàn',
+    imageURL: 'https://source.unsplash.com/random',
+    price: 140000,
+    label: 'medium'
+  },
+  {
+    id: 4,
+    title: 'Tạo kiểu',
+    description: 'Xinh hơn NYM của NYC',
+    imageURL: 'https://source.unsplash.com/random',
+    price: 0,
+    label: 'medium'
+  },
+  {
+    id: 5,
+    title: 'Cạo râu',
+    description: 'Sạch sẽ như hòn Chồng',
+    imageURL: 'https://source.unsplash.com/random',
+    price: 0,
+    label: 'care'
+  },
+  {
+    id: 6,
+    title: 'Cạo mặt',
+    description: 'Lán o con gà gáy',
+    imageURL: 'https://source.unsplash.com/random',
+    price: 0,
+    label: 'care'
   }
 ]
 
