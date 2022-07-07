@@ -6,9 +6,9 @@ function NavItem({ Icon, label, to }) {
   return (
     <NavLink to={to} className={CSSModule.navItem}>
       <div className={CSSModule.navItemIcon}>
-        <Icon/>
+        <Icon />
       </div>
-      <div className={CSSModule.navItemLabel}>{label}</div>
+      <span className={CSSModule.navItemLabel}>{label}</span>
     </NavLink>
   )
 }
