@@ -1,49 +1,90 @@
-import React, { useState } from 'react'
+import React, { useCallback, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
-import GridWrapper from 'components/common/GridWrapper/GridWrapper'
-import ServiceCard from '../ServiceCard/ServiceCard'
-import { INITIAL_SERVICES_DETAILS } from 'utils/constants'
+import { addService, removeService, selectCart } from 'features/booking/bookingSlice'
+import { addCategories, selectServiceCategories } from 'features/service/serviceSlice'
+import { SERVICE_CATEGORIES } from 'utils/constants'
+import ServiceCard from '../ServiceCard'
+import styled from 'styled-components'
+import Button from 'components/common/Button'
+import { useNavigate } from 'react-router-dom'
+import routes from 'config/routes'
+
+const FlexWrapper = styled.div`
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  & > div {
+    flex: 1;
+    min-width: 170px;
+  }
+`
 
 function ServicePicker() {
-  const [counterService, setCounterService] = useState(0)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const serviceCategory = useSelector(selectServiceCategories)
+  const bookingCart = useSelector(selectCart)
+  const counterService = bookingCart.selectedServices.length
 
-  const updateCounterService = (type) => {
-    if (type === 'increase') {
-      setCounterService((prevCounterService) => ++prevCounterService)
-    } else {
-      setCounterService((prevCounterService) => --prevCounterService)
+  useEffect(() => {
+    //init service categories
+    if (serviceCategory.length === 0) {
+      dispatch(addCategories(SERVICE_CATEGORIES.data))
     }
+  }, [])
+
+  const hasSelectedServices = counterService > 0
+
+  const isExitService = useCallback(
+    (serviceId) => {
+      return bookingCart.selectedServices.indexOf(serviceId) !== -1
+    },
+    [bookingCart.selectedServices]
+  )
+
+  const updateCounterService = (type, serviceId) => {
+    if (type === 'add' && !isExitService(serviceId)) {
+      dispatch(addService(serviceId))
+    } else if (type === 'remove') {
+      dispatch(removeService(serviceId))
+    }
+  }
+
+  const confirmSelectService = () => {
+    if (!hasSelectedServices) return
+    navigate(`${routes.booking}/chon-ngay`)
   }
 
   return (
     <div style={{ marginBottom: '128px' }}>
-      <h2>Cắt gội cơ bản</h2>
-      <GridWrapper col={2} gap={16}>
-        {INITIAL_SERVICES_DETAILS.filter((service) => service.label == 'basic').map(
-          (service, index) => (
-            <ServiceCard key={index} service={service} onSelect={updateCounterService} />
-          )
-        )}
-      </GridWrapper>
-      <h2>Uốn tạo kiểu</h2>
-      <GridWrapper col={2} gap={16}>
-        {INITIAL_SERVICES_DETAILS.filter((service) => service.label == 'medium').map(
-          (service, index) => (
-            <ServiceCard key={index} service={service} onSelect={updateCounterService} />
-          )
-        )}
-      </GridWrapper>
-      <h2>Chăm sóc</h2>
-      <GridWrapper col={2} gap={16}>
-        {INITIAL_SERVICES_DETAILS.filter((service) => service.label == 'care').map(
-          (service, index) => (
-            <ServiceCard key={index} service={service} onSelect={updateCounterService} />
-          )
-        )}
-      </GridWrapper>
-      {counterService > 0 && (
-        <button className='btn btn-primary btn-fixed'>Chọn {counterService} dịch vụ</button>
-      )}
+      {serviceCategory &&
+        serviceCategory.map((category) => (
+          <>
+            <h2>{category.categoryName}</h2>
+            <FlexWrapper>
+              {category.services.map((service) => (
+                <ServiceCard
+                  key={service.id}
+                  data={service}
+                  onSelect={updateCounterService}
+                  isSelected={isExitService(service.id)}
+                />
+              ))}
+            </FlexWrapper>
+          </>
+        ))}
+      <Button
+        variant='primary'
+        fixed
+        disabled={!hasSelectedServices}
+        onClick={confirmSelectService}
+      >
+        Chọn {hasSelectedServices ? counterService : ''} dịch vụ
+      </Button>
+      {/* <button className='btn btn-primary btn-fixed'>
+        Chọn {counterService > 0 ? counterService : ''} dịch vụ
+      </button> */}
     </div>
   )
 }

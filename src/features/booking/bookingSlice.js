@@ -1,0 +1,51 @@
+import { createSlice } from '@reduxjs/toolkit'
+
+/**
+Example
+userId: String (when have login),
+selectedServices: []
+isPaid: false,
+appliedDiscounts: [],
+bookedAt: null || Timestamp
+*/
+
+const initialState = {
+  cart: {
+    name: '',
+    phone: '',
+    selectedServices: [],
+    appliedDiscounts: [],
+    bookedAt: null
+  }
+}
+
+const bookingSlice = createSlice({
+  name: 'booking',
+  initialState: initialState,
+  reducers: {
+    setName: (state, action) => {
+      state.cart.name = action.payload
+    },
+    setPhone: (state, action) => {
+      state.cart.phone = action.payload
+    },
+    setBookedAt: (state, action) => {
+      state.cart.bookedAt = action.payload
+    },
+    addService: (state, action) => {
+      state.cart.selectedServices.push(action.payload)
+    },
+    removeService: (state, action) => {
+      const serviceId = action.payload
+      state.cart.selectedServices = state.cart.selectedServices.filter((id) => id !== serviceId)
+    },
+    addDiscount: (state, action) => {
+      state.cart.appliedDiscounts.push(action.payload)
+    }
+  }
+})
+
+export const selectCart = (state) => state.booking.cart
+export const { setName, setPhone, setBookedAt, addService, removeService, addDiscount } =
+  bookingSlice.actions
+export default bookingSlice.reducer
