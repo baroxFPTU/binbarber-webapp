@@ -1,17 +1,18 @@
 $app-max-width: 500px;
-$app-gap: 15px;
+$app-gap: 20px;
 $app-radius: 8px;
 $nav-height: 65px;
 
 $modal-header-height: 60px;
 $header-height: 60px;
+$button-height: 45px;
 
-$yellow-500: #FAC172;
-$yellow-600: #D79A53;
+$yellow-500: #fac172;
+$yellow-600: #d79a53;
 $black-500: #323232;
-$gray-200: #F9F9F9;
-$gray-300: #DBDBDB;
-$gray-400: #C4C4C4;
+$gray-200: #f9f9f9;
+$gray-300: #dbdbdb;
+$gray-400: #c4c4c4;
 
 $font-family-default: 'SF300', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
 $font-family-thin: 'SF200', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
@@ -27,7 +28,6 @@ $h3-font-size: 20px;
 $label-font-size: 17px;
 $button-font-size: 18px;
 
-
 $font-bold: 400;
 $font-semiBold: 400;
 $font-regular: 400;
@@ -37,4 +37,3 @@ $simple-transition: all 0.2s ease-in-out;
 $scrollbar-width: 5px;
 $scrollbar-radius: 0px;
 $scrollbar-thumb-color: rgb(225, 225, 225);
-

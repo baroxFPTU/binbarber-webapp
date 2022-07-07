@@ -11,13 +11,18 @@ function MainNavigation() {
   return (
     <nav className={CSSModule.navContainer}>
       <div className={classNames(CSSModule.navWrapper)}>
-        <NavItem Icon={AiOutlineHome} label="Trang chủ" to={config.routes.home}/>
-        <NavItem Icon={AiOutlineCalendar} label="Lịch của tôi" to={config.routes.myBooking}/>
+        <NavItem Icon={AiOutlineHome} label='Trang chủ' to={config.routes.home} />
+        <NavItem Icon={AiOutlineCalendar} label='Lịch của tôi' to={config.routes.myBooking} />
         <div className={CSSModule.navPrimaryItem}>
-          <NavLink to={config.routes.booking} className={classNames('btn', CSSModule.navBtnAdd)}><AiOutlinePlus/></NavLink>
+          <NavLink
+            to={`${config.routes.booking}/chon-dich-vu`}
+            className={classNames('btn', CSSModule.navBtnAdd)}
+          >
+            <AiOutlinePlus />
+          </NavLink>
         </div>
-        <NavItem Icon={RiCoupon2Line} label="Vouchers" to={config.routes.voucher}/>
-        <NavItem Icon={AiOutlineUser} label="Tôi" to={config.routes.profile}/>
+        <NavItem Icon={RiCoupon2Line} label='Vouchers' to={config.routes.voucher} />
+        <NavItem Icon={AiOutlineUser} label='Tôi' to={config.routes.profile} />
       </div>
     </nav>
   )

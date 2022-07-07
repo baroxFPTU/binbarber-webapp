@@ -15,7 +15,8 @@ function SaleCarousel(props) {
     { id: 6, imageUrl: 'https://source.unsplash.com/random', description: 'Uu dai thang nay' }
   ]
 
-  const carouselOptions = { arrows: false,
+  const carouselOptions = {
+    arrows: false,
     rewind: true,
     interval: 4000,
     lazyload: true,
@@ -32,18 +33,13 @@ function SaleCarousel(props) {
   }
 
   return (
-    <Splide
-      hasTrack={ false }
-      aria-label="Main Carousel"
-      options={carouselOptions}
-      tag="section"
-    >
+    <Splide hasTrack={false} aria-label='Main Carousel' options={carouselOptions} tag='section'>
       <SplideTrack>
         {initialData.map((item, index) => (
           <SplideSlide key={index}>
             <div className={CSSModule.carouselItem}>
-              {isPending && <FluidSkeleton/>}
-              <img src={item.imageUrl} alt={item.description} onLoad={() => setIsPending(false)}/>
+              {isPending && <FluidSkeleton />}
+              <img src={item.imageUrl} alt={item.description} onLoad={() => setIsPending(false)} />
             </div>
           </SplideSlide>
         ))}

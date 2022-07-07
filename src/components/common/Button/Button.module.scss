@@ -1,0 +1,44 @@
+@import 'styles/settings';
+
+.btn {
+  width: calc(100% - $app-gap);
+  display: block;
+  padding: 12px 24px;
+  border-radius: $app-radius;
+  margin: 0 auto;
+  min-width: 28px;
+  white-space: nowrap;
+  line-height: 1.17648;
+  max-width: 470px;
+  height: $button-height;
+}
+
+.btn:hover:not(.btnPrimary) {
+  text-decoration: underline;
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+}
+
+.btnPrimary {
+  background: $yellow-500;
+  color: #fff;
+  transition: $simple-transition;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.btnPrimary:hover {
+  background: $yellow-600;
+}
+
+.btnPrimary:disabled {
+  background: $gray-400;
+}
+
+.btnFixed {
+  position: fixed;
+  bottom: 24px;
+  width: calc(100% - ($app-gap * 2));
+}

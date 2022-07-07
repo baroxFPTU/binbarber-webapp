@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 
 import Card from 'components/common/Card'
@@ -11,10 +11,16 @@ const CardCustomStyled = styled(Card)`
     position: relative;
     cursor: pointer;
     border-radius: 10px;
+    display: flex;
 
-    &:hover .card-content,
     &[data-selected='true'] .card-content {
       background: #fef7e3;
+    }
+
+    & .card-wrapper {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
     }
 
     .service-selected {
@@ -44,9 +50,14 @@ const CardCustomStyled = styled(Card)`
       width: 100%;
       height: 100%;
     }
+
+    @media screen and (max-width: 455px) {
+      height: 16vh;
+    }
   }
 
   .card-content {
+    flex: 1;
     position: relative;
     padding: 12px;
     background: #fff;
@@ -75,21 +86,11 @@ const CardCustomStyled = styled(Card)`
 `
 
 function ServiceCard(props) {
-  const [isSelected, setIsSelected] = useState(false)
-  const { title, description, imageURL, price } = props.service
-
-  const updateIsSelected = () => {
-    setIsSelected(!isSelected)
-    if (!isSelected == true) {
-      props.onSelect('increase')
-    } else {
-      props.onSelect('decrease')
-    }
-  }
+  const { title, description, imageURL, price } = props.data
 
   return (
-    <CardCustomStyled onClick={updateIsSelected} data-selected={isSelected}>
-      {isSelected && (
+    <CardCustomStyled onClick={props.onSelect} data-selected={props.isSelected}>
+      {props.isSelected && (
         <div className='service-selected'>
           <TickIcon />
         </div>

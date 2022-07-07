@@ -82,56 +82,75 @@ export const INITIAL_SERVICES = [
   }
 ]
 
-export const INITIAL_SERVICES_DETAILS = [
-  {
-    id: 1,
-    title: 'Cắt tóc',
-    description: 'Tỏa sáng như Mr.Bin',
-    imageURL: 'https://source.unsplash.com/random',
-    price: 30000,
-    label: 'basic'
-  },
-  {
-    id: 2,
-    title: 'Gội & massage',
-    description: 'Ân ái, mê man, get high',
-    imageURL: 'https://source.unsplash.com/random',
-    price: 22000,
-    label: 'basic'
-  },
-  {
-    id: 3,
-    title: 'Uốn xịn xò',
-    description: 'Rep 1:1 trai Hàn',
-    imageURL: 'https://source.unsplash.com/random',
-    price: 140000,
-    label: 'medium'
-  },
-  {
-    id: 4,
-    title: 'Tạo kiểu',
-    description: 'Xinh hơn NYM của NYC',
-    imageURL: 'https://source.unsplash.com/random',
-    price: 0,
-    label: 'medium'
-  },
-  {
-    id: 5,
-    title: 'Cạo râu',
-    description: 'Sạch sẽ như hòn Chồng',
-    imageURL: 'https://source.unsplash.com/random',
-    price: 0,
-    label: 'care'
-  },
-  {
-    id: 6,
-    title: 'Cạo mặt',
-    description: 'Lán o con gà gáy',
-    imageURL: 'https://source.unsplash.com/random',
-    price: 0,
-    label: 'care'
-  }
-]
+export const SERVICE_CATEGORIES = {
+  data: [
+    {
+      categoryName: 'Cắt gội cơ bản',
+      services: [
+        {
+          id: 1,
+          title: 'Cắt tóc',
+          description: 'Tỏa sáng như Mr.Bin',
+          imageURL: 'https://source.unsplash.com/random',
+          price: 30000,
+          label: 'basic'
+        },
+        {
+          id: 2,
+          title: 'Gội & massage',
+          description: 'Ân ái, mê man, get high',
+          imageURL: 'https://source.unsplash.com/random',
+          price: 22000,
+          label: 'basic'
+        }
+      ]
+    },
+    {
+      categoryName: 'Uốn tạo kiểu',
+      services: [
+        {
+          id: 3,
+          title: 'Uốn xịn xò',
+          description: 'Rep 1:1 trai Hàn',
+          imageURL: 'https://source.unsplash.com/random',
+          price: 140000,
+          label: 'medium'
+        },
+        {
+          id: 4,
+          title: 'Tạo kiểu',
+          description: 'Xinh hơn NYM của NYC',
+          imageURL: 'https://source.unsplash.com/random',
+          price: 0,
+          label: 'medium'
+        }
+      ]
+    },
+    {
+      categoryName: 'Chăm sóc',
+      services: [
+        {
+          id: 5,
+          title: 'Cạo râu',
+          description: 'Sạch sẽ như hòn Chồng',
+          imageURL: 'https://source.unsplash.com/random',
+          price: 0,
+          label: 'care'
+        },
+        {
+          id: 6,
+          title: 'Cạo mặt',
+          description: 'Lán o con gà gáy',
+          imageURL: 'https://source.unsplash.com/random',
+          price: 0,
+          label: 'care'
+        }
+      ]
+    }
+  ],
+  createdAt: Date.now(),
+  updatedAt: Date.now()
+}
 
 export const INITIAL_USERS = [
   {

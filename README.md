@@ -25,6 +25,27 @@ A simple React app, help Mr.Bin manage booking & turn over.
 - styled components
 - axios
 
+## Flow
+
+### Booking
+
+1. User pick services
+2. User pick dates and times
+3. show Summary booking for confirm
+4. Confirm - show modal enter name \* phone
+5. Unconfirmed - can go backward to re-choose
+
+## Logic
+
+### ServicePicker
+
+- Load service list from db
+- set service list to state
+- render service list (from state)
+  **Action**
+  User pick a service
+- change state of service card
+
 TODO
 
 - handle submit font
