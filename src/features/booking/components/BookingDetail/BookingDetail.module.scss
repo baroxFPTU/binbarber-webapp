@@ -18,16 +18,15 @@
   justify-content: space-between;
   align-items: center;
   h3 {
-    font-family: $font-family-regular;
-    font-weight: $font-bold;
-    margin: 0;    
+    font-weight: $font-semiBold;
+    margin: 0;
     padding: 0;
   }
   span {
-    font-family: $font-family-thin;
+    font-weight: 300;
   }
 }
 
-div[class="btn-group-vertical"] {
+div[class='btn-group-vertical'] {
   margin-top: auto;
 }

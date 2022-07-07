@@ -13,7 +13,6 @@ body {
   font-family: $font-family-default;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  letter-spacing: 0.05em;
   color: $black-500;
   font-size: $default-font-size;
   line-height: 1.7;
@@ -61,14 +60,8 @@ h3 {
 }
 
 h1 {
-  font-family: $font-family-bold;
   font-weight: $font-bold;
   font-size: $h1-font-size;
-}
-
-h2,
-h3 {
-  font-family: $font-family-medium;
 }
 
 h2 {
@@ -160,12 +153,11 @@ a {
 }
 
 .bold {
-  font-family: $font-family-medium;
+  font-weight: bold;
 }
 
 .truncate-250 {
   width: 250px;
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -176,8 +168,8 @@ input[type='text'] {
   border-radius: 6px;
   font-size: 17px;
   padding: 13px 15px;
-  font-family: $font-family-regular;
   outline: none;
+  font-weight: normal;
 }
 
 input[type='text']:focus {

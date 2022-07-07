@@ -23,12 +23,11 @@ $col-gap: 20px;
   flex-direction: column;
 
   span {
-   text-align: center;
-   display: block;
+    text-align: center;
+    display: block;
   }
 
   .time {
-    font-family: $font-family-regular;
     font-weight: $font-bold;
     text-transform: uppercase;
     font-size: 1.4rem;
@@ -45,14 +44,13 @@ $col-gap: 20px;
   flex-direction: column;
 
   h3 {
-    font-family: $font-family-regular;
-    text-transform: 1;
+    width: 100%;
     margin: 0;
     padding: 0;
     font-size: 18px;
   }
 
   p {
-    font-family: $font-family-thin;
+    font-weight: 300;
   }
 }
