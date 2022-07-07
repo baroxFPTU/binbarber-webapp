@@ -43,10 +43,10 @@ function ServicePicker() {
     [bookingCart.selectedServices]
   )
 
-  const updateCounterService = (type, serviceId) => {
-    if (type === 'add' && !isExitService(serviceId)) {
+  const updateCounterService = (serviceId) => {
+    if (!isExitService(serviceId)) {
       dispatch(addService(serviceId))
-    } else if (type === 'remove') {
+    } else {
       dispatch(removeService(serviceId))
     }
   }
@@ -67,7 +67,7 @@ function ServicePicker() {
                 <ServiceCard
                   key={service.id}
                   data={service}
-                  onSelect={updateCounterService}
+                  onSelect={() => updateCounterService(service.id)}
                   isSelected={isExitService(service.id)}
                 />
               ))}

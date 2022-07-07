@@ -88,17 +88,8 @@ const CardCustomStyled = styled(Card)`
 function ServiceCard(props) {
   const { title, description, imageURL, price } = props.data
 
-  const updateIsSelected = () => {
-    const serviceId = props.data.id
-    if (!props.isSelected == true) {
-      props.onSelect('add', serviceId)
-    } else {
-      props.onSelect('remove', serviceId)
-    }
-  }
-
   return (
-    <CardCustomStyled onClick={updateIsSelected} data-selected={props.isSelected}>
+    <CardCustomStyled onClick={props.onSelect} data-selected={props.isSelected}>
       {props.isSelected && (
         <div className='service-selected'>
           <TickIcon />
