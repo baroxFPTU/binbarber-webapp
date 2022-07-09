@@ -1,0 +1,26 @@
+@import 'styles/settings';
+
+.dateSelect {
+  margin-top: 16px;
+  margin-bottom: 24px;
+  border-radius: $app-radius;
+  border: $input-border;
+  &[data-open='true'] {
+    border: $input-border-primary;
+    box-shadow: $input-border-shadow;
+  }
+}
+
+.options .item {
+  color: $gray-400;
+}
+.item {
+  padding: 12px;
+  transition: $simple-transition;
+  border-radius: inherit;
+  &:hover,
+  &[data-selected='true'] {
+    color: $black-500;
+    background-color: $gray-200;
+  }
+}

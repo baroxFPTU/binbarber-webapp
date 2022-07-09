@@ -32,3 +32,7 @@ $simple-transition: all 0.2s ease-in-out;
 $scrollbar-width: 5px;
 $scrollbar-radius: 0px;
 $scrollbar-thumb-color: rgb(225, 225, 225);
+
+$input-border: 1px solid $gray-300;
+$input-border-primary: 1px solid $yellow-500;
+$input-border-shadow: 0 0 0 1px $yellow-500;
