@@ -41,11 +41,21 @@ const bookingSlice = createSlice({
     },
     addDiscount: (state, action) => {
       state.cart.appliedDiscounts.push(action.payload)
+    },
+    addBookingDate: (state, action) => {
+      state.cart.bookedAt = action.payload
     }
   }
 })
 
 export const selectCart = (state) => state.booking.cart
-export const { setName, setPhone, setBookedAt, addService, removeService, addDiscount } =
-  bookingSlice.actions
+export const {
+  setName,
+  setPhone,
+  setBookedAt,
+  addService,
+  removeService,
+  addDiscount,
+  addBookingDate
+} = bookingSlice.actions
 export default bookingSlice.reducer

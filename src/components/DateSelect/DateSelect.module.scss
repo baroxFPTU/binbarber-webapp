@@ -5,22 +5,43 @@
   margin-bottom: 24px;
   border-radius: $app-radius;
   border: $input-border;
-  &[data-open='true'] {
+  position: relative;
+
+  &[data-open='true'] > .item {
     border: $input-border-primary;
     box-shadow: $input-border-shadow;
+    border-radius: inherit;
+    &:hover {
+      background-color: #fff;
+    }
   }
 }
 
+.options {
+  position: absolute;
+  top: calc(100% + 12px);
+  width: 100%;
+  border-radius: $app-radius;
+  left: 0;
+  background-color: #fff;
+  border: 1px solid $gray-300;
+  overflow: hidden;
+  border-radius: $app-radius;
+}
+
 .options .item {
-  color: $gray-400;
+  color: $black-500;
 }
 .item {
+  cursor: pointer;
   padding: 12px;
   transition: $simple-transition;
-  border-radius: inherit;
-  &:hover,
+  &:hover {
+    background-color: $gray-300;
+  }
+
   &[data-selected='true'] {
-    color: $black-500;
-    background-color: $gray-200;
+    background-color: $yellow-500;
+    color: #fff;
   }
 }

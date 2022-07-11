@@ -3,6 +3,8 @@ import { format, startOfToday, add, isToday, isTomorrow, isSameDay } from 'date-
 import { vi } from 'date-fns/locale'
 
 import CSSModule from './DateSelect.module.scss'
+import { useDispatch } from 'react-redux'
+import { addBookingDate } from 'features/booking/bookingSlice'
 
 const generateListDayOptions = (startDay = new Date()) => {
   const dates = [startDay]
@@ -17,6 +19,7 @@ const generateListDayOptions = (startDay = new Date()) => {
 }
 
 const DateSelect = (props) => {
+  const dispatch = useDispatch()
   let today = startOfToday()
   const [selectedDay, setSelectedDay] = useState(today)
   const [isOpen, setIsOpen] = useState(false)
@@ -41,6 +44,7 @@ const DateSelect = (props) => {
   }
 
   useEffect(() => {
+    dispatch(addBookingDate(selectedDay.getTime()))
     setIsOpen(false)
   }, [selectedDay])
 
