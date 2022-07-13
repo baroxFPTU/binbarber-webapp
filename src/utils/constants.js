@@ -85,6 +85,7 @@ export const INITIAL_SERVICES = [
 export const SERVICE_CATEGORIES = {
   data: [
     {
+      id: 1,
       categoryName: 'Cắt gội cơ bản',
       services: [
         {
@@ -106,6 +107,7 @@ export const SERVICE_CATEGORIES = {
       ]
     },
     {
+      id: 2,
       categoryName: 'Uốn tạo kiểu',
       services: [
         {
@@ -127,6 +129,7 @@ export const SERVICE_CATEGORIES = {
       ]
     },
     {
+      id: 3,
       categoryName: 'Chăm sóc',
       services: [
         {

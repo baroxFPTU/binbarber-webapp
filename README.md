@@ -55,3 +55,10 @@ TODO
 - create "thoi gian" page
 - handle logic "thoi gian" page
 - add redux
+
+## What have I learned?
+
+Redux saga
+
+- **Remember execute child saga** when configure it into root saga.
+- add more middleware into Redux Toolkit (RTK) with **getDefaultMiddleware**
