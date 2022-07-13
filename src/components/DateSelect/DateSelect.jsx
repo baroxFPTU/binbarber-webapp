@@ -1,42 +1,22 @@
-import React, { useEffect, useState } from 'react'
-import { format, startOfToday, add, isToday, isTomorrow, isSameDay } from 'date-fns'
 import { vi } from 'date-fns/locale'
+import { useDispatch } from 'react-redux'
+import React, { useEffect, useState } from 'react'
+import { format, isSameDay, startOfToday } from 'date-fns'
 
 import CSSModule from './DateSelect.module.scss'
-import { useDispatch } from 'react-redux'
+import { dayLabel, generateListDayOptions } from 'utils'
 import { addBookingDate } from 'features/booking/bookingSlice'
-
-const generateListDayOptions = (startDay = new Date()) => {
-  const dates = [startDay]
-  for (let i = 1; i <= 4; i++) {
-    dates.push(
-      add(startDay, {
-        days: i
-      })
-    )
-  }
-  return dates
-}
 
 const DateSelect = (props) => {
   const dispatch = useDispatch()
-  let today = startOfToday()
-  const [selectedDay, setSelectedDay] = useState(today)
   const [isOpen, setIsOpen] = useState(false)
-  const dates = generateListDayOptions(today)
+  const [selectedDay, setSelectedDay] = useState(today)
+
+  let today = startOfToday()
+  const dates = generateListDayOptions(today, 4)
   const formatOptions = {
     pattern: 'eeee, dd/MM',
     locale: vi
-  }
-
-  const dayLabel = (date, suffix = '') => {
-    if (isToday(date)) {
-      return `Hôm nay ${suffix}`
-    } else if (isTomorrow(date)) {
-      return `Ngày mai ${suffix}`
-    } else {
-      return ' '
-    }
   }
 
   const changeSelectedDate = (index) => {

@@ -60,7 +60,7 @@ function ServicePicker() {
     <div style={{ marginBottom: '128px' }}>
       {serviceCategory &&
         serviceCategory.map((category) => (
-          <React.Fragment key={category.id}>
+          <div key={category.id}>
             <h2>{category.categoryName}</h2>
             <FlexWrapper>
               {category.services.map((service) => (
@@ -72,7 +72,7 @@ function ServicePicker() {
                 />
               ))}
             </FlexWrapper>
-          </React.Fragment>
+          </div>
         ))}
       <Button
         variant='primary'
@@ -82,9 +82,6 @@ function ServicePicker() {
       >
         Chọn {hasSelectedServices ? counterService : ''} dịch vụ
       </Button>
-      {/* <button className='btn btn-primary btn-fixed'>
-        Chọn {counterService > 0 ? counterService : ''} dịch vụ
-      </button> */}
     </div>
   )
 }
