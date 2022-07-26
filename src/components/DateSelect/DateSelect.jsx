@@ -8,11 +8,11 @@ import { dayLabel, generateListDayOptions } from 'utils'
 import { addBookingDate } from 'features/booking/bookingSlice'
 
 const DateSelect = (props) => {
+  let today = startOfToday()
   const dispatch = useDispatch()
   const [isOpen, setIsOpen] = useState(false)
   const [selectedDay, setSelectedDay] = useState(today)
 
-  let today = startOfToday()
   const dates = generateListDayOptions(today, 4)
   const formatOptions = {
     pattern: 'eeee, dd/MM',
@@ -28,6 +28,11 @@ const DateSelect = (props) => {
     setIsOpen(false)
   }, [selectedDay])
 
+  const dated = new Date(selectedDay.getTime())
+  console.log(dated)
+  dated.setHours(8)
+  dated.setMinutes(10)
+  console.log(dated)
   return (
     <div className={CSSModule.dateSelect} data-open={isOpen}>
       <div className={CSSModule.item} onClick={() => setIsOpen(!isOpen)}>

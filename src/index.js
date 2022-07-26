@@ -7,6 +7,13 @@ import '@splidejs/react-splide/css'
 import { Provider } from 'react-redux'
 import store from 'store'
 
+//Swiper styles
+import 'swiper/css'
+import 'swiper/scss/navigation'
+import 'swiper/scss/pagination'
+import 'swiper/scss/scrollbar'
+import 'swiper/scss/grid'
+
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>

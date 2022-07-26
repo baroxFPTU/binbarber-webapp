@@ -161,3 +161,78 @@ export const INITIAL_USERS = [
     name: 'Phan Quoc Bao'
   }
 ]
+
+export const INITIAL_TIME_DATA = [
+  {
+    id: 0,
+    label: '8h00',
+    hourState: 8,
+    minuteState: 0
+  },
+  {
+    id: 1,
+    label: '9h00',
+    hourState: 9,
+    minuteState: 0
+  },
+  {
+    id: 2,
+    label: '10h00',
+    hourState: 10,
+    minuteState: 0
+  },
+  {
+    id: 3,
+    label: '11h00',
+    hourState: 11,
+    minuteState: 0
+  },
+  {
+    id: 4,
+    label: '12h00',
+    hourState: 12,
+    minuteState: 0
+  },
+  {
+    id: 5,
+    label: '13h00',
+    hourState: 13,
+    minuteState: 0
+  },
+  {
+    id: 6,
+    label: '14h00',
+    hourState: 14,
+    minuteState: 0
+  },
+  {
+    id: 7,
+    label: '15h00',
+    hourState: 15,
+    minuteState: 0
+  },
+  {
+    id: 8,
+    label: '16h00',
+    hourState: 16,
+    minuteState: 0
+  },
+  {
+    id: 9,
+    label: '17h00',
+    hourState: 17,
+    minuteState: 0
+  },
+  {
+    id: 10,
+    label: '18h00',
+    hourState: 18,
+    minuteState: 0
+  },
+  {
+    id: 11,
+    label: '19h00',
+    hourState: 19,
+    minuteState: 0
+  }
+]

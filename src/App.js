@@ -4,14 +4,13 @@ import { Helmet, HelmetProvider } from 'react-helmet-async'
 import { Route, Routes } from 'react-router-dom'
 import { PUBLIC_ROUTES } from 'routes'
 
-
 function App() {
   return (
     <HelmetProvider>
       <Helmet>
         <title>BinBarBer</title>
       </Helmet>
-      <div className="app-master">
+      <div className='app-master'>
         <Routes>
           {PUBLIC_ROUTES.map((route, index) => {
             const Page = route.element
@@ -23,7 +22,17 @@ function App() {
               Layout = Fragment
             }
 
-            return (<Route key={index} path={route.path} element={<Layout><Page/></Layout>}/>)
+            return (
+              <Route
+                key={index}
+                path={route.path}
+                element={
+                  <Layout>
+                    <Page />
+                  </Layout>
+                }
+              />
+            )
           })}
         </Routes>
       </div>
