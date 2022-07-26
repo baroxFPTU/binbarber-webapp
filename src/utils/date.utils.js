@@ -1,13 +1,14 @@
 import { add, isToday, isTomorrow } from 'date-fns'
 
 /**
- *
+ * Create a list of next days response to numberOfOptions
  * @param {*} startDay Date object
  * @param {*} numberOfOptions number
  * @returns Array Date objects
  */
 export const generateListDayOptions = (startDay = new Date(), numberOfOptions) => {
   const dates = [startDay] //Init array options
+
   for (let i = 1; i <= numberOfOptions; i++) {
     dates.push(
       add(startDay, {

@@ -1,32 +1,23 @@
+import React, { useState } from 'react'
 import { vi } from 'date-fns/locale'
-import { useDispatch } from 'react-redux'
-import React, { useEffect, useState } from 'react'
-import { format, isSameDay, startOfToday } from 'date-fns'
+import { format, isSameDay } from 'date-fns'
+
+import { dayLabel } from 'utils'
 
 import CSSModule from './DateSelect.module.scss'
-import { dayLabel, generateListDayOptions } from 'utils'
-import { addBookingDate } from 'features/booking/bookingSlice'
 
-const DateSelect = (props) => {
-  const dispatch = useDispatch()
+const DateSelect = ({ selectedDay, onChange, options }) => {
   const [isOpen, setIsOpen] = useState(false)
-  const [selectedDay, setSelectedDay] = useState(today)
 
-  let today = startOfToday()
-  const dates = generateListDayOptions(today, 4)
   const formatOptions = {
     pattern: 'eeee, dd/MM',
     locale: vi
   }
 
-  const changeSelectedDate = (index) => {
-    setSelectedDay(dates[index])
-  }
-
-  useEffect(() => {
-    dispatch(addBookingDate(selectedDay.getTime()))
+  const handleChangeOption = (index) => {
+    onChange(index)
     setIsOpen(false)
-  }, [selectedDay])
+  }
 
   return (
     <div className={CSSModule.dateSelect} data-open={isOpen}>
@@ -35,11 +26,11 @@ const DateSelect = (props) => {
       </div>
       {isOpen && (
         <div className={CSSModule.options}>
-          {dates.map((date, index) => (
+          {options.map((date, index) => (
             <div
               className={CSSModule.item}
               key={date.getTime()}
-              onClick={() => changeSelectedDate(index)}
+              onClick={() => handleChangeOption(index)}
               data-selected={isSameDay(date, selectedDay)}
             >
               {`${dayLabel(date, '-')} ${format(date, formatOptions.pattern, {

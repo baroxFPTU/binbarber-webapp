@@ -48,13 +48,11 @@ A simple React app, help Mr.Bin manage booking & turn over.
 
 TODO
 
-- handle submit font
-- validate form
-- create "chon dich vu" page
-- handle logic "chon dich vu"
-- create "thoi gian" page
-- handle logic "thoi gian" page
-- add redux
+Handle chon thoi gian
+
+- design
+- draw ULM initialTimes
+- connect initialTimes
 
 ## What have I learned?
 

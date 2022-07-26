@@ -191,4 +191,13 @@ input[type='text']:focus {
   height: 100%;
 }
 
+.time-option {
+  padding: 12px 24px;
+  border: 1px solid $gray-300;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 @import 'responsive';

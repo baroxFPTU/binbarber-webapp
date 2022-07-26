@@ -1,8 +1,6 @@
 @import 'styles/settings';
 
 .dateSelect {
-  margin-top: 16px;
-  margin-bottom: 24px;
   border-radius: $app-radius;
   border: $input-border;
   position: relative;
@@ -19,6 +17,7 @@
 
 .options {
   position: absolute;
+  z-index: 99;
   top: calc(100% + 12px);
   width: 100%;
   border-radius: $app-radius;
