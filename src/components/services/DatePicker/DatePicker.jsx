@@ -1,19 +1,30 @@
 import Button from 'components/common/Button'
 import DateSelect from 'components/DateSelect'
 import TimeSelect from 'components/TimeSelect'
-import React from 'react'
+import { startOfToday } from 'date-fns'
+import { addBookingDate } from 'features/booking/bookingSlice'
+import React, { memo, useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { generateListDayOptions } from 'utils'
 
-/**
- * 1. label of time object
- * 2. value of time
- * 3. isFree
- */
+function DatePicker() {
+  let today = startOfToday()
+  const dispatch = useDispatch()
+  const [selectedDay, setSelectedDay] = useState(today)
+  const dates = generateListDayOptions(today, 4)
 
-function DatePicker(props) {
+  const changeSelectedDate = (index) => {
+    setSelectedDay(dates[index])
+  }
+
+  useEffect(() => {
+    dispatch(addBookingDate(selectedDay.getTime()))
+  }, [dispatch, selectedDay])
+
   return (
     <div>
       <h2>Bạn sẽ cắt vào ngày</h2>
-      <DateSelect />
+      <DateSelect selectedDay={selectedDay} options={dates} onChange={changeSelectedDate} />
       <h2>vào lúc</h2>
       <TimeSelect />
       <Button variant='primary' fixed>
@@ -23,4 +34,4 @@ function DatePicker(props) {
   )
 }
 
-export default DatePicker
+export default memo(DatePicker)
