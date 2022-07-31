@@ -46,13 +46,16 @@ A simple React app, help Mr.Bin manage booking & turn over.
   User pick a service
 - change state of service card
 
-TODO
+## TODO
 
-Handle chon thoi gian
+### 2022 07 29
 
-- design
-- draw ULM initialTimes
-- connect initialTimes
+- Connect to FrontEnd
+  - setup axios
+  - write call api functions
+  - set up redux, redux saga
+  - evaluate use state | effect | redux | redux saga
+- Create services route -> render to frontend
 
 ## What have I learned?
 

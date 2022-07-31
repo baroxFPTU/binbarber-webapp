@@ -1,4 +1,4 @@
-import axiosClient from 'app/axiosClient'
+import axiosClient from 'api/axiosClient'
 import Button from 'components/common/Button'
 import DateSelect from 'components/DateSelect'
 import TimeSelect from 'components/TimeSelect'
