@@ -1,25 +1,18 @@
 // Created by trungquandev.com's author on 03/29/2021
 // Sample Eslint config for React project
 {
-	"env": {
+  "env": {
     "es6": true,
     "node": true,
-		"browser": true
-	},
-	"extends": [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:react-hooks/recommended"
-  ],
-  "plugins": [
-		"react",
-    "react-hooks"
-  ],
-	"parserOptions": {
+    "browser": true
+  },
+  "extends": ["eslint:recommended", "plugin:react/recommended", "plugin:react-hooks/recommended"],
+  "plugins": ["react", "react-hooks"],
+  "parserOptions": {
     "ecmaVersion": 2018,
     "sourceType": "module"
-	},
-	"rules": {
+  },
+  "rules": {
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "no-console": 1,
@@ -29,10 +22,10 @@
     "no-multiple-empty-lines": 1,
     "space-before-blocks": ["error", "always"],
     "object-curly-spacing": [1, "always"],
-		"indent": ["warn", 2],
+    "indent": ["warn", 2],
     "linebreak-style": 0,
-    "semi": [1, "never"],
-		"quotes": ["error", "single"],
+    "semi": 0,
+    "quotes": ["error", "single"],
     "no-unexpected-multiline": "warn",
     "react/prop-types": 0,
     "react/display-name": 0,
@@ -40,5 +33,5 @@
     "comma-dangle": 1,
     "comma-spacing": 1,
     "arrow-spacing": 1
-	}
+  }
 }

@@ -1,3 +1,4 @@
+import axiosClient from 'app/axiosClient'
 import Button from 'components/common/Button'
 import DateSelect from 'components/DateSelect'
 import TimeSelect from 'components/TimeSelect'
@@ -20,6 +21,14 @@ function DatePicker() {
   useEffect(() => {
     dispatch(addBookingDate(selectedDay.getTime()))
   }, [dispatch, selectedDay])
+
+  useEffect(() => {
+    // eslint-disable-next-line no-extra-semi
+    ;(async () => {
+      const data = await axiosClient.get('/operation/working-date')
+      console.log(data)
+    })()
+  }, [])
 
   return (
     <div>

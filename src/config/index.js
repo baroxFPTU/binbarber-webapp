@@ -1,7 +1,9 @@
+import { axiosConfig } from './axios'
 import routes from './routes'
 
 const config = {
-  routes
+  routes,
+  axios: axiosConfig
 }
 
 export default config
