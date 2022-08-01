@@ -55,6 +55,7 @@ A simple React app, help Mr.Bin manage booking & turn over.
   - write call api functions
   - set up redux, redux saga
   - evaluate use state | effect | redux | redux saga
+- backend -> GET single workingDate
 - Create services route -> render to frontend
 
 ## What have I learned?
