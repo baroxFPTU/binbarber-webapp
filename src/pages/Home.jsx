@@ -6,7 +6,7 @@ import SaleCarousel from 'components/carousels/SaleCarousel'
 import FeaturedSection from 'components/common/FeaturedSection'
 import Grid from 'components/common/Grid'
 import { HairDryer, Scissor } from 'components/Icon'
-import ServiceItem from 'components/services/ServiceItem'
+import ServiceItem from 'features/service/components/ServiceItem'
 
 function Home(props) {
   return (

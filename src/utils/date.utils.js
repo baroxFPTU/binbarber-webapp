@@ -34,3 +34,13 @@ export const dayLabel = (date, suffix = '') => {
     return ' '
   }
 }
+
+/**
+ * Format into '00h00' format (Example: 12h00, 13h00,...)
+ * @param {*} time {hour: number, minute: number}
+ * @returns String
+ */
+export const formatTime = (time) => {
+  if (!time || isNaN(time.hour) || isNaN(time.minute)) return '0h00'
+  return `${time.hour}h${time.minute < 10 ? `0${time.minute}` : time.minute}`
+}

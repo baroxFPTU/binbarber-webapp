@@ -1,14 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-/**
-Example
-userId: String (when have login),
-selectedServices: []
-isPaid: false,
-appliedDiscounts: [],
-bookedAt: null || Timestamp
-*/
-
 const initialState = {
   cart: {
     name: '',

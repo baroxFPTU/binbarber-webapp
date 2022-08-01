@@ -6,8 +6,8 @@ import BookingLayout from 'containers/layouts/BookingLayout'
 import Home from 'pages/Home'
 import Profile from 'pages/Profile'
 import Voucher from 'pages/Voucher'
-import ServicePicker from 'components/services/ServicePicker/ServicePicker'
-import DatePicker from 'components/services/DatePicker/DatePicker'
+import ServicePicker from 'features/service/components/ServicePicker'
+import DatePicker from 'features/booking/components/DatePicker/DatePicker'
 
 const PUBLIC_ROUTES = [
   { path: config.routes.home, element: Home },
