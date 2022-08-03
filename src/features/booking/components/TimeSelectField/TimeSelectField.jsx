@@ -5,8 +5,8 @@ import 'swiper/css/grid'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
-import { format } from 'date-fns/esm'
 import { formatTime } from 'utils'
+import Button from 'components/common/Button'
 
 const TimeOption = styled.div`
   padding: 12px;
@@ -28,7 +28,7 @@ const TimeSelect = (props) => {
   const [selectedTime, setSelectedTime] = useState(undefined)
 
   const { data, onChange } = props
-  const isExit = Boolean(data)
+  const isExist = Boolean(data)
 
   const handleSelectOnClick = (selectTime) => {
     setSelectedTime(selectTime)
@@ -39,7 +39,7 @@ const TimeSelect = (props) => {
 
   return (
     <>
-      {!isExit && <span style={{ fontStyle: 'italic' }}>There is no time at all.</span>}
+      {!isExist && <span style={{ fontStyle: 'italic' }}>There is no time at all.</span>}
       <Swiper
         modules={[Navigation, Pagination, Scrollbar, Grid]}
         spaceBetween={24}
@@ -54,12 +54,13 @@ const TimeSelect = (props) => {
         {data &&
           data.map((time) => (
             <SwiperSlide key={time.hour}>
-              <TimeOption
+              <Button
+                variant='outline'
                 onClick={() => handleSelectOnClick(time)}
-                data-selected={_.isEqual(time, selectedTime)}
+                data-active={_.isEqual(time, selectedTime)}
               >
                 {formatTime(time)}
-              </TimeOption>
+              </Button>
             </SwiperSlide>
           ))}
       </Swiper>

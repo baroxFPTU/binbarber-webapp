@@ -1,12 +1,10 @@
 import { takeEvery } from 'redux-saga/effects'
-import { addBookingDate } from './bookingSlice'
+import { bookingActions } from './bookingSlice'
 
-function fetchTimesOfBookedDate() {
-  console.log('FetchTimesOfBookedDate')
-}
+function fetchTimesOfBookedDate() {}
 
 export function* bookingSaga() {
-  yield takeEvery(addBookingDate().type, fetchTimesOfBookedDate)
+  yield takeEvery(bookingActions.addBookingDate().type, fetchTimesOfBookedDate)
 }
 
 // config saga

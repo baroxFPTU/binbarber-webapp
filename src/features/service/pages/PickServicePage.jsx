@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { addService, removeService, selectCart } from 'features/booking/bookingSlice'
+import { selectCart, bookingActions } from 'features/booking/bookingSlice'
 import { addCategories, selectServiceCategories } from 'features/service/serviceSlice'
 import { SERVICE_CATEGORIES } from 'utils/constants'
-import ServiceCard from '../ServiceCard'
+import ServiceCard from '../components/ServiceCard'
 import styled from 'styled-components'
 import Button from 'components/common/Button'
 import { useNavigate } from 'react-router-dom'
@@ -38,16 +38,16 @@ function ServicePicker() {
 
   const isExitService = useCallback(
     (serviceId) => {
-      return bookingCart.selectedServices.indexOf(serviceId) !== -1
+      return bookingCart.selectedServices.find((service) => service.id === serviceId) != null
     },
     [bookingCart.selectedServices]
   )
 
-  const updateCounterService = (serviceId) => {
-    if (!isExitService(serviceId)) {
-      dispatch(addService(serviceId))
+  const addService = (service) => {
+    if (!isExitService(service.id)) {
+      dispatch(bookingActions.addService(service))
     } else {
-      dispatch(removeService(serviceId))
+      dispatch(bookingActions.removeService(service))
     }
   }
 
@@ -67,7 +67,7 @@ function ServicePicker() {
                 <ServiceCard
                   key={service.id}
                   data={service}
-                  onSelect={() => updateCounterService(service.id)}
+                  onSelect={() => addService(service)}
                   isSelected={isExitService(service.id)}
                 />
               ))}

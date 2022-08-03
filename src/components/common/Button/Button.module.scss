@@ -2,18 +2,20 @@
 
 .btn {
   width: calc(100% - $app-gap);
+  height: $button-height;
+  min-width: 28px;
+  max-width: 470px;
+
   display: block;
   padding: 12px 24px;
   border-radius: $app-radius;
   margin: 0 auto;
-  min-width: 28px;
   white-space: nowrap;
   line-height: 1.17648;
-  max-width: 470px;
-  height: $button-height;
+  color: $black-500;
 }
 
-.btn:hover:not(.btnPrimary) {
+.btn:hover:not(.btnPrimary, .btnOutline) {
   text-decoration: underline;
 }
 
@@ -27,18 +29,38 @@
   transition: $simple-transition;
   user-select: none;
   -webkit-user-select: none;
-}
-
-.btnPrimary:hover {
-  background: $yellow-600;
-}
-
-.btnPrimary:disabled {
-  background: $gray-400;
+  &:hover {
+    background: $yellow-600;
+  }
+  &:disabled {
+    background: $gray-400;
+  }
 }
 
 .btnFixed {
   position: fixed;
   bottom: 24px;
   width: calc(100% - ($app-gap * 2));
+}
+
+.btnOutline {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #dbdbdb;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+  &:hover {
+    background: #f9f9f9;
+  }
+
+  &[data-active='true'] {
+    background: #fac172;
+    color: #fff;
+  }
+}
+
+.btnFullWidth {
+  width: 100%;
+  max-width: 100%;
 }

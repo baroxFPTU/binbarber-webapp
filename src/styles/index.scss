@@ -170,6 +170,8 @@ input[type='text'] {
   padding: 13px 15px;
   outline: none;
   font-weight: normal;
+  background: #fff;
+  color: $black-500;
 }
 
 input[type='text']:focus {

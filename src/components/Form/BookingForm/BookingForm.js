@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import { BsChevronRight, BsCalendar4 } from 'react-icons/bs'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
@@ -6,10 +6,15 @@ import { useSelector, useDispatch } from 'react-redux'
 import FinanceSection from 'components/finance/FinanceSection/FinanceSection'
 import FormGroup from '../FormGroup/FormGroup'
 import FormSection from '../FormSection/FormSection'
-import { selectCart, setName, setPhone } from 'features/booking/bookingSlice'
+import { bookingActions, selectCart, setName, setPhone } from 'features/booking/bookingSlice'
+import { format } from 'date-fns'
+import Button from 'components/common/Button'
+import Grid from 'components/common/Grid'
+import Row from 'components/common/Row/Row'
 
-const SelectionButton = styled.button`
+const OutlineButton = styled.button`
   border: 1px solid #dbdbdb;
+  color: #323232;
   border-radius: 6px;
   margin: 0;
   width: 100%;
@@ -46,122 +51,58 @@ const GroupInputButton = styled.div`
   }
 `
 
-const instance = {
-  name: '',
-  phone: '',
-  selectedServices: [
-    {
-      id: 1,
-      label: 'Cắt tóc',
-      description: 'Đảm bảo bảnh trai như Sơn Tùng',
-      price: 30000,
-      createdAt: Date.now()
-    },
-    {
-      id: 2,
-      label: 'Gội đầu',
-      description: 'Mát mẻ từ da dẻ',
-      price: 20000,
-      createdAt: Date.now()
-    },
-    {
-      id: 4,
-      label: 'Cạo râu',
-      description: 'Cạo sạch từng cen-ti-met',
-      price: 15000,
-      createdAt: Date.now()
-    }
-  ],
-  appliedDiscounts: [
-    {
-      id: 1,
-      code: 'ABC',
-      percent: 20
-    }
-  ],
-  bookedAt: Date.now()
-}
-
 function BookingForm() {
   const cart = useSelector(selectCart)
-  const dispatch = useDispatch()
   const navigate = useNavigate()
-  const [bookingInstance, setBookingInstance] = useState({
-    ...instance,
-    name: '',
-    phone: ''
-  })
-
-  /**
-    Tam tinh: loop through selectedServices -> sum.
-    Giam gia => loop through appliedDiscount -> sum,
-    Thanh tien => tam tinh - giam gia
-  */
-  const updateInput = (e) => {
-    const inputVal = e.target.value.trim()
-    const nameField = e.target.dataset.field
-    let actions = null
-    if (inputVal !== '') {
-      switch (nameField) {
-        case 'name':
-          actions = setName(inputVal)
-          break
-        case 'phone':
-          actions = setPhone(inputVal)
-          break
-        default: {
-          return
-        }
-      }
-    }
-    if (actions) {
-      return dispatch(actions)
-    }
-  }
 
   const handleSubmit = () => {
-    console.log(bookingInstance)
+    console.log(cart)
   }
 
   const subTotal = useMemo(() => {
-    return bookingInstance.selectedServices.reduce((sum, service) => (sum += service.price), 0)
-  }, [bookingInstance.selectedServices])
+    return cart.selectedServices.reduce((sum, service) => (sum += service.price), 0)
+  }, [cart.selectedServices])
 
   const discount = useMemo(() => {
-    const totalDiscountPercent = bookingInstance.appliedDiscounts.reduce(
+    const totalDiscountPercent = cart.appliedDiscounts.reduce(
       (sum, discount) => (sum += discount.percent),
       0
     )
     return subTotal * (totalDiscountPercent / 100)
-  }, [bookingInstance.appliedDiscounts, subTotal])
-  const contentServiceSelector =
-    cart.selectedServices.length > 0 ? (
-      <>Đã chọn {cart.selectedServices.length} dịch vụ</>
-    ) : (
-      <>Xem tất cả dịch vụ</>
-    )
+  }, [cart.appliedDiscounts, subTotal])
+
   return (
     <div>
-      <FormSection title='Thông tin cơ bản'>
-        <FormGroup>
-          <label>Họ và tên</label>
-          <input type='text' value={cart.name} onChange={updateInput} data-field='name' />
-        </FormGroup>
-        <FormGroup>
-          <label>Số điện thoại</label>
-          <input type='text' value={cart.phone} onChange={updateInput} data-field='phone' />
-        </FormGroup>
-      </FormSection>
-      <FormSection title='Chọn dịch vụ'>
-        <SelectionButton className='btn' onClick={() => navigate('./chon-dich-vu')}>
-          {contentServiceSelector}
-          <BsChevronRight />
-        </SelectionButton>
+      <FormSection title='Dịch vụ đã chọn'>
+        <Row>
+          {cart.selectedServices.map((service) => (
+            <Button key={service.id} variant='outline'>
+              {service.title}
+            </Button>
+          ))}
+        </Row>
+        <Button
+          fullWidth
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            padding: 0
+          }}
+          onClick={() => navigate('/len-lich/chon-dich-vu')}
+        >
+          Xem tất cả dịch vụ
+        </Button>
       </FormSection>
       <FormSection title='Thời gian'>
-        <SelectionButton className='btn' onClick={() => navigate('./chon-ngay')}>
-          8:00 - 24/06/2022 <BsCalendar4 />
-        </SelectionButton>
+        <Button
+          variant='outline'
+          onClick={() => navigate('/len-lich/chon-ngay')}
+          fullWidth
+          style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
+        >
+          {format(cart.bookedAt, 'kk:mm - dd/MM/yyyy')} <BsCalendar4 />
+        </Button>
       </FormSection>
       <FormSection title='Mã giảm giá'>
         <FormGroup>
@@ -179,9 +120,12 @@ function BookingForm() {
           }}
         />
       </FormSection>
-      <button className='btn btn-primary' style={{ marginBottom: '24px' }} onClick={handleSubmit}>
+      <Button variant='primary' onClick={handleSubmit}>
         Tiếp tục
-      </button>
+      </Button>
+      <Button style={{ marginBottom: '24px' }} onClick={handleSubmit}>
+        Hủy
+      </Button>
     </div>
   )
 }
