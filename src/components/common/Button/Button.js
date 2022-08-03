@@ -2,15 +2,23 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import CSSModule from './Button.module.scss'
 
-const Button = ({ variant, fixed, disabled, children, ...props }) => {
+const Button = ({ variant, fixed, disabled, children, fullWidth, ...props }) => {
   let buttonClassName = CSSModule.btn
 
   if (variant === 'primary') {
     buttonClassName += ' ' + CSSModule.btnPrimary
   }
 
+  if (variant === 'outline') {
+    buttonClassName += ' ' + CSSModule.btnOutline
+  }
+
   if (fixed) {
     buttonClassName += ' ' + CSSModule.btnFixed
+  }
+
+  if (fullWidth) {
+    buttonClassName += ' ' + CSSModule.btnFullWidth
   }
 
   return (

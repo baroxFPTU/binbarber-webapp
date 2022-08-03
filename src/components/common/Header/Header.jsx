@@ -16,7 +16,7 @@ function Header(props) {
       <div className={CSSModule.NavHeader}>
         <div className={CSSModule.NavHeaderContainer}>
           <button onClick={goBackward}>
-            <MdOutlineArrowBackIosNew/>
+            <MdOutlineArrowBackIosNew />
           </button>
           <h3>{props.title || 'Title'}</h3>
         </div>
@@ -26,10 +26,9 @@ function Header(props) {
 
   return (
     <header className={CSSModule.MainHeader}>
-      <Link to="./">
+      <Link to='./'>
         <h2>Bin Barber</h2>
       </Link>
-      <button className={CSSModule.navBookingBtn}>Đặt lịch <BsChevronRight/></button>
     </header>
   )
 }

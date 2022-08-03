@@ -6,7 +6,7 @@ import { dayLabel } from 'utils'
 
 import CSSModule from './DateSelect.module.scss'
 
-const DateSelect = ({ selectedDay, onChange, options }) => {
+const DateSelect = ({ selectedDate, onChange, options }) => {
   const [isOpen, setIsOpen] = useState(false)
 
   const formatOptions = {
@@ -22,7 +22,7 @@ const DateSelect = ({ selectedDay, onChange, options }) => {
   return (
     <div className={CSSModule.dateSelect} data-open={isOpen}>
       <div className={CSSModule.item} onClick={() => setIsOpen(!isOpen)}>
-        {`${dayLabel(selectedDay, '-')} ${format(selectedDay, 'eeee, dd/MM', { locale: vi })}`}
+        {`${dayLabel(selectedDate, '-')} ${format(selectedDate, 'eeee, dd/MM', { locale: vi })}`}
       </div>
       {isOpen && (
         <div className={CSSModule.options}>
@@ -31,7 +31,7 @@ const DateSelect = ({ selectedDay, onChange, options }) => {
               className={CSSModule.item}
               key={date.getTime()}
               onClick={() => handleChangeOption(index)}
-              data-selected={isSameDay(date, selectedDay)}
+              data-selected={isSameDay(date, selectedDate)}
             >
               {`${dayLabel(date, '-')} ${format(date, formatOptions.pattern, {
                 locale: formatOptions.locale

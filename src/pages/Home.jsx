@@ -7,6 +7,7 @@ import FeaturedSection from 'components/common/FeaturedSection'
 import Grid from 'components/common/Grid'
 import { HairDryer, Scissor } from 'components/Icon'
 import ServiceItem from 'features/service/components/ServiceItem'
+import Button from 'components/common/Button'
 
 function Home(props) {
   return (
