@@ -14,10 +14,11 @@ $icon-border-radius: 10px;
 }
 
 .ServiceIcon {
+  background-color: #fff;
   width: $icon-width;
   height: $icon-height;
   border-radius: $icon-border-radius;
-  border: 1px solid $yellow-500;
+  border: 1px solid $gray-400;
   color: $yellow-500;
   font-size: 2.7rem;
   display: flex;
@@ -25,15 +26,25 @@ $icon-border-radius: 10px;
   align-items: center;
   margin-bottom: 5px;
 
-  &:hover {
-    color: #fff;
-    background-color: $yellow-500;
+  svg {
+    width: calc($icon-width - $app-gap);
+    height: calc($icon-height - $app-gap);
+  }
+
+  &:hover,
+  &:hover + .Label {
+    color: $yellow-500;
+    border-color: $yellow-500;
+    svg {
+      filter: invert(89%) sepia(98%) saturate(7494%) hue-rotate(307deg) brightness(102%)
+        contrast(96%);
+    }
   }
 }
 
 .Label {
   text-align: center;
-  font-size: $default-font-size;
+  font-size: clamp(12px, 1.5vw, $default-font-size);
   font-weight: $font-semiBold;
-  
+  white-space: nowrap;
 }

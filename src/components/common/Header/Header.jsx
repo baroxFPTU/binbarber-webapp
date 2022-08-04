@@ -28,6 +28,7 @@ function Header(props) {
     <header className={CSSModule.MainHeader}>
       <Link to='./'>
         <h2>Bin Barber</h2>
+        <p>Thái độ hơn trình độ</p>
       </Link>
     </header>
   )
