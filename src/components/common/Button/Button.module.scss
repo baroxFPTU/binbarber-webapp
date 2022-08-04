@@ -2,12 +2,12 @@
 
 .btn {
   width: calc(100% - $app-gap);
-  height: $button-height;
+  // height: $button-height;
   min-width: 28px;
   max-width: 470px;
-
+  font-size: 18px;
   display: block;
-  padding: 12px 24px;
+  padding: 16px 24px;
   border-radius: $app-radius;
   margin: 0 auto;
   white-space: nowrap;

@@ -17,7 +17,7 @@ body {
   font-size: $default-font-size;
   line-height: 1.7;
 
-  background: white;
+  background: #e3e3e32e;
   scrollbar-gutter: stable both-edges;
   margin: 0 auto;
   max-width: $app-max-width;
@@ -55,8 +55,8 @@ html ::-webkit-scrollbar-track {
 h1,
 h2,
 h3 {
-  padding-top: 64px;
-  padding-bottom: 32px;
+  padding-top: 32px;
+  padding-bottom: 16px;
 }
 
 h1 {
