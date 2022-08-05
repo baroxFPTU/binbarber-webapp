@@ -9,6 +9,7 @@ import Voucher from 'pages/Voucher'
 import PickServicePage from 'features/service/pages/PickServicePage'
 import PickDatePage from 'features/booking/pages/PickDatePage'
 import ReviewBookingPage from 'features/booking/pages/ReviewBookingPage'
+import RedirectPage from 'pages/RedirectPage'
 
 const PUBLIC_ROUTES = [
   { path: config.routes.home, element: Home },
@@ -17,7 +18,6 @@ const PUBLIC_ROUTES = [
     element: BookingList
   },
   { path: `${config.routes.myBooking}/:bookingId`, element: BookingDetail, layout: BookingLayout },
-  { path: `${config.routes.booking}/`, element: BookingForm, layout: BookingLayout },
   {
     path: `${config.routes.booking}/chon-dich-vu`,
     element: PickServicePage,
@@ -25,6 +25,11 @@ const PUBLIC_ROUTES = [
   },
   { path: `${config.routes.booking}/chon-ngay`, element: PickDatePage, layout: BookingLayout },
   { path: `${config.routes.booking}/xem-lai`, element: ReviewBookingPage, layout: BookingLayout },
+  {
+    path: `${config.routes.booking}`,
+    element: RedirectPage,
+    props: { to: `${config.routes.booking}/chon-dich-vu` }
+  },
   { path: config.routes.voucher, element: Voucher },
   { path: config.routes.profile, element: Profile }
 ]

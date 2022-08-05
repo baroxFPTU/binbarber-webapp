@@ -101,7 +101,7 @@ function BookingForm() {
           fullWidth
           style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
         >
-          {format(cart.bookedAt, 'kk:mm - dd/MM/yyyy')} <BsCalendar4 />
+          {cart.bookedAt && format(cart.bookedAt, 'kk:mm - dd/MM/yyyy')} <BsCalendar4 />
         </Button>
       </FormSection>
       <FormSection title='Mã giảm giá'>
