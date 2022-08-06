@@ -22,7 +22,7 @@ const TimeSelect = (props) => {
       {!isExist && <span style={{ fontStyle: 'italic' }}>There is no time at all.</span>}
       <Swiper
         modules={[Navigation, Pagination, Scrollbar, Grid]}
-        spaceBetween={24}
+        spaceBetween={18}
         slidesPerView={numberOfSlidesPerView}
         pagination={{ type: 'fractions', clickable: true }}
         grid={{
@@ -38,6 +38,8 @@ const TimeSelect = (props) => {
                 variant='outline'
                 onClick={() => handleSelectOnClick(time)}
                 data-active={_.isEqual(time, value)}
+                style={{ margin: 0 }}
+                fullWidth
               >
                 {formatTime(time)}
               </Button>

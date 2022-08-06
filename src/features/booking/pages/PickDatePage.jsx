@@ -12,6 +12,7 @@ import TimeSelect from 'features/booking/components/TimeSelectField'
 import useRedirectEmptyCart from 'hooks/useRedirectEmptyCart'
 import { useNavigate } from 'react-router-dom'
 import { generateListDayOptions } from 'utils'
+import TimeSelectSkeleton from 'components/skeletons/TimeSelectSkeleton'
 
 function DatePicker() {
   let today = startOfToday()
@@ -42,7 +43,7 @@ function DatePicker() {
 
   useEffect(() => {
     watching()
-  }, [])
+  }, [watching])
 
   const changeSelectedDate = (index) => {
     setSelectedDate(dates[index])
@@ -65,11 +66,15 @@ function DatePicker() {
         <DateSelect selectedDate={selectedDate} options={dates} onChange={changeSelectedDate} />
       </FormSection>
       <FormSection title='Thời gian'>
-        <TimeSelect
-          value={selectedTime}
-          data={workingDate && workingDate.working_times}
-          onChange={handleChangeSelectTime}
-        />
+        {workingDate ? (
+          <TimeSelect
+            value={selectedTime}
+            data={workingDate && workingDate.working_times}
+            onChange={handleChangeSelectTime}
+          />
+        ) : (
+          <TimeSelectSkeleton />
+        )}
       </FormSection>
       <Button
         variant='primary'
