@@ -31,7 +31,8 @@ const PUBLIC_ROUTES = [
     props: { to: `${config.routes.booking}/chon-dich-vu` }
   },
   { path: config.routes.voucher, element: Voucher },
-  { path: config.routes.profile, element: Profile }
+  { path: config.routes.profile, element: Profile },
+  { path: '*', element: Home }
 ]
 
 export { PUBLIC_ROUTES }

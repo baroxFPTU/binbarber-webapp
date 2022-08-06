@@ -1,5 +1,4 @@
 import React from 'react'
-import { BsChevronRight } from 'react-icons/bs'
 import { MdOutlineArrowBackIosNew } from 'react-icons/md'
 import { Link, useNavigate } from 'react-router-dom'
 import CSSModule from './Header.module.scss'

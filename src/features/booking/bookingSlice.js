@@ -1,4 +1,5 @@
 import { createSelector, createSlice } from '@reduxjs/toolkit'
+import { format } from 'date-fns'
 
 const initialState = {
   cart: {
@@ -42,6 +43,11 @@ const bookingSlice = createSlice({
 })
 
 export const selectCart = (state) => state.booking.cart
+export const selectBookingAtString = createSelector(selectCart, (cart) => {
+  if (cart.bookedAt) {
+    return format(cart.bookedAt, 'kk:mm - dd/MM/yyyy')
+  }
+})
 export const selectSelectedServices = createSelector(selectCart, (cart) => cart.selectedServices)
 export const selectIsSelectedService = createSelector(
   selectSelectedServices,

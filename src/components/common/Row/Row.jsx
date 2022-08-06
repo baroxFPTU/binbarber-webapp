@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 const RowStyled = styled.div`
-  margin-bottom: 18px;
+  margin-bottom: 12px;
   display: flex;
   justify-content: ${(props) => (props.spaceBetween ? 'space-between' : 'flex-start')};
   column-gap: 12px;

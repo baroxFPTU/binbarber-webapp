@@ -18,7 +18,7 @@ const FlexWrapper = styled.div`
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 14px;
+  gap: 18px;
 `
 
 const ServiceWidget = () => {

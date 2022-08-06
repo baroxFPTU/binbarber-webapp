@@ -1,36 +1,16 @@
-import React, { useMemo, useState } from 'react'
-import { BsChevronRight, BsCalendar4 } from 'react-icons/bs'
-import { useNavigate } from 'react-router-dom'
+import { format } from 'date-fns'
 import styled from 'styled-components'
-import { useSelector, useDispatch } from 'react-redux'
-import FinanceSection from 'components/finance/FinanceSection/FinanceSection'
+import React, { useMemo } from 'react'
+import { useSelector } from 'react-redux'
+import { BsCalendar4 } from 'react-icons/bs'
+import { useNavigate } from 'react-router-dom'
+
+import Row from 'components/common/Row/Row'
+import Button from 'components/common/Button'
 import FormGroup from '../FormGroup/FormGroup'
 import FormSection from '../FormSection/FormSection'
-import { bookingActions, selectCart, setName, setPhone } from 'features/booking/bookingSlice'
-import { format } from 'date-fns'
-import Button from 'components/common/Button'
-import Grid from 'components/common/Grid'
-import Row from 'components/common/Row/Row'
-
-const OutlineButton = styled.button`
-  border: 1px solid #dbdbdb;
-  color: #323232;
-  border-radius: 6px;
-  margin: 0;
-  width: 100%;
-  text-align: left;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-right: 16px;
-  transition: all 0.25s ease-in-out;
-
-  &:hover {
-    border: 1px solid #fac172;
-    box-shadow: 0 0 0 1px #fac172;
-    padding-right: 12px;
-  }
-`
+import { selectCart } from 'features/booking/bookingSlice'
+import FinanceSection from 'components/finance/FinanceSection/FinanceSection'
 
 const GroupInputButton = styled.div`
   display: flex;
@@ -77,7 +57,7 @@ function BookingForm() {
         <Row>
           {cart.selectedServices.map((service) => (
             <Button key={service.id} variant='outline'>
-              {service.title}
+              {service.name}
             </Button>
           ))}
         </Row>

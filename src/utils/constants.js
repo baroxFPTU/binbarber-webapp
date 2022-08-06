@@ -90,7 +90,7 @@ export const SERVICE_CATEGORIES = {
       services: [
         {
           id: 1,
-          title: 'Cắt tóc',
+          name: 'Cắt tóc',
           description: 'Tỏa sáng như Mr.Bin',
           imageURL: 'https://source.unsplash.com/random',
           price: 30000,
@@ -98,7 +98,7 @@ export const SERVICE_CATEGORIES = {
         },
         {
           id: 2,
-          title: 'Gội & massage',
+          name: 'Gội & massage',
           description: 'Ân ái, mê man, get high',
           imageURL: 'https://source.unsplash.com/random',
           price: 22000,
@@ -112,7 +112,7 @@ export const SERVICE_CATEGORIES = {
       services: [
         {
           id: 3,
-          title: 'Uốn xịn xò',
+          name: 'Uốn xịn xò',
           description: 'Rep 1:1 trai Hàn',
           imageURL: 'https://source.unsplash.com/random',
           price: 140000,
@@ -120,7 +120,7 @@ export const SERVICE_CATEGORIES = {
         },
         {
           id: 4,
-          title: 'Tạo kiểu',
+          name: 'Tạo kiểu',
           description: 'Xinh hơn NYM của NYC',
           imageURL: 'https://source.unsplash.com/random',
           price: 0,
@@ -134,7 +134,7 @@ export const SERVICE_CATEGORIES = {
       services: [
         {
           id: 5,
-          title: 'Cạo râu',
+          name: 'Cạo râu',
           description: 'Sạch sẽ như hòn Chồng',
           imageURL: 'https://source.unsplash.com/random',
           price: 0,
@@ -142,7 +142,7 @@ export const SERVICE_CATEGORIES = {
         },
         {
           id: 6,
-          title: 'Cạo mặt',
+          name: 'Cạo mặt',
           description: 'Lán o con gà gáy',
           imageURL: 'https://source.unsplash.com/random',
           price: 0,

@@ -86,7 +86,7 @@ const CardCustomStyled = styled(Card)`
 `
 
 function ServiceCard(props) {
-  const { title, description, imageURL, price } = props.data
+  const { name, description, imageURL, price } = props.data
 
   return (
     <CardCustomStyled onClick={props.onSelect} data-selected={props.isSelected}>
@@ -96,10 +96,10 @@ function ServiceCard(props) {
         </div>
       )}
       <div className='card-pic'>
-        <img src={imageURL} alt={title + ' - ' + description} />
+        <img src={imageURL} alt={name + ' - ' + description} />
       </div>
       <div className='card-content'>
-        <h3>{title}</h3>
+        <h3>{name}</h3>
         <p>{description}</p>
         <span className='price'>{`${price / 1000}K`}</span>
       </div>
