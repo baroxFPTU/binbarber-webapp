@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination, Scrollbar, Grid } from 'swiper'
 import 'swiper/css/grid'
@@ -8,13 +8,10 @@ import { formatTime } from 'utils'
 import Button from 'components/common/Button'
 
 const TimeSelect = (props) => {
-  const [selectedTime, setSelectedTime] = useState(undefined)
-
-  const { data, onChange } = props
+  const { data, onChange, value } = props
   const isExist = Boolean(data)
 
   const handleSelectOnClick = (selectTime) => {
-    setSelectedTime(selectTime)
     onChange(selectTime)
   }
 
@@ -40,7 +37,7 @@ const TimeSelect = (props) => {
               <Button
                 variant='outline'
                 onClick={() => handleSelectOnClick(time)}
-                data-active={_.isEqual(time, selectedTime)}
+                data-active={_.isEqual(time, value)}
               >
                 {formatTime(time)}
               </Button>

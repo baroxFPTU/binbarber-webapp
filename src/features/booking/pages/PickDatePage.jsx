@@ -1,22 +1,23 @@
-import { useDispatch, useSelector } from 'react-redux'
 import { format, startOfToday } from 'date-fns'
 import React, { memo, useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
 
-import { generateListDayOptions } from 'utils'
-import Button from 'components/common/Button'
 import { operationAPI } from 'api/operationAPI'
+import Button from 'components/common/Button'
+import FormSection from 'components/Form/FormSection/FormSection'
+import config from 'config'
+import { bookingActions } from 'features/booking/bookingSlice'
 import DateSelect from 'features/booking/components/DateSelect'
 import TimeSelect from 'features/booking/components/TimeSelectField'
-import { bookingActions, selectIsSelectedService } from 'features/booking/bookingSlice'
-import { Navigate, useNavigate } from 'react-router-dom'
-import { PUBLIC_ROUTES } from 'routes'
-import config from 'config'
+import useRedirectEmptyCart from 'hooks/useRedirectEmptyCart'
+import { useNavigate } from 'react-router-dom'
+import { generateListDayOptions } from 'utils'
 
 function DatePicker() {
   let today = startOfToday()
   const dispatch = useDispatch()
+  const [watching] = useRedirectEmptyCart(`${config.routes.booking}/chon-dich-vu`)
   const navigate = useNavigate()
-  const isSelectedService = useSelector(selectIsSelectedService)
 
   const [workingDate, setWorkingDate] = useState(undefined)
   const [selectedDate, setSelectedDate] = useState(today)
@@ -40,9 +41,7 @@ function DatePicker() {
   }, [selectedDate])
 
   useEffect(() => {
-    if (!isSelectedService) {
-      navigate(-1)
-    }
+    watching()
   }, [])
 
   const changeSelectedDate = (index) => {
@@ -62,13 +61,16 @@ function DatePicker() {
 
   return (
     <div>
-      <h2>Bạn sẽ cắt vào ngày</h2>
-      <DateSelect selectedDate={selectedDate} options={dates} onChange={changeSelectedDate} />
-      <h2>vào lúc</h2>
-      <TimeSelect
-        data={workingDate && workingDate.working_times}
-        onChange={handleChangeSelectTime}
-      />
+      <FormSection title='Chọn ngày'>
+        <DateSelect selectedDate={selectedDate} options={dates} onChange={changeSelectedDate} />
+      </FormSection>
+      <FormSection title='Thời gian'>
+        <TimeSelect
+          value={selectedTime}
+          data={workingDate && workingDate.working_times}
+          onChange={handleChangeSelectTime}
+        />
+      </FormSection>
       <Button
         variant='primary'
         fixed

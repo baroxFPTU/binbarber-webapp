@@ -32,7 +32,7 @@ function ServicePicker() {
     if (serviceCategory.length === 0) {
       dispatch(addCategories(SERVICE_CATEGORIES.data))
     }
-  }, [])
+  }, [dispatch, serviceCategory])
 
   const hasSelectedServices = counterService > 0
 
