@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination, Scrollbar, Grid } from 'swiper'
 import 'swiper/css/grid'
@@ -7,9 +7,18 @@ import _ from 'lodash'
 import { formatTime } from 'utils'
 import Button from 'components/common/Button'
 
-const TimeSelect = (props) => {
+const TimeSelectField = (props) => {
   const { data, onChange, value } = props
   const isExist = Boolean(data)
+
+  useEffect(() => {
+    // eslint-disable-next-line no-extra-semi
+    ;(async () => {
+      await new Promise(() => {
+        // setTimeout(() => )
+      })
+    })()
+  }, [])
 
   const handleSelectOnClick = (selectTime) => {
     onChange(selectTime)
@@ -50,12 +59,12 @@ const TimeSelect = (props) => {
   )
 }
 
-TimeSelect.propTypes = {
+TimeSelectField.propTypes = {
   data: PropTypes.array
 }
 
-TimeSelect.defaultProps = {
+TimeSelectField.defaultProps = {
   data: []
 }
 
-export default TimeSelect
+export default TimeSelectField

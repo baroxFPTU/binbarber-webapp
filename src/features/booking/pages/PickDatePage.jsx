@@ -8,11 +8,13 @@ import FormSection from 'components/Form/FormSection/FormSection'
 import config from 'config'
 import { bookingActions } from 'features/booking/bookingSlice'
 import DateSelect from 'features/booking/components/DateSelect'
-import TimeSelect from 'features/booking/components/TimeSelectField'
+import TimeSelectField from 'features/booking/components/TimeSelectField'
 import useRedirectEmptyCart from 'hooks/useRedirectEmptyCart'
 import { useNavigate } from 'react-router-dom'
 import { generateListDayOptions } from 'utils'
 import TimeSelectSkeleton from 'components/skeletons/TimeSelectSkeleton'
+import { ErrorBoundary } from 'react-error-boundary'
+import Error from 'components/common/Error/Error'
 
 function DatePicker() {
   let today = startOfToday()
@@ -23,6 +25,7 @@ function DatePicker() {
   const [workingDate, setWorkingDate] = useState(undefined)
   const [selectedDate, setSelectedDate] = useState(today)
   const [selectedTime, setSelectedTime] = useState(undefined)
+  const [error, setError] = useState(null)
   const dates = generateListDayOptions(today, 4)
 
   useEffect(() => {
@@ -32,12 +35,16 @@ function DatePicker() {
   useEffect(() => {
     // eslint-disable-next-line no-extra-semi
     ;(async () => {
-      const fullDate = format(selectedDate, 'yyyy-MM-dd')
-      let response = await operationAPI.getWorkingDate(fullDate)
-      if (!response.data) {
-        response = await operationAPI.generateWorkingDate(fullDate)
+      try {
+        const fullDate = format(selectedDate, 'yyyy-MM-dd')
+        let response = await operationAPI.getWorkingDate(fullDate)
+        if (!response.data) {
+          response = await operationAPI.generateWorkingDate(fullDate)
+        }
+        setWorkingDate(response.data)
+      } catch (error) {
+        setError(error.message)
       }
-      setWorkingDate(response.data)
     })()
   }, [selectedDate])
 
@@ -66,15 +73,17 @@ function DatePicker() {
         <DateSelect selectedDate={selectedDate} options={dates} onChange={changeSelectedDate} />
       </FormSection>
       <FormSection title='Thời gian'>
-        {workingDate ? (
-          <TimeSelect
-            value={selectedTime}
-            data={workingDate && workingDate.working_times}
-            onChange={handleChangeSelectTime}
-          />
-        ) : (
-          <TimeSelectSkeleton />
-        )}
+        <ErrorBoundary fallback={<Error>Không tìm thấy thời gian trống.</Error>}>
+          {Boolean(workingDate) && !error && (
+            <TimeSelectField
+              value={selectedTime}
+              data={workingDate && workingDate.working_times}
+              onChange={handleChangeSelectTime}
+            />
+          )}
+          {!workingDate && !error && <TimeSelectSkeleton />}
+          {error && <Error>Không tìm thấy thời gian trống.</Error>}
+        </ErrorBoundary>
       </FormSection>
       <Button
         variant='primary'
