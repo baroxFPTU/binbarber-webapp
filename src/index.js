@@ -6,6 +6,7 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import '@splidejs/react-splide/css'
 import { Provider } from 'react-redux'
 import store from 'store'
+import { AnimatePresence } from 'framer-motion'
 
 //Swiper styles
 import 'swiper/css'
@@ -18,9 +19,11 @@ const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <Router>
-        <App />
-      </Router>
+      <AnimatePresence>
+        <Router>
+          <App />
+        </Router>
+      </AnimatePresence>
     </Provider>
   </React.StrictMode>
 )

@@ -11,15 +11,6 @@ const TimeSelectField = (props) => {
   const { data, onChange, value } = props
   const isExist = Boolean(data)
 
-  useEffect(() => {
-    // eslint-disable-next-line no-extra-semi
-    ;(async () => {
-      await new Promise(() => {
-        // setTimeout(() => )
-      })
-    })()
-  }, [])
-
   const handleSelectOnClick = (selectTime) => {
     onChange(selectTime)
   }

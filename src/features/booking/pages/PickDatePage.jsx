@@ -10,7 +10,7 @@ import { bookingActions } from 'features/booking/bookingSlice'
 import DateSelect from 'features/booking/components/DateSelect'
 import TimeSelectField from 'features/booking/components/TimeSelectField'
 import useRedirectEmptyCart from 'hooks/useRedirectEmptyCart'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { generateListDayOptions } from 'utils'
 import TimeSelectSkeleton from 'components/skeletons/TimeSelectSkeleton'
 import { ErrorBoundary } from 'react-error-boundary'
@@ -82,7 +82,12 @@ function DatePicker() {
             />
           )}
           {!workingDate && !error && <TimeSelectSkeleton />}
-          {error && <Error>Không tìm thấy thời gian trống.</Error>}
+          {error && (
+            <div>
+              <Error>Không tìm thấy thời gian trống.</Error>
+              <Link to='/'>Trở về trang chủ</Link>
+            </div>
+          )}
         </ErrorBoundary>
       </FormSection>
       <Button

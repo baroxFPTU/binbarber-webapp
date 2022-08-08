@@ -4,6 +4,7 @@
   border-radius: $app-radius;
   border: $input-border;
   position: relative;
+  background: #fff;
 
   &[data-open='true'] > .item {
     border: $input-border-primary;
