@@ -1,5 +1,4 @@
 import BookingDetail from 'features/booking/components/BookingDetail'
-import BookingForm from 'components/Form/BookingForm/BookingForm'
 import BookingList from 'features/booking/components/BookingList'
 import config from 'config'
 import BookingLayout from 'containers/layouts/BookingLayout'
