@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { motion } from 'framer-motion'
 
 import { selectCart, bookingActions } from 'features/booking/bookingSlice'
 import { addCategories, selectServiceCategories } from 'features/service/serviceSlice'
@@ -19,6 +20,18 @@ const FlexWrapper = styled.div`
     min-width: 170px;
   }
 `
+
+const containerVariants = {
+  hidden: {
+    opacity: 0
+  },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.25
+    }
+  }
+}
 
 function ServicePicker() {
   const dispatch = useDispatch()
@@ -57,7 +70,12 @@ function ServicePicker() {
   }
 
   return (
-    <div style={{ marginBottom: '128px' }}>
+    <motion.div
+      variants={containerVariants}
+      initial='hidden'
+      animate='show'
+      style={{ marginBottom: '128px' }}
+    >
       {serviceCategory &&
         serviceCategory.map((category) => (
           <div key={category.id}>
@@ -82,7 +100,7 @@ function ServicePicker() {
       >
         Chọn {hasSelectedServices ? counterService : ''} dịch vụ
       </Button>
-    </div>
+    </motion.div>
   )
 }
 

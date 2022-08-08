@@ -14,6 +14,10 @@ const ErrorStyled = styled.div`
     width: 30px;
     height: 30px;
   }
+  & > & {
+    white-space: nowrap;
+    width: 100%;
+  }
 `
 
 const Error = ({ children }) => {
@@ -30,7 +34,7 @@ Error.propTypes = {
 }
 
 Error.defaultProps = {
-  children: <p>Something went wrong</p>
+  children: <p>Lỗi gì đó, không tải được</p>
 }
 
 export default Error
