@@ -4,11 +4,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  // height: $header-height;
+  flex-direction: column;
+
   padding: 0 $app-gap;
-  line-height: 1;
   padding-top: 64px;
   padding-bottom: 32px;
+
+  line-height: 1;
 
   & h2 {
     margin: 0;

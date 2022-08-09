@@ -64,3 +64,7 @@ Redux saga
 
 - **Remember execute child saga** when configure it into root saga.
 - add more middleware into Redux Toolkit (RTK) with **getDefaultMiddleware**
+
+Framer Motion
+
+- conflict with CSS transition, the motion's transition will don't have any effect

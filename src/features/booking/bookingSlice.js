@@ -38,6 +38,9 @@ const bookingSlice = createSlice({
     },
     addBookingDate: (state, action) => {
       state.cart.bookedAt = action.payload
+    },
+    clearCart: (state) => {
+      state.cart = { ...initialState.cart }
     }
   }
 })
@@ -53,6 +56,7 @@ export const selectIsSelectedService = createSelector(
   selectSelectedServices,
   (selectedServices) => selectedServices.length > 0
 )
+export const selectIsPickedDate = createSelector(selectCart, (cart) => Boolean(cart.bookedAt))
 
 export const bookingActions = bookingSlice.actions
 export default bookingSlice.reducer

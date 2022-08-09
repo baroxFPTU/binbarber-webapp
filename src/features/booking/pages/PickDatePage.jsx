@@ -29,12 +29,10 @@ function DatePicker() {
   const dates = generateListDayOptions(today, 4)
 
   useEffect(() => {
-    dispatch(bookingActions.addBookingDate(selectedDate.getTime()))
-  }, [dispatch, selectedDate])
-
-  useEffect(() => {
     // eslint-disable-next-line no-extra-semi
     ;(async () => {
+      setError(undefined)
+
       try {
         const fullDate = format(selectedDate, 'yyyy-MM-dd')
         let response = await operationAPI.getWorkingDate(fullDate)
@@ -73,7 +71,7 @@ function DatePicker() {
         <DateSelect selectedDate={selectedDate} options={dates} onChange={changeSelectedDate} />
       </FormSection>
       <FormSection title='Thời gian'>
-        <ErrorBoundary fallback={<Error>Không tìm thấy thời gian trống.</Error>}>
+        <ErrorBoundary fallback={<Error />}>
           {Boolean(workingDate) && !error && (
             <TimeSelectField
               value={selectedTime}
