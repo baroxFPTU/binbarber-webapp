@@ -5,7 +5,7 @@
   // height: $button-height;
   min-width: 28px;
   max-width: 470px;
-  font-size: 18px;
+  font-size: clamp(14px, 2vw, 18px);
   display: block;
   padding: 16px 24px;
   border-radius: $app-radius;
@@ -26,9 +26,9 @@
 .btnPrimary {
   background: $yellow-500;
   color: #fff;
-  transition: $simple-transition;
   user-select: none;
   -webkit-user-select: none;
+  font-size: 17px;
   &:hover {
     background: $yellow-600;
   }
@@ -47,6 +47,7 @@
   padding: 12px;
   border-radius: 8px;
   border: 1px solid #dbdbdb;
+  background: #fff;
   text-align: center;
   cursor: pointer;
   user-select: none;

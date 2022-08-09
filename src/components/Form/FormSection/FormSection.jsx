@@ -9,16 +9,28 @@ const FormSectionStyled = styled.div`
   }};
   justify-content: ${(props) => props.horizontal && 'space-between'};
   align-items: ${(props) => props.horizontal && 'center'};
-  padding: ${(props) => props.horizontal && '24px 0 0 0 '};
+`
+
+const HeadingSectionStyled = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px 0 16px 0;
+
   & h3 {
-    padding: ${(props) => props.horizontal && '0'};
+    padding: 0;
+    /* padding: ${(props) => props.horizontal && '0'}; */
   }
 `
 
-function FormSection({ title, children, ...props }) {
+function FormSection({ title, titleRightElement, children, ...props }) {
   return (
     <FormSectionStyled {...props}>
-      {title && <h3>{title}</h3>}
+      {title && (
+        <HeadingSectionStyled>
+          <h3>{title}</h3> {titleRightElement}
+        </HeadingSectionStyled>
+      )}
       {children}
     </FormSectionStyled>
   )

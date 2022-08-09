@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 
-import { selectCart, bookingActions } from 'features/booking/bookingSlice'
+import { selectCart, bookingActions, selectIsPickedDate } from 'features/booking/bookingSlice'
 import { addCategories, selectServiceCategories } from 'features/service/serviceSlice'
 import { SERVICE_CATEGORIES } from 'utils/constants'
 import ServiceCard from '../components/ServiceCard'
@@ -10,6 +10,7 @@ import styled from 'styled-components'
 import Button from 'components/common/Button'
 import { useNavigate } from 'react-router-dom'
 import routes from 'config/routes'
+import FormSection from 'components/Form/FormSection/FormSection'
 
 const FlexWrapper = styled.div`
   display: flex;
@@ -26,10 +27,7 @@ const containerVariants = {
     opacity: 0
   },
   show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.25
-    }
+    opacity: 1
   }
 }
 
@@ -37,6 +35,7 @@ function ServicePicker() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const serviceCategory = useSelector(selectServiceCategories)
+  const isPickedDate = useSelector(selectIsPickedDate)
   const bookingCart = useSelector(selectCart)
   const counterService = bookingCart.selectedServices.length
 
@@ -65,42 +64,48 @@ function ServicePicker() {
   }
 
   const confirmSelectService = () => {
-    if (!hasSelectedServices) return
-    navigate(`${routes.booking}/chon-ngay`)
+    const backwardURL = hasSelectedServices && isPickedDate ? -1 : `${routes.booking}/chon-ngay`
+    navigate(backwardURL)
   }
 
   return (
-    <motion.div
-      variants={containerVariants}
-      initial='hidden'
-      animate='show'
-      style={{ marginBottom: '128px' }}
-    >
-      {serviceCategory &&
-        serviceCategory.map((category) => (
-          <div key={category.id}>
-            <h2>{category.categoryName}</h2>
-            <FlexWrapper>
-              {category.services.map((service) => (
-                <ServiceCard
-                  key={service.id}
-                  data={service}
-                  onSelect={() => addService(service)}
-                  isSelected={isExitService(service.id)}
-                />
-              ))}
-            </FlexWrapper>
-          </div>
-        ))}
-      <Button
-        variant='primary'
-        fixed
-        disabled={!hasSelectedServices}
-        onClick={confirmSelectService}
+    <AnimatePresence>
+      <motion.div
+        variants={containerVariants}
+        initial='hidden'
+        animate='show'
+        style={{ marginBottom: '128px' }}
       >
-        Chọn {hasSelectedServices ? counterService : ''} dịch vụ
-      </Button>
-    </motion.div>
+        {serviceCategory &&
+          serviceCategory.map((category) => (
+            <FormSection title={category.name} key={category.id}>
+              <FlexWrapper>
+                {category.services.map((service) => (
+                  <ServiceCard
+                    key={service.id}
+                    data={service}
+                    onSelect={() => addService(service)}
+                    isSelected={isExitService(service.id)}
+                  />
+                ))}
+              </FlexWrapper>
+            </FormSection>
+          ))}
+        <AnimatePresence>
+          {hasSelectedServices && (
+            <Button
+              key='something'
+              variant='primary'
+              fixed
+              disabled={!hasSelectedServices}
+              onClick={confirmSelectService}
+            >
+              Chọn {hasSelectedServices ? counterService : ''} dịch vụ
+            </Button>
+          )}
+        </AnimatePresence>
+      </motion.div>
+    </AnimatePresence>
   )
 }
 

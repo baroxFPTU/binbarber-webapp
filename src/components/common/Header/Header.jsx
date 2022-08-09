@@ -1,6 +1,6 @@
 import React from 'react'
 import { MdOutlineArrowBackIosNew } from 'react-icons/md'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import CSSModule from './Header.module.scss'
 
 function Header(props) {
@@ -25,10 +25,8 @@ function Header(props) {
 
   return (
     <header className={CSSModule.MainHeader}>
-      <Link to='./'>
-        <h2>Bin Barber</h2>
-        <p>Thái độ hơn trình độ</p>
-      </Link>
+      <h2>Bin Barber</h2>
+      <p>Thái độ hơn trình độ</p>
     </header>
   )
 }

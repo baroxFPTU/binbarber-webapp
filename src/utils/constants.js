@@ -86,7 +86,7 @@ export const SERVICE_CATEGORIES = {
   data: [
     {
       id: 1,
-      categoryName: 'Cắt gội cơ bản',
+      name: 'Cắt gội cơ bản',
       services: [
         {
           id: 1,
@@ -108,7 +108,7 @@ export const SERVICE_CATEGORIES = {
     },
     {
       id: 2,
-      categoryName: 'Uốn tạo kiểu',
+      name: 'Uốn tạo kiểu',
       services: [
         {
           id: 3,
@@ -130,7 +130,7 @@ export const SERVICE_CATEGORIES = {
     },
     {
       id: 3,
-      categoryName: 'Chăm sóc',
+      name: 'Chăm sóc',
       services: [
         {
           id: 5,
@@ -235,4 +235,13 @@ export const INITIAL_TIME_DATA = [
     hourState: 19,
     minuteState: 0
   }
+]
+
+export const INITIAL_SALE_DATA = [
+  { id: 1, imageUrl: 'https://source.unsplash.com/random', description: 'Uu dai thang nay' },
+  { id: 2, imageUrl: 'https://source.unsplash.com/random', description: 'Uu dai thang nay' },
+  { id: 3, imageUrl: 'https://source.unsplash.com/random', description: 'Uu dai thang nay' },
+  { id: 4, imageUrl: 'https://source.unsplash.com/random', description: 'Uu dai thang nay' },
+  { id: 5, imageUrl: 'https://source.unsplash.com/random', description: 'Uu dai thang nay' },
+  { id: 6, imageUrl: 'https://source.unsplash.com/random', description: 'Uu dai thang nay' }
 ]

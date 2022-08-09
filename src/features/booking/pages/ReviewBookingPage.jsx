@@ -4,13 +4,14 @@ import FinanceSection from 'components/finance/FinanceSection/FinanceSection'
 import FormGroup from 'components/Form/FormGroup/FormGroup'
 import FormSection from 'components/Form/FormSection/FormSection'
 import config from 'config'
+import ServiceGrid from 'features/service/components/ServiceGrid'
 import useRedirectEmptyCart from 'hooks/useRedirectEmptyCart'
 import React, { useMemo } from 'react'
 import { useEffect } from 'react'
-import { useSelector } from 'react-redux'
-import { NavLink } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, Navigate, NavLink, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
-import { selectBookingAtString, selectCart } from '../bookingSlice'
+import { bookingActions, selectBookingAtString, selectCart } from '../bookingSlice'
 
 const GroupInputButton = styled.div`
   display: flex;
@@ -39,7 +40,9 @@ const Wrapper = styled.div`
 
 const ReviewBookingPage = () => {
   const cart = useSelector(selectCart)
+  const navigate = useNavigate()
   const [watching] = useRedirectEmptyCart(`${config.routes.booking}/chon-dich-vu`)
+  const dispatch = useDispatch()
   const bookedAt = useSelector(selectBookingAtString)
   useEffect(() => {
     watching()
@@ -61,12 +64,33 @@ const ReviewBookingPage = () => {
     console.log(cart)
   }
 
+  const handleCancelOnClick = () => {
+    dispatch(bookingActions.clearCart())
+    navigate('/')
+  }
+
+  const ReviewTimeButton = (
+    <NavLink to='/len-lich/chon-ngay' style={{ textAlign: 'right' }}>
+      Chọn lại
+    </NavLink>
+  )
+
   return (
     <Wrapper>
-      <FormSection title='Thời gian' horizontal>
+      <FormSection
+        title='Dịch vụ đã chọn'
+        titleRightElement={
+          <Link to='/len-lich/chon-dich-vu' style={{ textAlign: 'right' }}>
+            Xem lại
+          </Link>
+        }
+      >
+        <ServiceGrid data={cart.selectedServices} />
+      </FormSection>
+      <FormSection title='Thời gian' titleRightElement={ReviewTimeButton}>
         {bookedAt}
       </FormSection>
-      <NavLink to='/len-lich/chon-ngay'>Chọn lại</NavLink>
+
       <FormSection title='Mã giảm giá'>
         <FormGroup>
           <GroupInputButton>
@@ -75,6 +99,7 @@ const ReviewBookingPage = () => {
           </GroupInputButton>
         </FormGroup>
       </FormSection>
+
       <Divider style={{ margin: '40px 0' }} />
       <FormSection>
         <FinanceSection
@@ -85,11 +110,12 @@ const ReviewBookingPage = () => {
           }}
         />
       </FormSection>
+
       <div style={{ marginTop: 'auto' }}>
         <Button variant='primary' onClick={handleSubmit}>
           Lên lịch ngay
         </Button>
-        <Button style={{ marginBottom: '24px' }} onClick={handleSubmit}>
+        <Button style={{ marginBottom: '24px' }} onClick={handleCancelOnClick}>
           Hủy
         </Button>
       </div>

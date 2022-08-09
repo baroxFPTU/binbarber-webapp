@@ -94,6 +94,14 @@ p {
   line-height: 1.9;
 }
 
+a {
+  color: $yellow-500;
+  text-decoration: underline;
+  &:hover {
+    color: $yellow-600;
+  }
+}
+
 .grid {
   display: grid;
 }
@@ -156,11 +164,6 @@ button {
   column-gap: 15px;
   width: 100%;
   max-width: $app-max-width;
-}
-
-a {
-  color: $black-500;
-  text-decoration: none;
 }
 
 .divider {

@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { formatCurrency } from 'utils'
 
 const FinanceSectionStyled = styled.div`
-  font-size: 17px;
+  font-size: clamp(16px, 2.5vw, 17px);
   margin-bottom: 32px;
   .total {
     font-size: 20px;
