@@ -38,13 +38,15 @@ $icon-font-size: 1.5rem;
   .navItemIcon {
     font-size: $icon-font-size;
     flex-shrink: 0;
+    color: #86858b;
   }
 
   .navItemLabel {
     font-size: $label-font-size;
     flex-shrink: 0;
     white-space: nowrap;
-    color: $black-500;
+    color: #86858b;
+
     user-select: none;
   }
 }

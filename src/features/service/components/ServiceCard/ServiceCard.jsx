@@ -7,7 +7,8 @@ import { TickIcon } from 'components/Icon/Icon'
 
 const CardCustomStyled = styled(Card)`
   & {
-    box-shadow: 0px 4px 9px rgba(168, 168, 168, 0.28);
+    box-shadow: 3px 4px 20px 0px #dddddd;
+
     transition: all 0.25s ease-in-out;
     position: relative;
     cursor: pointer;
