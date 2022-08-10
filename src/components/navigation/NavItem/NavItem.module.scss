@@ -1,28 +1,35 @@
 @import 'styles/settings';
 
-$label-font-size: 11px;
+$label-font-size: clamp(12px, 1.5vw, 13px);
 $item-gap: 5px;
 $icon-font-size: 1.5rem;
 
 .navItem {
-  flex-basis: calc(100% / 5);
-  line-height: 1;
   display: flex;
-  row-gap: $item-gap;
+  flex-basis: calc(100% / 5);
   flex-direction: column;
   justify-content: center;
+
   align-items: center;
-  cursor: pointer;
+  row-gap: $item-gap;
   padding: $item-gap;
+
+  line-height: 1;
+  text-decoration: none;
+
+  cursor: pointer;
+
   &:hover {
-    .navItemIcon, .navItemLabel {
-      transition: $simple-transition;
+    .navItemIcon,
+    .navItemLabel {
       color: $yellow-500;
+      transition: $simple-transition;
     }
   }
 
-  &[aria-current="page"] {
-    .navItemIcon, .navItemLabel {
+  &[aria-current='page'] {
+    .navItemIcon,
+    .navItemLabel {
       transition: $simple-transition;
       color: $yellow-500;
     }
