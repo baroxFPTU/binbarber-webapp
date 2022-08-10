@@ -8,7 +8,8 @@ const initialState = {
     selectedServices: [],
     appliedDiscounts: [],
     bookedAt: null
-  }
+  },
+  isReviewing: false
 }
 
 const bookingSlice = createSlice({
@@ -39,8 +40,12 @@ const bookingSlice = createSlice({
     addBookingDate: (state, action) => {
       state.cart.bookedAt = action.payload
     },
+    setIsReviewing: (state, action) => {
+      state.isReviewing = action.payload
+    },
     clearCart: (state) => {
       state.cart = { ...initialState.cart }
+      state.isReviewing = false
     }
   }
 })
@@ -57,6 +62,6 @@ export const selectIsSelectedService = createSelector(
   (selectedServices) => selectedServices.length > 0
 )
 export const selectIsPickedDate = createSelector(selectCart, (cart) => Boolean(cart.bookedAt))
-
+export const selectIsReviewing = (state) => state.booking.isReviewing
 export const bookingActions = bookingSlice.actions
 export default bookingSlice.reducer

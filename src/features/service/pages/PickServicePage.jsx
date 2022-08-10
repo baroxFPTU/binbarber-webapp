@@ -2,7 +2,12 @@ import React, { useCallback, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { AnimatePresence, motion } from 'framer-motion'
 
-import { selectCart, bookingActions, selectIsPickedDate } from 'features/booking/bookingSlice'
+import {
+  selectCart,
+  bookingActions,
+  selectIsPickedDate,
+  selectIsReviewing
+} from 'features/booking/bookingSlice'
 import { addCategories, selectServiceCategories } from 'features/service/serviceSlice'
 import { SERVICE_CATEGORIES } from 'utils/constants'
 import ServiceCard from '../components/ServiceCard'
@@ -11,6 +16,7 @@ import Button from 'components/common/Button'
 import { useNavigate } from 'react-router-dom'
 import routes from 'config/routes'
 import FormSection from 'components/Form/FormSection/FormSection'
+import { useTitle } from 'hooks/useTitle'
 
 const FlexWrapper = styled.div`
   display: flex;
@@ -36,8 +42,18 @@ function ServicePicker() {
   const navigate = useNavigate()
   const serviceCategory = useSelector(selectServiceCategories)
   const isPickedDate = useSelector(selectIsPickedDate)
+  const isReviewing = useSelector(selectIsReviewing)
   const bookingCart = useSelector(selectCart)
   const counterService = bookingCart.selectedServices.length
+  const { onChangeBoth, reset } = useTitle()
+
+  useEffect(() => {
+    onChangeBoth('Chọn dịch vụ', 'Bạn muốn cắt tóc, gội hay uốn?')
+
+    return () => {
+      reset()
+    }
+  }, [])
 
   useEffect(() => {
     //init service categories
@@ -64,7 +80,13 @@ function ServicePicker() {
   }
 
   const confirmSelectService = () => {
-    const backwardURL = hasSelectedServices && isPickedDate ? -1 : `${routes.booking}/chon-ngay`
+    let backwardURL = -1
+
+    if (hasSelectedServices && isPickedDate && isReviewing)
+      backwardURL = `${routes.booking}/xem-lai`
+
+    if (hasSelectedServices && !isReviewing) backwardURL = `${routes.booking}/chon-ngay`
+
     navigate(backwardURL)
   }
 

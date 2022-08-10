@@ -10,13 +10,25 @@ import {
   selectIsPickedDate,
   selectIsSelectedService
 } from 'features/booking/bookingSlice'
+import { commonActions } from 'features/common/commonSlice'
+import { useTitle } from 'hooks/useTitle'
 
 function Home() {
   const dispatch = useDispatch()
   const hasSelectedServices = useSelector(selectIsSelectedService)
   const isPickedDate = useSelector(selectIsPickedDate)
+  const { onChangeBoth, reset } = useTitle()
+
   useEffect(() => {
-    if (hasSelectedServices && isPickedDate) {
+    onChangeBoth('Trang chủ', 'Thái độ hơn trình độ')
+
+    return () => {
+      reset()
+    }
+  }, [])
+
+  useEffect(() => {
+    if (hasSelectedServices || isPickedDate) {
       dispatch(bookingActions.clearCart())
     }
   }, [hasSelectedServices, isPickedDate, dispatch])
