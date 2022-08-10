@@ -1,9 +1,24 @@
-import React from 'react'
+import { useTitle } from 'hooks/useTitle'
+import React, { useEffect } from 'react'
 
 function Profile() {
+  const { onChangeBoth, reset } = useTitle()
+
+  useEffect(() => {
+    onChangeBoth('Tôi', 'Thông tin của bạn')
+
+    return () => {
+      reset()
+    }
+  }, [])
+
   return (
     <div>
-      <h1>Profile page</h1>
+      <p>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus delectus, veritatis
+        est amet blanditiis expedita nihil mollitia vitae velit atque saepe quibusdam id. Nulla
+        libero culpa repellendus vero rem sequi?
+      </p>
     </div>
   )
 }

@@ -15,6 +15,7 @@ import { generateListDayOptions } from 'utils'
 import TimeSelectSkeleton from 'components/skeletons/TimeSelectSkeleton'
 import { ErrorBoundary } from 'react-error-boundary'
 import Error from 'components/common/Error/Error'
+import { useTitle } from 'hooks/useTitle'
 
 function DatePicker() {
   let today = startOfToday()
@@ -27,6 +28,15 @@ function DatePicker() {
   const [selectedTime, setSelectedTime] = useState(undefined)
   const [error, setError] = useState(null)
   const dates = generateListDayOptions(today, 4)
+  const { onChangeBoth, reset } = useTitle()
+
+  useEffect(() => {
+    onChangeBoth('Chọn ngày', 'Bạn sẽ cắt vào thứ mấy?')
+
+    return () => {
+      reset()
+    }
+  }, [])
 
   useEffect(() => {
     // eslint-disable-next-line no-extra-semi

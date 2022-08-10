@@ -6,10 +6,11 @@ import FormSection from 'components/Form/FormSection/FormSection'
 import config from 'config'
 import ServiceGrid from 'features/service/components/ServiceGrid'
 import useRedirectEmptyCart from 'hooks/useRedirectEmptyCart'
+import { useTitle } from 'hooks/useTitle'
 import React, { useMemo } from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, Navigate, NavLink, useNavigate } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { bookingActions, selectBookingAtString, selectCart } from '../bookingSlice'
 
@@ -44,9 +45,20 @@ const ReviewBookingPage = () => {
   const [watching] = useRedirectEmptyCart(`${config.routes.booking}/chon-dich-vu`)
   const dispatch = useDispatch()
   const bookedAt = useSelector(selectBookingAtString)
+  const { onChangeBoth, reset } = useTitle()
+
+  useEffect(() => {
+    onChangeBoth('Xem lại', 'Cùng xem lại dịch vụ bạn đã chọn nhé.')
+
+    return () => {
+      reset()
+    }
+  }, [])
+
   useEffect(() => {
     watching()
-  }, [watching])
+    dispatch(bookingActions.setIsReviewing(true))
+  }, [watching, dispatch])
 
   const subTotal = useMemo(() => {
     return cart.selectedServices.reduce((sum, service) => (sum += service.price), 0)

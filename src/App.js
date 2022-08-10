@@ -5,12 +5,17 @@ import { Route, Routes } from 'react-router-dom'
 import { PUBLIC_ROUTES } from 'routes'
 import { ErrorBoundary } from 'react-error-boundary'
 import Error from 'components/common/Error/Error'
+import { useSelector } from 'react-redux'
+import { selectPageData } from 'features/common/commonSlice'
 
 function App() {
+  const pageData = useSelector(selectPageData)
+
   return (
     <HelmetProvider>
       <Helmet>
-        <title>BinBarBer</title>
+        <title>BinBarber | {pageData.title || ''}</title>
+        <meta name='description' content={`Binbarber - ${pageData.description}`} />
       </Helmet>
       <div className='app-master'>
         <ErrorBoundary FallbackComponent={Error}>
