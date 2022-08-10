@@ -22,7 +22,7 @@ body {
   font-size: $default-font-size;
   line-height: 1.7;
 
-  background: #e3e3e32e;
+  background: $app-background;
   scrollbar-gutter: stable both-edges;
   margin: 0 auto;
   max-width: $app-max-width;
@@ -50,13 +50,14 @@ html ::-webkit-scrollbar-track {
 }
 
 .default-layout-wrapper {
-  margin-bottom: calc($nav-height + $app-gap * 1.5);
+  margin-bottom: calc($nav-height - $app-gap / 0.5);
 }
 
 .app-master {
   height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
   & > .app-wrapper {
     flex: 1;
   }

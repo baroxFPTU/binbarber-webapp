@@ -10,7 +10,7 @@ const FeaturedSectionStyled = styled(FeaturedSection)`
   background: #fff;
   padding: 18px;
   border-radius: 8px;
-  box-shadow: 4px 4px 9px 0 #e9e9e9;
+  box-shadow: 3px 4px 20px 0px #dddddd;
 `
 
 const FlexWrapper = styled.div`

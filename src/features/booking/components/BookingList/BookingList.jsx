@@ -4,9 +4,21 @@ import { cloneDeep } from 'lodash'
 import moment from 'moment'
 import PropTypes from 'prop-types'
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import styled from 'styled-components'
 import { INITIAL_BOOKINGS, INITIAL_SERVICES } from 'utils/constants'
 import CSSModule from './BookingList.module.scss'
+
+const NotFoundMessageStyled = styled.span`
+  width: 100%;
+  background: #fff;
+
+  padding: 12px;
+  border-radius: 8px;
+
+  text-align: center;
+  font-weight: 500;
+`
 
 function BookingList() {
   const [bookings, setBookings] = useState([])
@@ -29,7 +41,11 @@ function BookingList() {
   }, [])
 
   if (!bookings || bookings.length === 0) {
-    return <span>Hiện chưa có cuộc hẹn nào. Lên lịch ngay thôi.</span>
+    return (
+      <NotFoundMessageStyled>
+        Hiện chưa có cuộc hẹn nào. <Link to='/len-lich/chon-dich-vu'>Lên lịch ngay</Link> thôi.
+      </NotFoundMessageStyled>
+    )
   }
 
   return <>{bookings && bookings.map((item, index) => <BookingItem key={index} data={item} />)}</>
