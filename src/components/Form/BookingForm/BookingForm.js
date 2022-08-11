@@ -7,10 +7,10 @@ import { useNavigate } from 'react-router-dom'
 
 import Row from 'components/common/Row/Row'
 import Button from 'components/common/Button'
-import FormGroup from '../FormGroup/FormGroup'
-import FormSection from '../FormSection/FormSection'
+import FormGroup from '../FormGroup'
+import FormSection from '../FormSection'
 import { selectCart } from 'features/booking/bookingSlice'
-import FinanceSection from 'components/finance/FinanceSection/FinanceSection'
+import FinanceSection from 'components/finance/FinanceSection'
 
 const GroupInputButton = styled.div`
   display: flex;

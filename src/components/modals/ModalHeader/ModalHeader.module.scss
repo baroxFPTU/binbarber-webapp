@@ -1,0 +1,35 @@
+@import '../../../styles/settings';
+
+.ModalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  & h3 {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.ModalCloseButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 40px;
+  height: 40px;
+  padding: 12px;
+  margin: 0;
+
+  transition: $simple-transition;
+  &:hover {
+    background: darken($bg-modal, 6%);
+  }
+
+  img {
+    width: 20px;
+
+    height: 20px;
+    object-fit: cover;
+  }
+}

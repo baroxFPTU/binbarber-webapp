@@ -27,8 +27,9 @@ const fixedVariants = {
 }
 
 const Button = React.forwardRef(
-  ({ variant, fixed, disabled, children, fullWidth, ...props }, ref) => {
-    let buttonClassName = CSSModule.btn
+  ({ variant, fixed, disabled, children, fullWidth, className, ...props }, ref) => {
+    console.log(className)
+    let buttonClassName = CSSModule.btn + ` ${className}`
 
     if (variant === 'primary') {
       buttonClassName += ' ' + CSSModule.btnPrimary

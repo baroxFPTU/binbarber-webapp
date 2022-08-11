@@ -10,8 +10,8 @@ import {
   selectIsPickedDate,
   selectIsSelectedService
 } from 'features/booking/bookingSlice'
-import { commonActions } from 'features/common/commonSlice'
 import { useTitle } from 'hooks/useTitle'
+import { Modal, ModalOverlay, ModalHeader, ModalContent } from 'components/modals'
 
 function Home() {
   const dispatch = useDispatch()
@@ -39,6 +39,15 @@ function Home() {
       <FeaturedSection label='Ưu đãi nổi bật'>
         <SaleCarousel />
       </FeaturedSection>
+      <Modal isOpen={true}>
+        <ModalOverlay />
+        <ModalContent top>
+          <ModalHeader>Modal</ModalHeader>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Modi neque doloremque ducimus
+          earum enim, consequatur atque iure repellat. Aperiam maxime saepe quam dolorum magni,
+          perferendis quia fugiat quidem delectus cumque?
+        </ModalContent>
+      </Modal>
     </>
   )
 }

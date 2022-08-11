@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 
 import { operationAPI } from 'api/operationAPI'
 import Button from 'components/common/Button'
-import FormSection from 'components/Form/FormSection/FormSection'
+import FormSection from 'components/Form/FormSection'
 import config from 'config'
 import { bookingActions } from 'features/booking/bookingSlice'
 import DateSelect from 'features/booking/components/DateSelect'
