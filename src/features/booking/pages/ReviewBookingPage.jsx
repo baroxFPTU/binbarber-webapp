@@ -1,18 +1,20 @@
 import Button from 'components/common/Button'
 import Divider from 'components/common/Divider'
-import FinanceSection from 'components/finance/FinanceSection/FinanceSection'
-import FormGroup from 'components/Form/FormGroup/FormGroup'
-import FormSection from 'components/Form/FormSection/FormSection'
+import FinanceSection from 'components/finance/FinanceSection'
+import FormGroup from 'components/Form/FormGroup'
+import FormSection from 'components/Form/FormSection'
+
 import config from 'config'
 import ServiceGrid from 'features/service/components/ServiceGrid'
 import useRedirectEmptyCart from 'hooks/useRedirectEmptyCart'
 import { useTitle } from 'hooks/useTitle'
-import React, { useMemo } from 'react'
+import React, { useMemo, useState } from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { bookingActions, selectBookingAtString, selectCart } from '../bookingSlice'
+import ModalForm from '../components/ModalForm'
 
 const GroupInputButton = styled.div`
   display: flex;
@@ -40,11 +42,13 @@ const Wrapper = styled.div`
 `
 
 const ReviewBookingPage = () => {
-  const cart = useSelector(selectCart)
-  const navigate = useNavigate()
-  const [watching] = useRedirectEmptyCart(`${config.routes.booking}/chon-dich-vu`)
+  const [isOpenModal, setIsOpenModal] = useState(false)
   const dispatch = useDispatch()
+  const cart = useSelector(selectCart)
   const bookedAt = useSelector(selectBookingAtString)
+  const navigate = useNavigate()
+
+  const [watching] = useRedirectEmptyCart(`${config.routes.booking}/chon-dich-vu`)
   const { onChangeBoth, reset } = useTitle()
 
   useEffect(() => {
@@ -73,6 +77,10 @@ const ReviewBookingPage = () => {
   }, [cart.appliedDiscounts, subTotal])
 
   const handleSubmit = () => {
+    setIsOpenModal(true)
+  }
+
+  const handleBookingConfirm = () => {
     console.log(cart)
   }
 
@@ -131,6 +139,11 @@ const ReviewBookingPage = () => {
           Hủy
         </Button>
       </div>
+      <ModalForm
+        isOpen={isOpenModal}
+        onClose={() => setIsOpenModal(false)}
+        onSubmit={handleBookingConfirm}
+      ></ModalForm>
     </Wrapper>
   )
 }

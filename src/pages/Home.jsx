@@ -10,7 +10,6 @@ import {
   selectIsPickedDate,
   selectIsSelectedService
 } from 'features/booking/bookingSlice'
-import { commonActions } from 'features/common/commonSlice'
 import { useTitle } from 'hooks/useTitle'
 
 function Home() {
