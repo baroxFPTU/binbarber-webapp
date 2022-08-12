@@ -14,16 +14,20 @@ import 'swiper/scss/navigation'
 import 'swiper/scss/pagination'
 import 'swiper/scss/scrollbar'
 import 'swiper/scss/grid'
+import { ThemeProvider } from 'styled-components'
+import { theme } from 'styles/theme'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <AnimatePresence>
-        <Router>
-          <App />
-        </Router>
-      </AnimatePresence>
+      <ThemeProvider theme={theme}>
+        <AnimatePresence>
+          <Router>
+            <App />
+          </Router>
+        </AnimatePresence>
+      </ThemeProvider>
     </Provider>
   </React.StrictMode>
 )

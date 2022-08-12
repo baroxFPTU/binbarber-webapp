@@ -4,7 +4,8 @@ const FormGroupStyled = styled.div`
   display: flex;
   flex-direction: column;
   label {
-    font-size: 15px;
+    font-size: 16px;
+    font-weight: 500;
     margin-bottom: 8px;
   }
   input {
@@ -12,10 +13,11 @@ const FormGroupStyled = styled.div`
   }
 `
 
-function FormGroup(props) {
+function FormGroup({ name, label, children }) {
   return (
     <FormGroupStyled>
-      {props.children}
+      {label && <label htmlFor={name}>{label}</label>}
+      {children}
     </FormGroupStyled>
   )
 }

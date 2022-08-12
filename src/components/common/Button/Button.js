@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { AnimatePresence, motion } from 'framer-motion'
+import { motion } from 'framer-motion'
 import CSSModule from './Button.module.scss'
 
 const primaryVariants = {
@@ -28,8 +28,7 @@ const fixedVariants = {
 
 const Button = React.forwardRef(
   ({ variant, fixed, disabled, children, fullWidth, className, ...props }, ref) => {
-    console.log(className)
-    let buttonClassName = CSSModule.btn + ` ${className}`
+    let buttonClassName = CSSModule.btn + (className ? ` ${className}` : '')
 
     if (variant === 'primary') {
       buttonClassName += ' ' + CSSModule.btnPrimary
@@ -51,7 +50,7 @@ const Button = React.forwardRef(
 
     return (
       <motion.button
-        key='button-motion-sdsd'
+        key='button'
         variants={buttonVariants}
         initial='hidden'
         animate='show'

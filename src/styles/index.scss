@@ -182,7 +182,7 @@ button {
   text-overflow: ellipsis;
 }
 
-input[type='text'] {
+input {
   display: inline-block;
   border: 1px solid $gray-300;
   border-radius: 6px;
@@ -194,7 +194,7 @@ input[type='text'] {
   color: $black-500;
 }
 
-input[type='text']:focus {
+input:focus {
   border: 1px solid $yellow-500;
   box-shadow: 0 0 0 1px $yellow-500;
 }
