@@ -11,7 +11,8 @@ export const theme = {
   color: {
     white: {
       500: '#fff'
-    }
+    },
+    error: '#c20618'
   },
   modal: {
     bg: '#fff'
