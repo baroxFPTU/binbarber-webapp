@@ -30,7 +30,7 @@ const Error = ({ children }) => {
 }
 
 Error.propTypes = {
-  children: PropTypes.node
+  children: PropTypes.node || PropTypes.string
 }
 
 Error.defaultProps = {

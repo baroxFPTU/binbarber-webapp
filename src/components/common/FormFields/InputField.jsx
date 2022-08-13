@@ -2,11 +2,21 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import FormGroup from 'components/Form/FormGroup'
 import Input from '../Input'
+import FormLabel from 'components/Form/FormLabel'
+import FormErrorText from 'components/Form/FormErrorText'
+import { useEffect } from 'react'
 
-const InputField = ({ name, label, ...inputProps }) => {
+const InputField = ({ name, label, register, unregister, error, ...inputProps }) => {
+  useEffect(() => {
+    return () => {
+      unregister(name)
+    }
+  }, [name, unregister])
   return (
-    <FormGroup id={name} name={name} label={label}>
-      <Input id={name} name={name} {...inputProps} />
+    <FormGroup isInValid={Boolean(error)}>
+      <FormLabel htmlFor={name}>{label}</FormLabel>
+      <Input id={name} {...register(name)} {...inputProps} />
+      {error && <FormErrorText>{error.message}</FormErrorText>}
     </FormGroup>
   )
 }

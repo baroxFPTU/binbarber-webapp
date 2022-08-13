@@ -80,8 +80,8 @@ const ReviewBookingPage = () => {
     setIsOpenModal(true)
   }
 
-  const handleBookingConfirm = () => {
-    console.log(cart)
+  const handleBookingConfirm = (formValues) => {
+    console.log({ formValues, cart })
   }
 
   const handleCancelOnClick = () => {
