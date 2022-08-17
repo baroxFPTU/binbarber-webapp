@@ -1,9 +1,18 @@
 import axiosClient from './axiosClient'
 
-const getAll = async () => {
-  return await axiosClient.get('/bookings')
-}
+const URL = '/bookings'
 
 export const bookingAPI = {
-  getAll
+  getAll: async () => {
+    return await axiosClient.get(URL)
+  },
+  create: async (newBooking) => {
+    return await axiosClient.post(URL, newBooking)
+  },
+  generateUserId: async (name, phone) => {
+    return await axiosClient.post(`${URL}/generate-user-id`, {
+      name,
+      phone
+    })
+  }
 }

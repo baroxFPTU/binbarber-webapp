@@ -2,12 +2,12 @@ import { createSelector, createSlice } from '@reduxjs/toolkit'
 import { format } from 'date-fns'
 
 const initialState = {
+  loading: false,
   cart: {
-    name: '',
-    phone: '',
+    userId: undefined,
     selectedServices: [],
     appliedDiscounts: [],
-    bookedAt: null
+    bookedAt: undefined
   },
   isReviewing: false
 }
@@ -16,11 +16,8 @@ const bookingSlice = createSlice({
   name: 'booking',
   initialState: initialState,
   reducers: {
-    setName: (state, action) => {
-      state.cart.name = action.payload
-    },
-    setPhone: (state, action) => {
-      state.cart.phone = action.payload
+    setUserId: (state, action) => {
+      state.cart.userId = action.payload
     },
     setBookedAt: (state, action) => {
       state.cart.bookedAt = action.payload
@@ -46,6 +43,15 @@ const bookingSlice = createSlice({
     clearCart: (state) => {
       state.cart = { ...initialState.cart }
       state.isReviewing = false
+    },
+    fetchCreateBooking: (state, action) => {
+      state.loading = true
+    },
+    fetchCreateBookingSuccess: (state, action) => {
+      state.loading = false
+    },
+    fetchCreateBookingFailed: (state, action) => {
+      state.loading = false
     }
   }
 })

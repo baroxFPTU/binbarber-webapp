@@ -1,3 +1,4 @@
+import { bookingAPI } from 'api/bookingAPI'
 import Button from 'components/common/Button'
 import Divider from 'components/common/Divider'
 import FinanceSection from 'components/finance/FinanceSection'
@@ -13,6 +14,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+import { bookingUtils } from 'utils'
 import { bookingActions, selectBookingAtString, selectCart } from '../bookingSlice'
 import ModalForm from '../components/ModalForm'
 
@@ -50,6 +52,7 @@ const ReviewBookingPage = () => {
 
   const [watching] = useRedirectEmptyCart(`${config.routes.booking}/chon-dich-vu`)
   const { onChangeBoth, reset } = useTitle()
+  const initialValues = bookingUtils.loadFromLocalStorage() || undefined
 
   useEffect(() => {
     onChangeBoth('Xem lại', 'Cùng xem lại dịch vụ bạn đã chọn nhé.')
@@ -80,8 +83,22 @@ const ReviewBookingPage = () => {
     setIsOpenModal(true)
   }
 
-  const handleBookingConfirm = (formValues) => {
-    console.log({ formValues, cart })
+  const handleBookingConfirm = async (formValues) => {
+    try {
+      const { name, phone } = formValues
+      const userId = bookingUtils.generateUserId(name, phone)
+      dispatch(bookingActions.setUserId(userId))
+      dispatch(
+        bookingActions.fetchCreateBooking({
+          ...cart,
+          userId
+        })
+      )
+
+      bookingUtils.saveToLocalStorage(name, phone)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   const handleCancelOnClick = () => {
@@ -140,6 +157,7 @@ const ReviewBookingPage = () => {
         </Button>
       </div>
       <ModalForm
+        defaultValues={initialValues || { name: '', phone: '' }}
         isOpen={isOpenModal}
         onClose={() => setIsOpenModal(false)}
         onSubmit={handleBookingConfirm}

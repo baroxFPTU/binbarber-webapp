@@ -31,13 +31,13 @@ const yupSchema = Yup.object().shape({
     .required('Có số điện thoại mới dễ liên hệ chứ nhỉ?')
 })
 
-const ModalForm = ({ isOpen, onClose, onSubmit }) => {
+const ModalForm = ({ defaultValues, isOpen, onClose, onSubmit }) => {
   const {
     register,
     unregister,
     handleSubmit,
     formState: { errors }
-  } = useForm({ mode: 'onBlur', defaultValues: initialValues, resolver: yupResolver(yupSchema) })
+  } = useForm({ mode: 'onBlur', defaultValues: defaultValues, resolver: yupResolver(yupSchema) })
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>

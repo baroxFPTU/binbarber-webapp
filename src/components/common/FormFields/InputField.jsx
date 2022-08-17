@@ -12,6 +12,7 @@ const InputField = ({ name, label, register, unregister, error, ...inputProps })
       unregister(name)
     }
   }, [name, unregister])
+
   return (
     <FormGroup isInValid={Boolean(error)}>
       <FormLabel htmlFor={name}>{label}</FormLabel>
