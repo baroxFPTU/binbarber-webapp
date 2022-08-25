@@ -6,10 +6,12 @@ import { bookingActions } from './bookingSlice'
 function* fetchCreateNewBooking(action) {
   try {
     const booking = action.payload
-    yield call(bookingAPI.create(booking))
-    yield put(push('/'))
+    yield call(bookingAPI.create, booking)
+    yield put(push('/test'))
     yield put(bookingActions.fetchCreateBookingSuccess())
   } catch (error) {
+    console.error(error)
+    yield put(push('/failed'))
     yield put(bookingActions.fetchCreateBookingFailed())
   }
 }

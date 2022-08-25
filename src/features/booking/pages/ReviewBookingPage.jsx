@@ -16,7 +16,7 @@ import { Link, NavLink, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { bookingUtils } from 'utils'
 import { bookingActions, selectBookingAtString, selectCart } from '../bookingSlice'
-import ModalForm from '../components/ModalForm'
+import FormModal from '../components/Modals/FormModal'
 
 const GroupInputButton = styled.div`
   display: flex;
@@ -156,12 +156,12 @@ const ReviewBookingPage = () => {
           Hủy
         </Button>
       </div>
-      <ModalForm
+      <FormModal
         defaultValues={initialValues || { name: '', phone: '' }}
         isOpen={isOpenModal}
         onClose={() => setIsOpenModal(false)}
         onSubmit={handleBookingConfirm}
-      ></ModalForm>
+      ></FormModal>
     </Wrapper>
   )
 }
