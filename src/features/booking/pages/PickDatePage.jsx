@@ -1,10 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { format, startOfToday } from 'date-fns'
 import React, { memo, useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 
 import { operationAPI } from 'api/operationAPI'
 import Button from 'components/common/Button'
-import FormSection from 'components/Form/FormSection'
+import FormSection from 'components/form/FormSection'
 import config from 'config'
 import { bookingActions } from 'features/booking/bookingSlice'
 import DateSelect from 'features/booking/components/DateSelect'
@@ -75,6 +76,9 @@ function DatePicker() {
     navigate(`${config.routes.booking}/xem-lai`)
   }
 
+  const hasWorkingDate = Boolean(workingDate) && !error
+  const isLoadWorkingDate = !workingDate && !error
+
   return (
     <div>
       <FormSection title='Chọn ngày'>
@@ -82,14 +86,14 @@ function DatePicker() {
       </FormSection>
       <FormSection title='Thời gian'>
         <ErrorBoundary fallback={<Error />}>
-          {Boolean(workingDate) && !error && (
+          {hasWorkingDate && (
             <TimeSelectField
               value={selectedTime}
               data={workingDate && workingDate.working_times}
               onChange={handleChangeSelectTime}
             />
           )}
-          {!workingDate && !error && <TimeSelectSkeleton />}
+          {isLoadWorkingDate && <TimeSelectSkeleton />}
           {error && (
             <div>
               <Error>Không tìm thấy thời gian trống.</Error>

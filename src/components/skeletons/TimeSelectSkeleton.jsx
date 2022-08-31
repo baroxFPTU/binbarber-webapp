@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Grid from 'components/common/Grid'
 import React from 'react'
 import styled from 'styled-components'
-import FluidSkeleton from '../FluidSkeleton'
+import FluidSkeleton from './FluidSkeleton'
 
 const TimeOptionSkeleton = styled.div`
   width: 111.11px;

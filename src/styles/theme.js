@@ -6,11 +6,17 @@ export const theme = {
       senior: 90,
       junior: 80,
       fresher: 50
-    }
+    },
+    radius: '8px'
   },
   color: {
     white: {
       500: '#fff'
+    },
+    gray: {
+      200: '#f9f9f9',
+      300: '#dbdbdb',
+      400: '#c4c4c4'
     },
     green: {
       100: '#DBF8E8',

@@ -1,7 +1,7 @@
 import Header from 'components/common/Header/Header'
 import React from 'react'
 import { Outlet } from 'react-router-dom'
-import Wrapper from './Wrapper'
+import Wrapper from '../common/Wrapper'
 import { ErrorBoundary } from 'react-error-boundary'
 import Error from 'components/common/Error/Error'
 import { useTitle } from 'hooks/useTitle'

@@ -6,13 +6,13 @@ import { classNames } from 'utils/className.util'
 import CSSModule from './MainNavigation.module.scss'
 import config from 'config'
 import { NavLink } from 'react-router-dom'
-
+import { motion } from 'framer-motion'
 function MainNavigation() {
   return (
-    <nav className={CSSModule.navContainer}>
+    <motion.nav animate={{ opacity: 1 }} className={CSSModule.navContainer}>
       <div className={classNames(CSSModule.navWrapper)}>
         <NavItem Icon={AiOutlineHome} label='Trang chủ' to={config.routes.home} />
-        <NavItem Icon={AiOutlineCalendar} label='Lịch của tôi' to={config.routes.myBooking} />
+        <NavItem Icon={AiOutlineCalendar} label='Lịch của tôi' to={config.routes.userBooking} />
         <div className={CSSModule.navPrimaryItem}>
           <NavLink
             to={`${config.routes.booking}/chon-dich-vu`}
@@ -24,7 +24,7 @@ function MainNavigation() {
         <NavItem Icon={RiCoupon2Line} label='Vouchers' to={config.routes.voucher} />
         <NavItem Icon={AiOutlineUser} label='Tôi' to={config.routes.profile} />
       </div>
-    </nav>
+    </motion.nav>
   )
 }
 

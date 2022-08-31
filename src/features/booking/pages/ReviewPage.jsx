@@ -1,9 +1,8 @@
-import { bookingAPI } from 'api/bookingAPI'
 import Button from 'components/common/Button'
 import Divider from 'components/common/Divider'
 import FinanceSection from 'components/finance/FinanceSection'
-import FormGroup from 'components/Form/FormGroup'
-import FormSection from 'components/Form/FormSection'
+import FormGroup from 'components/form/FormGroup'
+import FormSection from 'components/form/FormSection'
 
 import config from 'config'
 import ServiceGrid from 'features/service/components/ServiceGrid'
@@ -43,7 +42,7 @@ const Wrapper = styled.div`
   flex-grow: 1;
 `
 
-const ReviewBookingPage = () => {
+const ReviewPage = () => {
   const [isOpenModal, setIsOpenModal] = useState(false)
   const dispatch = useDispatch()
   const cart = useSelector(selectCart)
@@ -166,4 +165,4 @@ const ReviewBookingPage = () => {
   )
 }
 
-export default ReviewBookingPage
+export default ReviewPage

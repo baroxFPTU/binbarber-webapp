@@ -15,7 +15,7 @@ import styled from 'styled-components'
 import Button from 'components/common/Button'
 import { useNavigate } from 'react-router-dom'
 import routes from 'config/routes'
-import FormSection from 'components/Form/FormSection'
+import FormSection from 'components/form/FormSection'
 import { useTitle } from 'hooks/useTitle'
 
 const FlexWrapper = styled.div`

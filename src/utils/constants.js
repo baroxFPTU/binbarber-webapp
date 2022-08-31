@@ -1,4 +1,4 @@
-import { HairDryer, Shave, Scissor, HairStyle, CurlingHair } from 'components/Icon/Icon'
+import { HairDryer, Shave, Scissor, HairStyle, CurlingHair } from 'components/icons/Icon'
 
 export const INITIAL_SERVICE_ITEMS = [
   { id: 1, label: 'Cắt tóc', icon: Scissor },

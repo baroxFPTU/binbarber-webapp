@@ -1,6 +1,6 @@
 import React from 'react'
 
-function FeaturedSection({ label, children, ...props }) {
+function Section({ label, children, ...props }) {
   return (
     <div {...props}>
       {label && <h2>{label}</h2>}
@@ -9,4 +9,4 @@ function FeaturedSection({ label, children, ...props }) {
   )
 }
 
-export default FeaturedSection
+export default Section

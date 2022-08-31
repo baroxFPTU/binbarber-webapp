@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { motion } from 'framer-motion'
 
 import Card from 'components/common/Card'
-import { TickIcon } from 'components/Icon/Icon'
+import { TickIcon } from 'components/icons/Icon'
 
 const CardCustomStyled = styled(Card)`
   & {

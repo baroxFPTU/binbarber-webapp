@@ -19,7 +19,7 @@ function BookingItem({ data }) {
   return (
     <div
       className={CSSModule.BookingItem}
-      onClick={() => navigate(`${routes.myBooking}/${bookingId}`)}
+      onClick={() => navigate(`${routes.userBooking}/${bookingId}`)}
     >
       <div className={CSSModule.BookingTimestamp}>
         <span className={CSSModule.time}>{convertedTime}</span>

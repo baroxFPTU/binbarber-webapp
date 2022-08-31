@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 import SaleCarousel from 'components/carousels/SaleCarousel'
-import FeaturedSection from 'components/common/FeaturedSection'
+import Section from 'components/common/Section'
 import ServiceWidget from 'components/widget/ServiceWidget'
-import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+
 import {
   bookingActions,
   selectIsPickedDate,
@@ -24,6 +24,7 @@ function Home() {
     return () => {
       reset()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
@@ -35,9 +36,9 @@ function Home() {
   return (
     <>
       <ServiceWidget />
-      <FeaturedSection label='Ưu đãi nổi bật'>
+      <Section label='Ưu đãi nổi bật'>
         <SaleCarousel />
-      </FeaturedSection>
+      </Section>
     </>
   )
 }
