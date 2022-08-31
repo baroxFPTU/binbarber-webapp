@@ -42,7 +42,7 @@ const BookingResult = () => {
     status.isSuccess = true
     Illustrator = SuccessIllustra
     headingStatus = 'Lên lịch thành công'
-  } else if (bookingId && bookingStatus === 'failed') {
+  } else if (!bookingId && bookingStatus === 'failed') {
     status.isFailed = true
     Illustrator = FailIllustra
     headingStatus = 'Có gì đó sai sai'
