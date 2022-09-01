@@ -15,11 +15,6 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import InputField from 'components/common/FormFields/InputField'
 import Button from 'components/common/Button'
 
-const initialValues = {
-  name: '',
-  phone: ''
-}
-
 const yupSchema = Yup.object().shape({
   name: Yup.string()
     .required('Mr.Bin cần biết tên bạn để tiện xưng hô.')
@@ -31,13 +26,13 @@ const yupSchema = Yup.object().shape({
     .required('Có số điện thoại mới dễ liên hệ chứ nhỉ?')
 })
 
-const ModalForm = ({ isOpen, onClose, onSubmit }) => {
+const FormModal = ({ defaultValues, isOpen, onClose, onSubmit }) => {
   const {
     register,
     unregister,
     handleSubmit,
     formState: { errors }
-  } = useForm({ mode: 'onBlur', defaultValues: initialValues, resolver: yupResolver(yupSchema) })
+  } = useForm({ mode: 'onBlur', defaultValues: defaultValues, resolver: yupResolver(yupSchema) })
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
@@ -76,13 +71,13 @@ const ModalForm = ({ isOpen, onClose, onSubmit }) => {
   )
 }
 
-ModalForm.prototypes = {
+FormModal.prototypes = {
   isOpen: PropTypes.bool,
   onClose: PropTypes.func
 }
 
-ModalForm.defaultProps = {
+FormModal.defaultProps = {
   isOpen: false
 }
 
-export default ModalForm
+export default FormModal

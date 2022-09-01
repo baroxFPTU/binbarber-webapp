@@ -15,7 +15,7 @@ import styled from 'styled-components'
 import Button from 'components/common/Button'
 import { useNavigate } from 'react-router-dom'
 import routes from 'config/routes'
-import FormSection from 'components/Form/FormSection'
+import FormSection from 'components/form/FormSection'
 import { useTitle } from 'hooks/useTitle'
 
 const FlexWrapper = styled.div`
@@ -81,12 +81,16 @@ function ServicePicker() {
 
   const confirmSelectService = () => {
     let backwardURL = -1
-
-    if (hasSelectedServices && isPickedDate && isReviewing)
+    console.log({
+      hasSelectedServices,
+      isPickedDate,
+      isReviewing
+    })
+    if ((hasSelectedServices && isPickedDate) || isReviewing)
       backwardURL = `${routes.booking}/xem-lai`
 
     if (hasSelectedServices && !isReviewing) backwardURL = `${routes.booking}/chon-ngay`
-
+    console.log(backwardURL)
     navigate(backwardURL)
   }
 

@@ -1,9 +1,16 @@
 import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide'
-import FluidSkeleton from 'components/skeletons/FluidSkeleton/FluidSkeleton'
+import FluidSkeleton from 'components/skeletons/FluidSkeleton'
 import React, { useState } from 'react'
-import CSSModule from './SaleCarousel.module.scss'
+import styled from 'styled-components'
 
-function SaleCarousel(props) {
+export const CarouselItem = styled.div`
+  border-radius: 10px;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+`
+
+function SaleCarousel() {
   const [isPending, setIsPending] = useState(true)
 
   const initialData = [
@@ -37,10 +44,10 @@ function SaleCarousel(props) {
       <SplideTrack>
         {initialData.map((item, index) => (
           <SplideSlide key={index}>
-            <div className={CSSModule.carouselItem}>
+            <CarouselItem>
               {isPending && <FluidSkeleton />}
               <img src={item.imageUrl} alt={item.description} onLoad={() => setIsPending(false)} />
-            </div>
+            </CarouselItem>
           </SplideSlide>
         ))}
       </SplideTrack>

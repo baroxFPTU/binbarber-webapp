@@ -1,8 +1,8 @@
 import Button from 'components/common/Button'
 import Divider from 'components/common/Divider'
 import FinanceSection from 'components/finance/FinanceSection'
-import FormGroup from 'components/Form/FormGroup'
-import FormSection from 'components/Form/FormSection'
+import FormGroup from 'components/form/FormGroup'
+import FormSection from 'components/form/FormSection'
 
 import config from 'config'
 import ServiceGrid from 'features/service/components/ServiceGrid'
@@ -13,8 +13,9 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+import { bookingUtils } from 'utils'
 import { bookingActions, selectBookingAtString, selectCart } from '../bookingSlice'
-import ModalForm from '../components/ModalForm'
+import FormModal from '../components/Modals/FormModal'
 
 const GroupInputButton = styled.div`
   display: flex;
@@ -41,7 +42,7 @@ const Wrapper = styled.div`
   flex-grow: 1;
 `
 
-const ReviewBookingPage = () => {
+const ReviewPage = () => {
   const [isOpenModal, setIsOpenModal] = useState(false)
   const dispatch = useDispatch()
   const cart = useSelector(selectCart)
@@ -50,6 +51,7 @@ const ReviewBookingPage = () => {
 
   const [watching] = useRedirectEmptyCart(`${config.routes.booking}/chon-dich-vu`)
   const { onChangeBoth, reset } = useTitle()
+  const initialValues = bookingUtils.loadFromLocalStorage() || undefined
 
   useEffect(() => {
     onChangeBoth('Xem lại', 'Cùng xem lại dịch vụ bạn đã chọn nhé.')
@@ -80,12 +82,25 @@ const ReviewBookingPage = () => {
     setIsOpenModal(true)
   }
 
-  const handleBookingConfirm = (formValues) => {
-    console.log({ formValues, cart })
+  const handleBookingConfirm = async (formValues) => {
+    try {
+      const { name, phone } = formValues
+      const userId = bookingUtils.generateUserId(name, phone)
+      dispatch(bookingActions.setUserId(userId))
+      dispatch(
+        bookingActions.fetchCreateBooking({
+          ...cart,
+          userId
+        })
+      )
+
+      bookingUtils.saveToLocalStorage(name, phone)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   const handleCancelOnClick = () => {
-    dispatch(bookingActions.clearCart())
     navigate('/')
   }
 
@@ -139,13 +154,14 @@ const ReviewBookingPage = () => {
           Hủy
         </Button>
       </div>
-      <ModalForm
+      <FormModal
+        defaultValues={initialValues || { name: '', phone: '' }}
         isOpen={isOpenModal}
         onClose={() => setIsOpenModal(false)}
         onSubmit={handleBookingConfirm}
-      ></ModalForm>
+      ></FormModal>
     </Wrapper>
   )
 }
 
-export default ReviewBookingPage
+export default ReviewPage

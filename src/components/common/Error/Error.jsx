@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { ErrorIcon } from 'components/Icon'
+import { ErrorIcon } from 'components/icons'
 
 const ErrorStyled = styled.div`
   font-weight: 500;
