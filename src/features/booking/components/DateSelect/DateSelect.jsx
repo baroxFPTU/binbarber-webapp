@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { vi } from 'date-fns/locale'
 import { format, isSameDay } from 'date-fns'
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 
 import { dayLabel } from 'utils'
 
@@ -20,18 +20,29 @@ const dateSelectVariants = {
 
 const optionVariants = {
   hidden: {
-    x: -100,
+    height: 0,
     opacity: 0
   },
   show: {
     x: 0,
-    opacity: 1
+    height: 'auto',
+    opacity: 1,
+    transition: {
+      duration: 0.125
+    }
+  },
+  exit: {
+    opacity: 0,
+    height: 0,
+    transition: {
+      duration: 0.125
+    }
   }
 }
 
 const DateSelect = ({ selectedDate, onChange, options }) => {
-  const [isOpen, setIsOpen] = useState(false)
   const ref = useRef(null)
+  const [isOpen, setIsOpen] = useState(false)
   useOutsideAlerter(ref, () => setIsOpen(false))
 
   const formatOptions = {
@@ -50,36 +61,39 @@ const DateSelect = ({ selectedDate, onChange, options }) => {
       variants={dateSelectVariants}
       initial='hidden'
       animate='show'
-      exit='hidden'
       className={CSSModule.dateSelect}
       data-open={isOpen}
       ref={ref}
-      // onBlur={handleOnBlur}
+      onClick={() => setIsOpen(!isOpen)}
     >
       <div className={CSSModule.item} onClick={() => setIsOpen(!isOpen)}>
         {`${dayLabel(selectedDate, '-')} ${format(selectedDate, 'eeee, dd/MM', { locale: vi })}`}
       </div>
-      {isOpen && (
-        <motion.div
-          variants={optionVariants}
-          initial='hidden'
-          animate='show'
-          className={CSSModule.options}
-        >
-          {options.map((date, index) => (
-            <div
-              className={CSSModule.item}
-              key={date.getTime()}
-              onClick={() => handleChangeOption(index)}
-              data-selected={isSameDay(date, selectedDate)}
-            >
-              {`${dayLabel(date, '-')} ${format(date, formatOptions.pattern, {
-                locale: formatOptions.locale
-              })}`}
-            </div>
-          ))}
-        </motion.div>
-      )}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            key='options'
+            variants={optionVariants}
+            initial='hidden'
+            animate='show'
+            exit='exit'
+            className={CSSModule.options}
+          >
+            {options.map((date, index) => (
+              <div
+                className={CSSModule.item}
+                key={date.getTime()}
+                onClick={() => handleChangeOption(index)}
+                data-selected={isSameDay(date, selectedDate)}
+              >
+                {`${dayLabel(date, '-')} ${format(date, formatOptions.pattern, {
+                  locale: formatOptions.locale
+                })}`}
+              </div>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   )
 }

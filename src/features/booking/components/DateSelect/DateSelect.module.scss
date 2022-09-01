@@ -6,13 +6,17 @@
   position: relative;
   background: #fff;
 
-  &[data-open='true'] > .item {
+  &[data-open='true'] {
     border: $input-border-primary;
     box-shadow: $input-border-shadow;
-    border-radius: inherit;
+    border-radius: $app-radius;
     &:hover {
       background-color: #fff;
     }
+  }
+
+  &[data-open='true'] > .item {
+    border-radius: $app-radius;
   }
 }
 
@@ -35,9 +39,8 @@
 .item {
   cursor: pointer;
   padding: 12px;
-  transition: $simple-transition;
   &:hover {
-    background-color: $gray-300;
+    background-color: #fffae6;
   }
 
   &[data-selected='true'] {

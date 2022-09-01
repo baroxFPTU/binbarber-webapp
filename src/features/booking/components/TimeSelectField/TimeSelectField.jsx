@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination, Scrollbar, Grid } from 'swiper'
 import 'swiper/css/grid'
@@ -6,6 +6,22 @@ import PropTypes from 'prop-types'
 import _ from 'lodash'
 import { formatTime } from 'utils'
 import Button from 'components/common/Button'
+import styled from 'styled-components'
+
+const ReStyledButtom = styled(Button)`
+  margin: 0;
+  &:hover {
+    background-color: #fffae6;
+    border: 1px solid ${(props) => props.theme.color.yellow[500]};
+    box-shadow: 0 0 0 1px ${(props) => props.theme.color.yellow[500]};
+    color: ${(props) => props.theme.color.black[500]};
+  }
+  &[data-active='true']:hover {
+    background-color: ${(props) => props.theme.color.yellow[500]};
+    color: #ffffff;
+    box-shadow: none;
+  }
+`
 
 const TimeSelectField = (props) => {
   const { data, onChange, value } = props
@@ -34,15 +50,14 @@ const TimeSelectField = (props) => {
         {data &&
           data.map((time) => (
             <SwiperSlide key={time.hour}>
-              <Button
+              <ReStyledButtom
                 variant='outline'
                 onClick={() => handleSelectOnClick(time)}
                 data-active={_.isEqual(time, value)}
-                style={{ margin: 0 }}
                 fullWidth
               >
                 {formatTime(time)}
-              </Button>
+              </ReStyledButtom>
             </SwiperSlide>
           ))}
       </Swiper>

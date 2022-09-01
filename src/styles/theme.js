@@ -10,6 +10,9 @@ export const theme = {
     radius: '8px'
   },
   color: {
+    black: {
+      500: '#323232'
+    },
     white: {
       500: '#fff'
     },

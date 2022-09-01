@@ -81,12 +81,16 @@ function ServicePicker() {
 
   const confirmSelectService = () => {
     let backwardURL = -1
-
-    if (hasSelectedServices && isPickedDate && isReviewing)
+    console.log({
+      hasSelectedServices,
+      isPickedDate,
+      isReviewing
+    })
+    if ((hasSelectedServices && isPickedDate) || isReviewing)
       backwardURL = `${routes.booking}/xem-lai`
 
     if (hasSelectedServices && !isReviewing) backwardURL = `${routes.booking}/chon-ngay`
-
+    console.log(backwardURL)
     navigate(backwardURL)
   }
 

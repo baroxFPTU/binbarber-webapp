@@ -1,23 +1,39 @@
-import Button from 'components/common/Button'
-import config from 'config'
-import React from 'react'
-import { useNavigate, useSearchParams } from 'react-router-dom'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
+import { AnimatePresence, motion, usePresence } from 'framer-motion'
+import Confetti from 'react-confetti'
+
+import config from 'config'
 import { theme } from 'styles/theme'
+import Button from 'components/common/Button'
 import { FailIllustra, NotFoundIllustra, SuccessIllustra } from '../components/Illustrator'
 
-const ResultPageStyled = styled.div`
+const ResultPageStyled = styled(motion.div)`
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-direction: column;
 
-  margin-top: calc(${(props) => props.theme.base.spacing} * 8);
+  padding: 0 24px;
   height: 100%;
+  background: #fff;
+  overflow: hidden;
   h2 {
     font-size: 32px;
     font-weight: bold;
-    color: ${(props) => props.colorScheme};
+    color: ${(props) => props.colorscheme};
+    text-align: center;
   }
+  p {
+    text-align: center;
+    font-weight: 500;
+  }
+`
+
+const GroupButton = styled.div`
+  width: 100%;
+  margin-top: 48px;
 `
 
 const BOOKING_STATUS = {
@@ -25,8 +41,27 @@ const BOOKING_STATUS = {
   failed: 'failed'
 }
 
+const pageVariants = {
+  hidden: {
+    opacity: 0,
+    x: '-100%'
+  },
+  show: {
+    opacity: 1,
+    x: 0
+  },
+  leave: {
+    opacity: 0,
+    x: '100%',
+    transition: {
+      duration: 0.6
+    }
+  }
+}
+
 const ResultPage = () => {
-  const navigate = useNavigate()
+  const location = useLocation()
+  const navigate = useNavigate(location)
   const [searchParams] = useSearchParams()
   const bookingId = searchParams.get('booking')
   const bookingStatus = searchParams.get('status')
@@ -34,36 +69,57 @@ const ResultPage = () => {
   const isSuccess = bookingId && bookingStatus === BOOKING_STATUS.success
   const buttonLabel = isSuccess ? 'Xem lịch đã đặt' : 'Trở về trang chủ'
   const buttonHref = isSuccess ? config.routes.userBooking : config.routes.home
+  const [isPresent, safeToRemove] = usePresence()
+
+  useEffect(() => {
+    !isPresent && setTimeout(safeToRemove, 600)
+  }, [isPresent, safeToRemove])
 
   return (
-    <ResultPageStyled colorScheme={colorScheme}>
-      <div className='image'>{<Element />}</div>
-      <h2>{title}</h2>
-      <p>{description}</p>
-      <div style={{ marginTop: 'auto', width: '100%', marginBottom: '64px' }}>
-        <Button
-          variant='primary'
-          style={{ backgroundColor: colorScheme }}
-          onClick={() => navigate(buttonHref)}
+    <div className='app-master'>
+      <AnimatePresence exitBeforeEnter initial={true} custom={{ mode: 'wait' }}>
+        <ResultPageStyled
+          key={location.pathname}
+          colorscheme={colorScheme}
+          variants={pageVariants}
+          initial='hidden'
+          animate='show'
+          exit='leave'
+          transition={{
+            type: 'spring',
+            duration: 1
+          }}
         >
-          {buttonLabel}
-        </Button>
-        {isSuccess && (
-          <Button style={{ marginBottom: '24px' }} onClick={() => navigate('/')}>
-            Trang chủ
-          </Button>
-        )}
-      </div>
-    </ResultPageStyled>
+          {isSuccess && (
+            <Confetti width={window.innerWidth - 30} height={window.innerHeight} recycle={false} />
+          )}
+          <motion.div key={`illustration.${bookingStatus || 'notfound'}`} className='image'>
+            {<Element />}
+          </motion.div>
+          <div style={{ marginTop: '64px' }}>
+            <h2>{title}</h2>
+            <p>{description}</p>
+            <GroupButton>
+              <Button
+                variant='primary'
+                style={{ backgroundColor: colorScheme }}
+                onClick={() => navigate(buttonHref)}
+              >
+                {buttonLabel}
+              </Button>
+            </GroupButton>
+          </div>
+        </ResultPageStyled>
+      </AnimatePresence>
+    </div>
   )
 }
 
 const getHeadingByStatus = (bookingId, bookingStatus) => {
   if (bookingId && bookingStatus === BOOKING_STATUS.success) {
     return {
-      title: 'Lên lịch thành công',
-      description:
-        'Vui lòng đến trước 5 - 7 phút để được tư vấn nhiều hơn nhé.\nHẹn gặp người anh em!',
+      title: 'Đặt thành công!',
+      description: 'Nhớ đến sớm nhé. \nHẹn gặp người anh em!',
       Element: SuccessIllustra,
       colorScheme: theme.color.green[400]
     }

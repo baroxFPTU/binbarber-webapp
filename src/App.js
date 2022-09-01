@@ -19,34 +19,32 @@ function App() {
         <title>BinBarber | {pageData.title || ''}</title>
         <meta name='description' content={`Binbarber - ${pageData.description}`} />
       </Helmet>
-      <div className='app-master'>
-        <ErrorBoundary FallbackComponent={Error}>
-          <AnimatePresence exitBeforeEnter initial={true} custom={{ mode: 'wait' }}>
-            <Routes location={location} key={location.pathname}>
-              {PUBLIC_ROUTES.map((route, index) => {
-                const Page = route.element
-                let Layout = DefaultLayout
-                if (route.layout) {
-                  Layout = route.layout
-                } else if (route.layout === null) {
-                  Layout = Fragment
-                }
-                return (
-                  <Route
-                    key={index}
-                    path={route.path}
-                    element={
-                      <Layout>
-                        <Page {...route.props} />
-                      </Layout>
-                    }
-                  />
-                )
-              })}
-            </Routes>
-          </AnimatePresence>
-        </ErrorBoundary>
-      </div>
+      <ErrorBoundary FallbackComponent={Error}>
+        <AnimatePresence exitBeforeEnter initial={true} custom={{ mode: 'wait' }}>
+          <Routes location={location} key={location.pathname}>
+            {PUBLIC_ROUTES.map((route, index) => {
+              const Page = route.element
+              let Layout = DefaultLayout
+              if (route.layout) {
+                Layout = route.layout
+              } else if (route.layout === null) {
+                Layout = Fragment
+              }
+              return (
+                <Route
+                  key={index}
+                  path={route.path}
+                  element={
+                    <Layout>
+                      <Page {...route.props} />
+                    </Layout>
+                  }
+                />
+              )
+            })}
+          </Routes>
+        </AnimatePresence>
+      </ErrorBoundary>
     </HelmetProvider>
   )
 }

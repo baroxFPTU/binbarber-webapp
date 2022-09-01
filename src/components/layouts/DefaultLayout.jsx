@@ -16,9 +16,6 @@ const variants = {
   },
   exit: {
     opacity: 0,
-    transition: {
-      duration: 0.4
-    },
     x: 20
   }
 }
@@ -26,11 +23,15 @@ const variants = {
 function DefaultLayout(props) {
   return (
     <motion.div
+      className='app-master'
       variants={variants}
       initial='hidden'
       animate='enter'
       exit='exit'
-      transition={{ delay: 0.4 }}
+      transition={{
+        duration: 0.4
+      }}
+      style={{ position: 'relative', height: '100vh' }}
     >
       <Header isDefault />
       <Wrapper className='default-layout-wrapper'>{props.children || <Outlet />}</Wrapper>

@@ -101,7 +101,6 @@ const ReviewPage = () => {
   }
 
   const handleCancelOnClick = () => {
-    dispatch(bookingActions.clearCart())
     navigate('/')
   }
 

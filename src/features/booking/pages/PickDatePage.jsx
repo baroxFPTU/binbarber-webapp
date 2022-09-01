@@ -78,6 +78,7 @@ function DatePicker() {
 
   const hasWorkingDate = Boolean(workingDate) && !error
   const isLoadWorkingDate = !workingDate && !error
+  const isSelectTime = Boolean(selectedTime)
 
   return (
     <div>
@@ -102,14 +103,16 @@ function DatePicker() {
           )}
         </ErrorBoundary>
       </FormSection>
-      <Button
-        variant='primary'
-        fixed
-        onClick={handleSubmitBookingDate}
-        disabled={!(Boolean(selectedDate) && Boolean(selectedTime))}
-      >
-        Tiếp tục
-      </Button>
+      {isSelectTime && (
+        <Button
+          variant='primary'
+          fixed
+          onClick={handleSubmitBookingDate}
+          disabled={!(Boolean(selectedDate) && Boolean(selectedTime))}
+        >
+          Tiếp tục
+        </Button>
+      )}
     </div>
   )
 }

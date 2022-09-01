@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import { motion } from 'framer-motion'
 
 const ModalContentStyled = styled.div`
   position: fixed;
@@ -38,6 +39,24 @@ const ModalContentStyled = styled.div`
   }
 `
 
+const ModalContentVariants = {
+  hidden: {
+    opacity: 0,
+    y: 20
+  },
+  show: {
+    opacity: 1,
+    y: 0
+  },
+  leave: {
+    opacity: 0,
+    y: 30,
+    transition: {
+      duration: 0.2
+    }
+  }
+}
+
 export const ModalContent = ({ children, ...containerProps }) => {
   const handleOnClick = (e) => {
     e.stopPropagation()
@@ -45,9 +64,16 @@ export const ModalContent = ({ children, ...containerProps }) => {
 
   return (
     <ModalContentStyled {...containerProps}>
-      <section className='ModalContent' onClick={handleOnClick}>
+      <motion.section
+        variants={ModalContentVariants}
+        initial='hidden'
+        animate='show'
+        exit='leave'
+        className='ModalContent'
+        onClick={handleOnClick}
+      >
         {children}
-      </section>
+      </motion.section>
     </ModalContentStyled>
   )
 }

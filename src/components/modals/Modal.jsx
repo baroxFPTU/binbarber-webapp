@@ -1,8 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { AnimatePresence, motion } from 'framer-motion'
 
 export const Modal = ({ isOpen, children }) => {
-  return <>{isOpen && <div>{children}</div>}</>
+  return (
+    <>
+      <AnimatePresence exitBeforeEnter>
+        {isOpen && <motion.div>{children}</motion.div>}
+      </AnimatePresence>
+    </>
+  )
 }
 
 Modal.propTypes = {
