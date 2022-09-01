@@ -1,5 +1,5 @@
 export const axiosConfig = {
-  baseURL: 'http://localhost:4040/v1',
+  baseURL: process.env.REACT_APP_API_URL,
   headers: {
     'Content-Type': 'application/json'
   }
