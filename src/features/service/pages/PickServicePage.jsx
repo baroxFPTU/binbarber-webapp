@@ -1,22 +1,23 @@
 import React, { useCallback, useEffect } from 'react'
+import styled from 'styled-components'
+import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { AnimatePresence, motion } from 'framer-motion'
 
+import routes from 'config/routes'
 import {
   selectCart,
   bookingActions,
   selectIsPickedDate,
   selectIsReviewing
 } from 'features/booking/bookingSlice'
-import { addCategories, selectServiceCategories } from 'features/service/serviceSlice'
+import { useTitle } from 'hooks/useTitle'
 import { SERVICE_CATEGORIES } from 'utils/constants'
 import ServiceCard from '../components/ServiceCard'
-import styled from 'styled-components'
+
 import Button from 'components/common/Button'
-import { useNavigate } from 'react-router-dom'
-import routes from 'config/routes'
-import FormSection from '../../../components/form/FormSection'
-import { useTitle } from 'hooks/useTitle'
+import { FormSection } from '../../../components/form'
+import { addCategories, selectServiceCategories } from 'features/service/serviceSlice'
 
 const FlexWrapper = styled.div`
   display: flex;
@@ -53,6 +54,7 @@ function ServicePicker() {
     return () => {
       reset()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
@@ -81,16 +83,10 @@ function ServicePicker() {
 
   const confirmSelectService = () => {
     let backwardURL = -1
-    console.log({
-      hasSelectedServices,
-      isPickedDate,
-      isReviewing
-    })
     if ((hasSelectedServices && isPickedDate) || isReviewing)
       backwardURL = `${routes.booking}/xem-lai`
 
     if (hasSelectedServices && !isReviewing) backwardURL = `${routes.booking}/chon-ngay`
-    console.log(backwardURL)
     navigate(backwardURL)
   }
 

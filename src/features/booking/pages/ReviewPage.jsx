@@ -1,20 +1,19 @@
+import styled from 'styled-components'
+import { useDispatch, useSelector } from 'react-redux'
+import React, { useMemo, useState, useEffect } from 'react'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
+
+import config from 'config'
+import { bookingUtils } from 'utils'
+import { useTitle } from 'hooks/useTitle'
+import { bookingActions, selectBookingAtString, selectCart } from '../bookingSlice'
+
 import Button from 'components/common/Button'
 import Divider from 'components/common/Divider'
 import FinanceSection from 'components/finance/FinanceSection'
-import FormGroup from 'components/form/FormGroup'
-import FormSection from 'components/form/FormSection'
-
-import config from 'config'
+import { FormGroup, FormSection } from '../../../components/form'
 import ServiceGrid from 'features/service/components/ServiceGrid'
 import useRedirectEmptyCart from 'hooks/useRedirectEmptyCart'
-import { useTitle } from 'hooks/useTitle'
-import React, { useMemo, useState } from 'react'
-import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { Link, NavLink, useNavigate } from 'react-router-dom'
-import styled from 'styled-components'
-import { bookingUtils } from 'utils'
-import { bookingActions, selectBookingAtString, selectCart } from '../bookingSlice'
 import FormModal from '../components/Modals/FormModal'
 
 const GroupInputButton = styled.div`
@@ -59,6 +58,7 @@ const ReviewPage = () => {
     return () => {
       reset()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {

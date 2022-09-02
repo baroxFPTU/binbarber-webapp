@@ -8,7 +8,7 @@ const FormLabelStyled = styled.label`
   margin-bottom: 8px;
 `
 
-const FormLabel = ({ children, ...labelProps }) => {
+export const FormLabel = ({ children, ...labelProps }) => {
   if (!children) return
   return <FormLabelStyled {...labelProps}>{children}</FormLabelStyled>
 }
@@ -18,5 +18,3 @@ FormLabel.propTypes = {
 }
 
 FormLabel.defaultProps = { children: null }
-
-export default FormLabel

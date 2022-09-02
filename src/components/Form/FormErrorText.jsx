@@ -7,8 +7,6 @@ const FormErrorTextStyled = styled.div`
   font-size: 15px;
 `
 
-const FormErrorText = ({ children }) => {
+export const FormErrorText = ({ children }) => {
   return <FormErrorTextStyled>{children}</FormErrorTextStyled>
 }
-
-export default FormErrorText

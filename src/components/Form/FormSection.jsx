@@ -23,7 +23,7 @@ const HeadingSectionStyled = styled.div`
   }
 `
 
-function FormSection({ title, titleRightElement, children, ...props }) {
+export const FormSection = ({ title, titleRightElement, children, ...props }) => {
   return (
     <FormSectionStyled {...props}>
       {title && (
@@ -35,5 +35,3 @@ function FormSection({ title, titleRightElement, children, ...props }) {
     </FormSectionStyled>
   )
 }
-
-export default FormSection

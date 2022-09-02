@@ -1,22 +1,23 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { format, startOfToday } from 'date-fns'
-import React, { memo, useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
+import { format, startOfToday } from 'date-fns'
+import { ErrorBoundary } from 'react-error-boundary'
+import { Link, useNavigate } from 'react-router-dom'
+import React, { memo, useEffect, useState } from 'react'
 
-import { operationAPI } from 'api/operationAPI'
-import Button from 'components/common/Button'
-import FormSection from 'components/form/FormSection'
 import config from 'config'
+import { useTitle } from 'hooks/useTitle'
+import { generateListDayOptions } from 'utils'
+import { operationAPI } from 'api/operationAPI'
+import useRedirectEmptyCart from 'hooks/useRedirectEmptyCart'
 import { bookingActions } from 'features/booking/bookingSlice'
+
+import Button from 'components/common/Button'
+import Error from 'components/common/Error/Error'
+import { FormSection } from '../../../components/form'
 import DateSelect from 'features/booking/components/DateSelect'
 import TimeSelectField from 'features/booking/components/TimeSelectField'
-import useRedirectEmptyCart from 'hooks/useRedirectEmptyCart'
-import { Link, useNavigate } from 'react-router-dom'
-import { generateListDayOptions } from 'utils'
 import TimeSelectSkeleton from 'components/skeletons/TimeSelectSkeleton'
-import { ErrorBoundary } from 'react-error-boundary'
-import Error from 'components/common/Error/Error'
-import { useTitle } from 'hooks/useTitle'
 
 function DatePicker() {
   let today = startOfToday()

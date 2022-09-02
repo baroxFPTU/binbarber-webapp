@@ -9,8 +9,6 @@ const FormGroupStyled = styled.div`
   }
 `
 
-function FormGroup({ isInValid, children }) {
+export const FormGroup = ({ isInValid, children }) => {
   return <FormGroupStyled isInValid={isInValid}>{children}</FormGroupStyled>
 }
-
-export default FormGroup
