@@ -11,7 +11,7 @@ import { bookingActions, selectBookingAtString, selectCart } from '../bookingSli
 import Button from 'components/common/Button'
 import Divider from 'components/common/Divider'
 import FinanceSection from 'components/finance/FinanceSection'
-import { FormGroup, FormSection } from '../../../components/form'
+import { FormGroup, FormSection } from '../../../components/Form'
 import ServiceGrid from 'features/service/components/ServiceGrid'
 import useRedirectEmptyCart from 'hooks/useRedirectEmptyCart'
 import FormModal from '../components/Modals/FormModal'

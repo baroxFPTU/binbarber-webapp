@@ -16,7 +16,7 @@ import { SERVICE_CATEGORIES } from 'utils/constants'
 import ServiceCard from '../components/ServiceCard'
 
 import Button from 'components/common/Button'
-import { FormSection } from '../../../components/form'
+import { FormSection } from '../../../components/Form'
 import { addCategories, selectServiceCategories } from 'features/service/serviceSlice'
 
 const FlexWrapper = styled.div`

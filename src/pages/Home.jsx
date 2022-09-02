@@ -28,9 +28,7 @@ function Home() {
   }, [])
 
   useEffect(() => {
-    console.log({ location: 'home', hasSelectedServices, isPickedDate })
     if (hasSelectedServices || isPickedDate) {
-      console.log('clear cart')
       dispatch(bookingActions.clearCart())
     }
   }, [hasSelectedServices, isPickedDate, dispatch])

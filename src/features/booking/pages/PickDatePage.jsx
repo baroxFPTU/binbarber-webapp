@@ -14,7 +14,7 @@ import { bookingActions } from 'features/booking/bookingSlice'
 
 import Button from 'components/common/Button'
 import Error from 'components/common/Error/Error'
-import { FormSection } from '../../../components/form'
+import { FormSection } from '../../../components/Form'
 import DateSelect from 'features/booking/components/DateSelect'
 import TimeSelectField from 'features/booking/components/TimeSelectField'
 import TimeSelectSkeleton from 'components/skeletons/TimeSelectSkeleton'

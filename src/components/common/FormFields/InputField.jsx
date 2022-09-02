@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Input from '../Input'
-import { FormErrorText, FormLabel, FormGroup } from 'components/form'
+import { FormErrorText, FormLabel, FormGroup } from 'components/Form'
 import { useEffect } from 'react'
 
 const InputField = ({ name, label, register, unregister, error, ...inputProps }) => {
