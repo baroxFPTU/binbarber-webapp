@@ -32,7 +32,7 @@ function BookingLayout(props) {
         duration: 0.4
       }}
       className='app-master'
-      style={{ position: 'relative', height: '100vh' }}
+      style={{ position: 'relative', height: '100vh', background: '#fff' }}
     >
       <Header title={title} />
       <Wrapper>

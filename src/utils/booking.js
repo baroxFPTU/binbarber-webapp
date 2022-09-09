@@ -12,10 +12,10 @@ export const bookingUtils = {
   },
   loadFromLocalStorage: () => {
     const savedData = localStorage.getItem('user_data')
+    if (!savedData) return null
     const [name, phone] = savedData.split('.')
 
     if (
-      savedData &&
       name.match(/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/) &&
       phone.match(/([+84|84|0]+[3|5|7|8|9|1[2|6|8|9])+([0-9]{8})/)
     ) {

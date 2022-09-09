@@ -11,8 +11,10 @@ function* fetchCreateNewBooking(action) {
     const query = stringify({ booking: bookingResponse.data.bookingId, status: 'success' })
 
     yield put(push(`/len-lich/ket-qua?${query}`))
+    yield put(bookingActions.clearCart())
     yield put(bookingActions.fetchCreateBookingSuccess())
   } catch (error) {
+    yield put(bookingActions.clearCart())
     yield put(push('/len-lich/ket-qua?status=failed'))
     yield put(bookingActions.fetchCreateBookingFailed())
   }

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 
 import Card from 'components/common/Card'
 import { TickIcon } from 'components/icons/Icon'
@@ -92,18 +92,20 @@ function ServiceCard(props) {
 
   return (
     <CardCustomStyled onClick={props.onSelect} data-selected={props.isSelected}>
-      {props.isSelected && (
-        <motion.div
-          key={'tick' + name}
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          exit={{ scale: 0 }}
-          transition={{ type: 'spring', duration: 0.2, bounce: 0.22 }}
-          className='service-selected'
-        >
-          <TickIcon />
-        </motion.div>
-      )}
+      <AnimatePresence>
+        {props.isSelected && (
+          <motion.div
+            key={'tick' + name}
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            exit={{ scale: 0 }}
+            transition={{ type: 'spring', duration: 0.2, bounce: 0.22 }}
+            className='service-selected'
+          >
+            <TickIcon />
+          </motion.div>
+        )}
+      </AnimatePresence>
       <div className='card-pic'>
         <img src={imageURL} alt={name + ' - ' + description} />
       </div>
