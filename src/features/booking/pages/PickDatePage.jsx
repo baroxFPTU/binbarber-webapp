@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { format, startOfToday } from 'date-fns'
 import { ErrorBoundary } from 'react-error-boundary'
 import { Link, useNavigate } from 'react-router-dom'
-import React, { memo, useEffect, useState } from 'react'
+import React, { memo, useEffect, useRef, useState } from 'react'
 
 import config from 'config'
 import { useTitle } from 'hooks/useTitle'
@@ -24,16 +24,17 @@ function DatePicker() {
   const dispatch = useDispatch()
   const [watching] = useRedirectEmptyCart(`${config.routes.booking}/chon-dich-vu`)
   const navigate = useNavigate()
+  const hasFetchedData = useRef(false)
 
   const [workingDate, setWorkingDate] = useState(undefined)
   const [selectedDate, setSelectedDate] = useState(today)
   const [selectedTime, setSelectedTime] = useState(undefined)
   const [error, setError] = useState(null)
   const dates = generateListDayOptions(today, 4)
-  const { onChangeBoth, reset } = useTitle()
+  const { onUpdateTitleAndDescription, reset } = useTitle()
 
   useEffect(() => {
-    onChangeBoth('Chọn ngày', 'Bạn sẽ cắt vào thứ mấy?')
+    onUpdateTitleAndDescription('Chọn ngày', 'Bạn sẽ cắt vào thứ mấy?')
 
     return () => {
       reset()
@@ -46,11 +47,10 @@ function DatePicker() {
       setError(undefined)
 
       try {
+        if (hasFetchedData.current) return
         const fullDate = format(selectedDate, 'yyyy-MM-dd')
         let response = await operationAPI.getWorkingDate(fullDate)
-        if (!response.data) {
-          response = await operationAPI.generateWorkingDate(fullDate)
-        }
+        hasFetchedData.current = true
         setWorkingDate(response.data)
       } catch (error) {
         setError(error.message)

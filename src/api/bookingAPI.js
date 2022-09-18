@@ -6,6 +6,9 @@ export const bookingAPI = {
   getAll: async () => {
     return await axiosClient.get(URL)
   },
+  getById: async (bookingId) => {
+    return await axiosClient.get(`${URL}/${bookingId}`)
+  },
   create: async (newBooking) => {
     return await axiosClient.post(URL, newBooking)
   },

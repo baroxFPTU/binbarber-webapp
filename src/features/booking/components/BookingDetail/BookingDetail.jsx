@@ -1,47 +1,44 @@
+import { bookingAPI } from 'api/bookingAPI'
 import useBookingStatus from 'hooks/useStatus'
-import { cloneDeep } from 'lodash'
 import moment from 'moment'
 import React, { useEffect, useMemo, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { formatCurrency } from 'utils'
-import { INITIAL_BOOKINGS, INITIAL_SERVICES, INITIAL_USERS } from 'utils/constants'
+import { bookingUtils, formatCurrency } from 'utils'
 import CSSModule from './BookingDetail.module.scss'
 
 function BookingDetail() {
-  const [booking, setBookings] = useState(null)
-  const [color, message, onChangeStatus] = useBookingStatus(-2)
   const params = useParams()
   const navigate = useNavigate()
+  const [booking, setBookings] = useState(null)
+  const [color, message, onChangeStatus] = useBookingStatus(-2)
+
   const convertedTime = booking && moment(booking.bookedAt).format('HH:mm')
   const convertedDate = booking && moment(booking.bookedAt).format('DD/MM/YYYY')
+  const userSavedData = bookingUtils.loadFromLocalStorage()
+
+  useEffect(() => {
+    if (booking) onChangeStatus(booking.isPaid)
+  }, [booking, onChangeStatus])
+
+  useEffect(() => {
+    const bookingId = params.bookingId
+    ;(async () => {
+      const loadedBooking = await (await bookingAPI.getById(bookingId)).data[0]
+      if (!loadedBooking) return
+      loadedBooking.selectedServices.sort((a, b) => b.price - a.price)
+      setBookings(loadedBooking)
+    })()
+  }, [params])
+
   const subTotal = useMemo(() => {
     let result = 0
     if (booking) {
-      result = booking.selectedServices.reduce((acc, service) => acc+ service.price, 0)
+      result = booking.selectedServices.reduce((acc, service) => acc + service.price, 0)
     }
     return result
   }, [booking])
 
-  const total = subTotal
-
-  useEffect(() => {
-    if (booking) onChangeStatus(booking.isPaid)
-  }, [booking, onChangeStatus ])
-
-  useEffect(() => {
-    const targetId = params.bookingId
-    const loadedBooking = INITIAL_BOOKINGS.find(booking => booking.id == targetId)
-    if (!loadedBooking) return
-
-    loadedBooking.user = INITIAL_USERS.find(user => user.id == loadedBooking.userId)
-
-    const newBooking = cloneDeep(loadedBooking)
-    newBooking.selectedServices = loadedBooking.selectedServices.map(service => {
-      const result = INITIAL_SERVICES.find(item => item.id == service)
-      return result
-    })
-    setBookings(newBooking)
-  }, [params.bookingId])
+  const total = subTotal // Will update when have promote features
 
   const goBackward = () => {
     navigate(-1)
@@ -49,41 +46,48 @@ function BookingDetail() {
 
   return (
     <div className={CSSModule.BookingDetail}>
-      {booking && <div className={CSSModule.BookingDetailContainer}>
-        <div className={CSSModule.Row}>
-          <h3>{booking.user.name}</h3>
-          <span>{convertedTime} - {convertedDate}</span>
-        </div>
-        <div className={CSSModule.Row}>
-          <h3>Trạng thái</h3>
-          <span style={{ color: color }}>{message}</span>
-        </div>
-        <div className="divider"></div>
-        <h2>Dịch vụ</h2>
-        {booking && booking.selectedServices.map((item, index) => (
-          <div className={CSSModule.Row} key={index}>
-            <h3>{item.label}</h3>
-            <span>{formatCurrency(item.price)}</span>
+      {booking && (
+        <div className={CSSModule.BookingDetailContainer}>
+          <div className={CSSModule.Row}>
+            {userSavedData && <h3>{userSavedData.name}</h3>}
+            <span>
+              {convertedTime} - {convertedDate}
+            </span>
           </div>
-        ))}
-        <div className="divider"></div>
-        <div className={CSSModule.Row}>
-          <h3>Tạm tính</h3>
-          <span>{formatCurrency(subTotal)}</span>
-        </div>
-        {/* Discount function - Comming soon... */}
-        {/* <div className={CSSModule.Row}>
+          <div className={CSSModule.Row}>
+            <h3>Trạng thái</h3>
+            <span style={{ color: color }}>{message}</span>
+          </div>
+          <div className='divider'></div>
+          <h2>Dịch vụ</h2>
+          {booking &&
+            booking.selectedServices.map((service, index) => (
+              <div className={CSSModule.Row} key={index}>
+                <h3>{service.name}</h3>
+                <span>{formatCurrency(service.price)}</span>
+              </div>
+            ))}
+          <div className='divider'></div>
+          <div className={CSSModule.Row}>
+            <h3>Tạm tính</h3>
+            <span>{formatCurrency(subTotal)}</span>
+          </div>
+          {/* Discount function - Comming soon... */}
+          {/* <div className={CSSModule.Row}>
           <h3>Giảm giá</h3>
           <span>- 12.000 VND</span>
         </div> */}
-        <div className={CSSModule.Row}>
-          <h3>Thành tiền</h3>
-          <span>{formatCurrency(total)}</span>
+          <div className={CSSModule.Row}>
+            <h3>Thành tiền</h3>
+            <span>{formatCurrency(total)}</span>
+          </div>
         </div>
-      </div>}
-      <div className="btn-group-vertical">
-        <button className="btn btn-primary">Đặt phát nữa</button>
-        <button className="btn" onClick={goBackward}>Trở lại</button>
+      )}
+      <div className='btn-group-vertical'>
+        <button className='btn btn-primary'>Đặt phát nữa</button>
+        <button className='btn' onClick={goBackward}>
+          Trở lại
+        </button>
       </div>
     </div>
   )

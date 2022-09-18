@@ -1,11 +1,11 @@
+import { bookingAPI } from 'api/bookingAPI'
 import { useTitle } from 'hooks/useTitle'
-import { cloneDeep } from 'lodash'
 import PropTypes from 'prop-types'
 import React, { useEffect, useState } from 'react'
+import { useRef } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { INITIAL_BOOKINGS, INITIAL_SERVICES } from 'utils/constants'
 import BookingItem from '../BookingItem'
 
 const NotFoundMessageStyled = styled.span`
@@ -21,10 +21,11 @@ const NotFoundMessageStyled = styled.span`
 
 function BookingList() {
   const [bookings, setBookings] = useState([])
-  const { onChangeBoth, reset } = useTitle()
+  const hasFetchedData = useRef(false)
+  const { onUpdateTitleAndDescription, reset } = useTitle()
 
   useEffect(() => {
-    onChangeBoth('Lịch của tôi', 'Tất tần tật lịch đã đặt')
+    onUpdateTitleAndDescription('Lịch của tôi', 'Tất tần tật lịch đã đặt')
 
     return () => {
       reset()
@@ -32,20 +33,13 @@ function BookingList() {
   }, [])
 
   useEffect(() => {
-    // Stimulate fetch data from DB
-    /**
-     * this will do from backend
-     */
-    const newBookings = cloneDeep(INITIAL_BOOKINGS)
-    const mapBookings = newBookings.map((booking) => {
-      booking.selectedServices =
-        booking.selectedServices.map((service) =>
-          INITIAL_SERVICES.find((item) => item.id == service)
-        ) || booking.selectedServices
-      return booking
-    })
-
-    setBookings(mapBookings)
+    // eslint-disable-next-line no-extra-semi
+    ;(async () => {
+      if (hasFetchedData.current) return
+      const newBookings = await bookingAPI.getAll()
+      hasFetchedData.current = true
+      setBookings(newBookings.data)
+    })()
   }, [])
 
   if (!bookings || bookings.length === 0) {

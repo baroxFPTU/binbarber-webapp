@@ -16,7 +16,7 @@ function App() {
   return (
     <HelmetProvider>
       <Helmet>
-        <title>BinBarber | {pageData.title || ''}</title>
+        <title>{pageData.title || ''} - BinBarber</title>
         <meta name='description' content={`Binbarber - ${pageData.description}`} />
       </Helmet>
       <ErrorBoundary FallbackComponent={Error}>

@@ -21,6 +21,15 @@
 
 .btn:disabled {
   cursor: not-allowed;
+  background: $gray-300;
+  color: $gray-400;
+}
+
+.btn:disabled:hover {
+  border: none;
+  background: $gray-300;
+  color: $gray-400;
+  box-shadow: none;
 }
 
 .btnPrimary {

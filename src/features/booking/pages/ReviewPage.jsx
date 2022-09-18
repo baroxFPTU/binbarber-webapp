@@ -42,18 +42,18 @@ const Wrapper = styled.div`
 `
 
 const ReviewPage = () => {
-  const [isOpenModal, setIsOpenModal] = useState(false)
   const dispatch = useDispatch()
-  const cart = useSelector(selectCart)
-  const bookedAt = useSelector(selectBookingAtString)
   const navigate = useNavigate()
+  const cart = useSelector(selectCart)
+  const [isOpenModal, setIsOpenModal] = useState(false)
+  const bookedAt = useSelector(selectBookingAtString)
 
-  const [watching] = useRedirectEmptyCart(`${config.routes.booking}/chon-dich-vu`)
-  const { onChangeBoth, reset } = useTitle()
+  const [watching, stopWatching] = useRedirectEmptyCart(`${config.routes.booking}/chon-dich-vu`)
+  const { onUpdateTitleAndDescription, reset } = useTitle()
   const initialValues = bookingUtils.loadFromLocalStorage() || undefined
 
   useEffect(() => {
-    onChangeBoth('Xem lại', 'Cùng xem lại dịch vụ bạn đã chọn nhé.')
+    onUpdateTitleAndDescription('Xem lại', 'Cùng xem lại dịch vụ bạn đã chọn nhé.')
 
     return () => {
       reset()
@@ -64,6 +64,11 @@ const ReviewPage = () => {
   useEffect(() => {
     watching()
     dispatch(bookingActions.setIsReviewing(true))
+
+    return () => {
+      stopWatching()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [watching, dispatch])
 
   const subTotal = useMemo(() => {
@@ -93,6 +98,7 @@ const ReviewPage = () => {
           userId
         })
       )
+      dispatch(bookingActions.clearCart())
 
       bookingUtils.saveToLocalStorage(name, phone)
     } catch (error) {

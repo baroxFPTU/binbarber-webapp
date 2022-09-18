@@ -27,7 +27,7 @@ export function useTitle() {
     onChangeTitle: setTitle,
     description: pageDescription,
     onChangeDescription: setDescription,
-    onChangeBoth: setBoth,
+    onUpdateTitleAndDescription: setBoth,
     reset: reset
   }
 }

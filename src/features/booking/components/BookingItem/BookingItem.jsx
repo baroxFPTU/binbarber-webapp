@@ -6,12 +6,13 @@ import { useNavigate } from 'react-router-dom'
 import CSSModule from './BookingItem.module.scss'
 
 function BookingItem({ data }) {
-  const { id: bookingId, bookedAt, selectedServices, isPaid } = data
+  const { _id: bookingId, bookedAt, selectedServices, isPaid } = data
   const [color, message, onChangeStatus] = useBookingStatus(isPaid)
   const navigate = useNavigate()
-  const transformedServices = selectedServices.map((service) => service.label).join(', ')
+  const transformedServices = selectedServices.map((service) => service.name).join(', ')
   const convertedTime = moment(bookedAt).format('HH:mm')
   const convertedDate = moment(bookedAt).format('DD/MM/YYYY')
+
   useEffect(() => {
     onChangeStatus(isPaid)
   }, [isPaid, onChangeStatus])

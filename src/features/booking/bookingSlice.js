@@ -44,13 +44,13 @@ const bookingSlice = createSlice({
       state.cart = { ...initialState.cart }
       state.isReviewing = false
     },
-    fetchCreateBooking: (state, action) => {
+    fetchCreateBooking: (state) => {
       state.loading = true
     },
-    fetchCreateBookingSuccess: (state, action) => {
+    fetchCreateBookingSuccess: (state) => {
       state.loading = false
     },
-    fetchCreateBookingFailed: (state, action) => {
+    fetchCreateBookingFailed: (state) => {
       state.loading = false
     }
   }

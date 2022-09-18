@@ -12,6 +12,7 @@ function useRedirectEmptyCart(fallbackUrl) {
     if (!isSelectedService && isWatching && fallbackUrl) {
       navigate(fallbackUrl)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isWatching, fallbackUrl])
 
   const watching = () => {

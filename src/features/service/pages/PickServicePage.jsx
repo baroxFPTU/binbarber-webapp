@@ -46,10 +46,10 @@ function ServicePicker() {
   const isReviewing = useSelector(selectIsReviewing)
   const bookingCart = useSelector(selectCart)
   const counterService = bookingCart.selectedServices.length
-  const { onChangeBoth, reset } = useTitle()
+  const { onUpdateTitleAndDescription, reset } = useTitle()
 
   useEffect(() => {
-    onChangeBoth('Chọn dịch vụ', 'Bạn muốn cắt tóc, gội hay uốn?')
+    onUpdateTitleAndDescription('Chọn dịch vụ', 'Bạn muốn cắt tóc, gội hay uốn?')
 
     return () => {
       reset()
@@ -82,11 +82,7 @@ function ServicePicker() {
   }
 
   const confirmSelectService = () => {
-    let backwardURL = -1
-    if ((hasSelectedServices && isPickedDate) || isReviewing)
-      backwardURL = `${routes.booking}/xem-lai`
-
-    if (hasSelectedServices && !isReviewing) backwardURL = `${routes.booking}/chon-ngay`
+    let backwardURL = isPickedDate ? `${routes.booking}/xem-lai` : `${routes.booking}/chon-ngay`
     navigate(backwardURL)
   }
 

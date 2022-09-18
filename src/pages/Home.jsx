@@ -16,10 +16,10 @@ function Home() {
   const dispatch = useDispatch()
   const hasSelectedServices = useSelector(selectIsSelectedService)
   const isPickedDate = useSelector(selectIsPickedDate)
-  const { onChangeBoth, reset } = useTitle()
+  const { onUpdateTitleAndDescription, reset } = useTitle()
 
   useEffect(() => {
-    onChangeBoth('Trang chủ', 'Thái độ hơn trình độ')
+    onUpdateTitleAndDescription('Trang chủ', 'Thái độ hơn trình độ')
 
     return () => {
       reset()

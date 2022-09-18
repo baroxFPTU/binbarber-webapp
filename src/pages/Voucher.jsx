@@ -2,10 +2,10 @@ import { useTitle } from 'hooks/useTitle'
 import React, { useEffect } from 'react'
 
 function Voucher() {
-  const { onChangeBoth, reset } = useTitle()
+  const { onUpdateTitleAndDescription, reset } = useTitle()
 
   useEffect(() => {
-    onChangeBoth('Vouchers', 'Mã giảm giá của tôi')
+    onUpdateTitleAndDescription('Vouchers', 'Mã giảm giá của tôi')
 
     return () => {
       reset()

@@ -54,6 +54,7 @@ const TimeSelectField = (props) => {
                 variant='outline'
                 onClick={() => handleSelectOnClick(time)}
                 data-active={_.isEqual(time, value)}
+                disabled={!time.isFree}
                 fullWidth
               >
                 {formatTime(time)}

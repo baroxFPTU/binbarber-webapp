@@ -2,10 +2,10 @@ import { useTitle } from 'hooks/useTitle'
 import React, { useEffect } from 'react'
 
 function Profile() {
-  const { onChangeBoth, reset } = useTitle()
+  const { onUpdateTitleAndDescription, reset } = useTitle()
 
   useEffect(() => {
-    onChangeBoth('Tôi', 'Thông tin của bạn')
+    onUpdateTitleAndDescription('Tôi', 'Thông tin của bạn')
 
     return () => {
       reset()

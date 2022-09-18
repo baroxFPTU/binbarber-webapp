@@ -8,7 +8,7 @@ const axiosClient = axios.create({
 
 axiosClient.interceptors.request.use(
   (config) => {
-    config.headers['Access-Control-Allow-Origin'] = 'https://binbarber-webapp.vercel.app/'
+    // config.headers['Access-Control-Allow-Origin'] = 'https://binbarber-webapp.vercel.app'
     return config
   },
   (error) => {
